@@ -1,4 +1,4 @@
-# huwindity 🌬️
+# huwindty 🌬️
 
 I wanted to use [Windty](https://github.com/distantcam/windty/) for my next [eleventy](https://www.11ty.dev/) project before I realised I need more than just a single page with [Tailwindcss](https://tailwindcss.com/). So I kept the good work and am adding more.
 
