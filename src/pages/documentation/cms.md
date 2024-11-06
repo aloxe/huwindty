@@ -64,7 +64,7 @@ base_url: https://oauth.example.com # Path to ext auth provider
 
 You may also change the `media_folder` where all images and media will be uploaded to. The last part, with the `collections` defines what folders and pages are editable by the CMS as well as the fields that will be available in the CMS. Usually you will set here all variables that are present in the Front Matter of your pages.
 
-Once the CMS installed you can go to your website admin section. (i.e. [https://aloxe.github.io/huwindity/admin/](https://aloxe.github.io/huwindity/admin/)), and once you are authenticated with your github account, you can start edit the pages that are in your config file.
+Once the CMS installed you can go to your website admin section. (i.e. [https://aloxe.github.io/huwindty/admin/](https://aloxe.github.io/huwindty/admin/)), and once you are authenticated with your github account, you can start edit the pages that are in your config file.
 
 ### User management with github
 

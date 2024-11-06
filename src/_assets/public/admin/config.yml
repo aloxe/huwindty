@@ -8,7 +8,7 @@
 
 backend:
   name: github
-  repo: aloxe/huwindity # Path to your GitHub repository
+  repo: aloxe/huwindty # Path to your GitHub repository
   branch: ecrire
   base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
 
