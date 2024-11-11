@@ -42,95 +42,24 @@ module.exports = async function(eleventyConfig) {
   eleventyConfig.addNunjucksAsyncFilter('postcss', postcssFilter);
 
   // images
-  eleventyConfig.addShortcode("Image", async (page, src, alt) => {
-    if (!alt) {
-      throw new Error(`Missing \`alt\` on myImage from: ${src}`);
-    }
 
 
-
-
-    
-    let inputFolder = page.inputPath.split("/")
-    inputFolder.pop()
-    inputFolder = inputFolder.join("/");
-    const srcImage = inputFolder+"/"+src;
-
-    let outputFolder = page.outputPath.split("/")
-    outputFolder.pop()
-    outputFolder = outputFolder.join("/");
-
-    let urlPath = outputFolder.split("/")
-    urlPath.pop() // remove page name
-    // urlPath.pop() // remove output folder
-    // urlPath.shift() // remove first empty string
-    urlPath = "/" + urlPath.join("/");
-
-    let options = {
-      widths: [380, 450, 640, 764],
-      formats: ["jpeg"],
-      urlPath: urlPath,
-      outputDir: outputFolder,
-      filenameFormat: function (id, src, width, format, options) {
-        const extension = path.extname(src);
-        const name = path.basename(src, extension);
-        return `${name}-${width}w.${format}`;
-      }
-    }
-
-    // generate images
-    Image(srcImage, options)
-
-    let imageAttributes = {
-      alt,
-      sizes: '(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px"',
-      loading: "lazy",
-      decoding: "async",
-    }
-    // get metadata
-    let metadata = Image.statsSync(srcImage, options)    
-    return Image.generateHTML(metadata, imageAttributes)
-  });
-
-  const pictureShortcode = async (
+  // Picture shortcode with <picture>
+  eleventyConfig.addShortcode("Picture", async (
     page,
     src,
     alt,
     className = undefined,
     widths = [350, 750, 1200],
     formats = ['jpeg'],
-    sizes = '100vw"',
+    sizes = '100vw"'
   ) => {
-
     if (!alt) {
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
     }
-
-    let inputFolder = page.inputPath.split("/")
-    inputFolder.pop()
-    inputFolder = inputFolder.join("/");
-    const srcImage = inputFolder+"/"+src;
-
-    let outputFolder = page.outputPath.split("/")
-    outputFolder.pop()
-    outputFolder = outputFolder.join("/");
-
-    let urlPath = outputFolder.split("/")
-    urlPath.pop()
-    urlPath.shift()
-    urlPath = "/" + urlPath.join("/");
-
-    const options = {
-      widths: [...widths, null],
-      formats: [...formats, null],
-      outputDir: outputFolder,
-      urlPath: urlPath,
-      filenameFormat: function (id, src, width, format, options) {
-        const extension = path.extname(src);
-        const name = path.basename(src, extension);
-        return `${name}-${width}w.${format}`;
-      }
-    }
+    const srcImage = getSrcImage(page, src);
+  
+    const options = getImgOptions(page, src, alt, className, widths, formats, sizes);
 
     const imageMetadata = await Image(srcImage, options);
 
@@ -160,7 +89,6 @@ module.exports = async function(eleventyConfig) {
   }
 
   const largestUnoptimizedImg = getLargestImage(formats[0]);
-  console.log("largestUnoptimizedImg", largestUnoptimizedImg);
   
   const imgAttributes = stringifyAttributes({
     src: largestUnoptimizedImg.url,
@@ -182,9 +110,34 @@ module.exports = async function(eleventyConfig) {
   </picture>`;
 
   return `${picture}`;
-  }
+  });
 
-  eleventyConfig.addShortcode('Picture', pictureShortcode);
+  // Image shortcode with <img>
+  eleventyConfig.addShortcode("Image", async (
+    page,
+    src,
+    alt,
+    className = undefined,
+    widths = [350, 750, 1200],
+    formats = ['jpeg'],
+    sizes = '100vw"',
+  ) => {
+    if (!alt) {
+      throw new Error(`Missing \`alt\` on myImage from: ${src}`);
+    }
+    const srcImage = getSrcImage(page, src);
+  
+    const options = getImgOptions(page, src, alt, className, widths, formats, sizes);
+    const imageMetadata = await Image(srcImage, options);
+
+    const imageAttributes = {
+      alt,
+      sizes: '(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px"',
+      loading: "lazy",
+      decoding: "async",
+    }
+    return Image.generateHTML(imageMetadata, imageAttributes)
+  });
 
   return {
     dir: {
@@ -240,3 +193,35 @@ const stringifyAttributes = (attributeMap) => {
     })
     .join(' ');
 };
+
+
+  const getSrcImage = (page, src) => {
+    let inputFolder = page.inputPath.split("/")
+    inputFolder.pop()
+    inputFolder = inputFolder.join("/");
+    return inputFolder+"/"+src;
+  }
+
+  const getImgOptions = (page, src, alt, className, widths, formats, sizes) => {
+    let outputFolder = page.outputPath.split("/")
+    outputFolder.pop()
+    outputFolder = outputFolder.join("/");
+
+    let urlPath = outputFolder.split("/")
+    urlPath.pop()
+    urlPath.shift()
+    urlPath = "/" + urlPath.join("/");
+
+    const options = {
+      widths: [...widths, null],
+      formats: [...formats, null],
+      outputDir: outputFolder,
+      urlPath: urlPath,
+      filenameFormat: function (id, src, width, format, options) {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}-${width}w.${format}`;
+      }
+    }
+    return options;
+  }
