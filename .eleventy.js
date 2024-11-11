@@ -47,6 +47,10 @@ module.exports = async function(eleventyConfig) {
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
     }
 
+
+
+
+    
     let inputFolder = page.inputPath.split("/")
     inputFolder.pop()
     inputFolder = inputFolder.join("/");
@@ -56,10 +60,10 @@ module.exports = async function(eleventyConfig) {
     outputFolder.pop()
     outputFolder = outputFolder.join("/");
 
-    let urlPath = page.outputPath.split("/")
+    let urlPath = outputFolder.split("/")
     urlPath.pop() // remove page name
-    urlPath.pop() // remove output folder
-    urlPath.shift() // remove first empty string
+    // urlPath.pop() // remove output folder
+    // urlPath.shift() // remove first empty string
     urlPath = "/" + urlPath.join("/");
 
     let options = {
@@ -88,6 +92,99 @@ module.exports = async function(eleventyConfig) {
     return Image.generateHTML(metadata, imageAttributes)
   });
 
+  const pictureShortcode = async (
+    page,
+    src,
+    alt,
+    className = undefined,
+    widths = [350, 750, 1200],
+    formats = ['jpeg'],
+    sizes = '100vw"',
+  ) => {
+
+    if (!alt) {
+      throw new Error(`Missing \`alt\` on myImage from: ${src}`);
+    }
+
+    let inputFolder = page.inputPath.split("/")
+    inputFolder.pop()
+    inputFolder = inputFolder.join("/");
+    const srcImage = inputFolder+"/"+src;
+
+    let outputFolder = page.outputPath.split("/")
+    outputFolder.pop()
+    outputFolder = outputFolder.join("/");
+
+    let urlPath = outputFolder.split("/")
+    urlPath.pop()
+    urlPath.shift()
+    urlPath = "/" + urlPath.join("/");
+
+    const options = {
+      widths: [...widths, null],
+      formats: [...formats, null],
+      outputDir: outputFolder,
+      urlPath: urlPath,
+      filenameFormat: function (id, src, width, format, options) {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}-${width}w.${format}`;
+      }
+    }
+
+    const imageMetadata = await Image(srcImage, options);
+
+    const sourceHtmlString = Object.values(imageMetadata)
+    // Map each format to the source HTML markup
+    .map((images) => {
+      // The first entry is representative of all the others
+      // since they each have the same shape
+      const { sourceType } = images[0];
+
+      // Use our util from earlier to make our lives easier
+      const sourceAttributes = stringifyAttributes({
+        type: sourceType,
+        // srcset needs to be a comma-separated attribute
+        srcset: images.map((image) => image.srcset).join(', '),
+        sizes,
+      });
+
+      // Return one <source> per format
+      return `<source ${sourceAttributes}>`;
+    })
+    .join('\n');
+
+  const getLargestImage = (format) => {
+    const images = imageMetadata[format];
+    return images[images.length - 1];
+  }
+
+  const largestUnoptimizedImg = getLargestImage(formats[0]);
+  console.log("largestUnoptimizedImg", largestUnoptimizedImg);
+  
+  const imgAttributes = stringifyAttributes({
+    src: largestUnoptimizedImg.url,
+    width: largestUnoptimizedImg.width,
+    height: largestUnoptimizedImg.height,
+    alt,
+    loading: 'lazy',
+    decoding: 'async',
+  });
+
+  const imgHtmlString = `<img ${imgAttributes}>`;
+
+  const pictureAttributes = stringifyAttributes({
+    class: className,
+  });
+  const picture = `<picture ${pictureAttributes}>
+    ${sourceHtmlString}
+    ${imgHtmlString}
+  </picture>`;
+
+  return `${picture}`;
+  }
+
+  eleventyConfig.addShortcode('Picture', pictureShortcode);
 
   return {
     dir: {
@@ -131,3 +228,15 @@ const postcssFilter = (cssCode, done) => {
       (e) => done(e, null)
     );
 }
+
+/** Maps a config of attribute-value pairs to an HTML string
+ * representing those same attribute-value pairs.
+ */
+const stringifyAttributes = (attributeMap) => {
+  return Object.entries(attributeMap)
+    .map(([attribute, value]) => {
+      if (typeof value === 'undefined') return '';
+      return `${attribute}="${value}"`;
+    })
+    .join(' ');
+};
