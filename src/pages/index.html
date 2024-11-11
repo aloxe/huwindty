@@ -6,7 +6,11 @@ layout: base.njk
 ---
   <p>
     <div class="w-2/3 p-4 border border-black mx-auto">
-      {% Image page, "vera-davidova.jpg", "Wind is playing with the grass and they are dancing and enjoying the magical moment in their lives. Tinos, Greece"%}
+      {% Picture page, "vera-davidova.jpg", "Wind is playing with the grass and they are dancing and enjoying the magical moment in their lives. Tinos, Greece", undefined, undefined, ['webp', 'jpeg'], "(max-width: 1200px) 40vw, 1200px" %}
+      <!-- 
+      Picture attributes: 
+      page, file name, alt text, class, widths, formats, sizes 
+      -->
       <div
         class="text-sm text-gray-400 text-center">photo: <a href="https://unsplash.com/photos/green-grass-field-during-daytime-J_CutWQnT78">Vera Davidova</a></div>
     </div>
