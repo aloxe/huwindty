@@ -13,11 +13,14 @@ backend:
   base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
 
 media_folder: "src/static/img"
+public_folder: "/img"
 
 collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
     label: "Documentation" # Used in the UI
     folder: "src/pages/documentation" # The path to the folder where the documents are stored
+    media_folder: /src/static/img/documentation # start with a slash
+    public_folder: /img/documentation
     create: true # Allow users to create new documents in this collection
     fields: # All the fields for each document, usually in front matter + body
       - label: "Layout"
