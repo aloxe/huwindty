@@ -39,7 +39,7 @@ collections:
   - name: "singlepage" # Used in routes, e.g., /admin/collections/blog
     label: "Single page" # Used in the UI
     folder: "src/pages/singlepage" # The path to the folder where the documents are stored
-    media_folder: '' # start with a slash
+    media_folder: ''
     public_folder: ''
     create: true # Allow users to create new documents in this collection
     fields: # All the fields for each document, usually in front matter + body
