@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const pageAssetsPlugin = require('eleventy-plugin-page-assets');
 const htmlmin = require("html-minifier-terser");
 const tailwind = require('tailwindcss');
 const postCss = require('postcss');
@@ -33,6 +34,7 @@ module.exports = async function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "." });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/public': '/' });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/img': '/img' });
+  // eleventyConfig.addPassthroughCopy({ 'src/static': '/img' });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/fonts': '/fonts' });
   
   // Watch targets
@@ -139,6 +141,16 @@ module.exports = async function(eleventyConfig) {
     return Image.generateHTML(imageMetadata, imageAttributes)
   });
 
+
+  // COPY IMAGES LINKED in PAGES
+  // this is not regexp but Glob patern (picomatch https://npm.devtool.tech/picomatch)
+  // eleventyConfig.addPlugin(pageAssetsPlugin, {
+  //   mode: "parse",
+  //   postsMatching: "src/pages/*.{md,html}",
+  //   recursive: false,
+  //   hashAssets: false,
+  // });
+
   return {
     dir: {
       input: "src/pages",
@@ -150,7 +162,7 @@ module.exports = async function(eleventyConfig) {
     templateFormats: ['md', 'njk', 'jpg', 'gif', 'png', 'html'],
     pathPrefix: process.env.BASE_HREF ? `/${process.env.BASE_HREF}/` : "/" //  used with github pages
   }
-};
+}; // end config
 
 function htmlminTransform(content, outputPath) {
   if( outputPath.endsWith(".html") ) {
