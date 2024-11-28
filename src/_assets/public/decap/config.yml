@@ -1,0 +1,59 @@
+# Sveltia CMS configuration
+
+# This is where we configure the CMS repo and its collections and fields
+# Sveltia CMS generally follows the Decap CMS configuration spec
+# Decap CMS docs: https://decapcms.org/docs/intro/
+# docs on config: https://decapcms.org/docs/configuration-options/
+# Sveltia CMS docs: https://github.com/sveltia/sveltia-cms#features
+
+backend:
+  name: github
+  repo: aloxe/huwindty # Path to your GitHub repository
+  branch: ecrire
+  base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
+
+media_folder: "src/static/img"
+public_folder: "/img"
+
+collections:
+  - name: "documentation" # Used in routes, e.g., /admin/collections/blog
+    label: "Documentation" # Used in the UI
+    folder: "src/pages/documentation" # The path to the folder where the documents are stored
+    media_folder: /src/static/img/documentation # start with a slash
+    public_folder: /documentation
+    create: true # Allow users to create new documents in this collection
+    fields: # All the fields for each document, usually in front matter + body
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "base"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "subtitle"
+        name: "subtitle"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+  - name: "singlepage" # Used in routes, e.g., /admin/collections/blog
+    label: "Single page" # Used in the UI
+    folder: "src/pages/singlepage" # The path to the folder where the documents are stored
+    # about media and public folder https://decapcms.org/docs/collection-folder/#media-and-public-folder
+    media_folder: '' 
+    public_folder: '/{{dirname}}/{{filename}}'
+    create: true # Allow users to create new documents in this collection
+    fields: # All the fields for each document, usually in front matter + body
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "base"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "subtitle"
+        name: "subtitle"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
