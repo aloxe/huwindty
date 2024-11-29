@@ -5,6 +5,7 @@ const tailwind = require('tailwindcss');
 const postCss = require('postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const markdown = require('markdown-it')()
 const mdit = require('markdown-it')
 const mditAttrs = require('markdown-it-attrs');
 const mditHighlight = require('markdown-it-highlightjs');
@@ -29,11 +30,38 @@ module.exports = async function(eleventyConfig) {
   const mdLib = mdit(mditOptions).use(mditAttrs).use(mditHighlight, { inline: true }).disable('code')
   eleventyConfig.setLibrary('md', mdLib)
 
+  // generate responsive images from img Markdown
+  // from https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/
+  markdown.renderer.rules.image = (tokens, idx, options, env, self) => {
+    const token = tokens[idx]
+    const imgSrc = env.eleventy.directories.input.slice(0, -1) + token.attrGet('src')
+    const imgAlt = token.content
+    const imgTitle = token.attrGet('title') ?? ''
+    const className = undefined
+    const widths = [350, 750, 1200] // sizes of generated images
+    const formats = ['webp', 'jpeg'] // formats of generated images
+    const sizes = '100vw"'
+    const ImgOptions = getImgOptions(env.page, imgSrc, imgAlt, className, widths, formats, sizes);
+    const htmlOptions = {
+      sizes: '(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px"',
+      title: imgTitle,
+      alt: imgAlt,
+      loading: 'lazy',
+      decoding: 'async'
+    }
+    Image(imgSrc, ImgOptions)
+    const metadata = Image.statsSync(imgSrc, ImgOptions)
+    const picture = Image.generateHTML(metadata, htmlOptions)
+
+    return picture
+  }
+
+  eleventyConfig.setLibrary('md', markdown)
+
   // Passthrough
   eleventyConfig.addPassthroughCopy({ "src/assets": "." });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/public': '/' });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/img': '/img' });
-  // eleventyConfig.addPassthroughCopy({ 'src/static': '/img' });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/fonts': '/fonts' });
   
   // Watch targets
@@ -43,7 +71,7 @@ module.exports = async function(eleventyConfig) {
   eleventyConfig.addNunjucksAsyncFilter('postcss', postcssFilter);
 
   // images
-
+  ///////////
 
   // Picture shortcode with <picture>
   eleventyConfig.addShortcode("Picture", async (
@@ -59,11 +87,8 @@ module.exports = async function(eleventyConfig) {
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
     }
     const srcImage = getSrcImage(page, src);
-  
     const options = getImgOptions(page, src, alt, className, widths, formats, sizes);
-
     const imageMetadata = await Image(srcImage, options);
-
     const sourceHtmlString = Object.values(imageMetadata)
     // Map each format to the source HTML markup
     .map((images) => {
@@ -206,7 +231,7 @@ const stringifyAttributes = (attributeMap) => {
 
   const getImgOptions = (page, src, alt, className, widths, formats, sizes) => {
     let outputFolder = page.outputPath.split("/")
-    outputFolder.pop()
+    outputFolder.pop() // remove index.html
     outputFolder = outputFolder.join("/");
 
     let urlPath = outputFolder.split("/")
