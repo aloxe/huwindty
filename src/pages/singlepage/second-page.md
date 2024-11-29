@@ -9,4 +9,6 @@ Let's have an image
 
 let's have another image
 
+![chenilles](//second-page/4516293924_6c2d993013_o.jpg)
+
 ![avec des vaches](4689679012_b622a49cfa_o.jpg)
