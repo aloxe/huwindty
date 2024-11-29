@@ -5,8 +5,8 @@ subtitle: Edit and manage images
 ---
 example image
 
-![De kass](/img/documentation/dekaas.jpg)
+![bateau](/documentation/4842179260_5d94184d60_o.jpg)
 
 another image
 
-![avions](/documentation/4842178584_c8e043ff97_o.jpg)
+![circus](/documentation/4451567393_f0b651a015_o.jpg)
