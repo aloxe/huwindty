@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const pageAssetsPlugin = require('eleventy-plugin-page-assets');
 const htmlmin = require("html-minifier-terser");
 const tailwind = require('tailwindcss');
 const postCss = require('postcss');
@@ -141,16 +140,6 @@ module.exports = async function(eleventyConfig) {
     return Image.generateHTML(imageMetadata, imageAttributes)
   });
 
-
-  // COPY IMAGES LINKED in PAGES
-  // this is not regexp but Glob patern (picomatch https://npm.devtool.tech/picomatch)
-  // eleventyConfig.addPlugin(pageAssetsPlugin, {
-  //   mode: "parse",
-  //   postsMatching: "src/pages/*.{md,html}",
-  //   recursive: false,
-  //   hashAssets: false,
-  // });
-
   return {
     dir: {
       input: "src/pages",
@@ -159,7 +148,7 @@ module.exports = async function(eleventyConfig) {
       data: '../_data',
       output: '_site',
     },
-    templateFormats: ['md', 'njk', 'jpg', 'gif', 'png', 'html'],
+    templateFormats: ['md', 'njk', 'jpg', 'gif', 'png', 'html', 'jpeg', 'webp'],
     pathPrefix: process.env.BASE_HREF ? `/${process.env.BASE_HREF}/` : "/" //  used with github pages
   }
 }; // end config
@@ -211,6 +200,7 @@ const stringifyAttributes = (attributeMap) => {
     let inputFolder = page.inputPath.split("/")
     inputFolder.pop()
     inputFolder = inputFolder.join("/");
+    
     return inputFolder+"/"+src;
   }
 
@@ -220,10 +210,10 @@ const stringifyAttributes = (attributeMap) => {
     outputFolder = outputFolder.join("/");
 
     let urlPath = outputFolder.split("/")
-    urlPath.pop()
-    urlPath.shift()
+    urlPath.shift() // remove ./
+    urlPath.shift() // remove _site
     urlPath = "/" + urlPath.join("/");
-
+    
     const options = {
       widths: [...widths, null],
       formats: [...formats, null],
