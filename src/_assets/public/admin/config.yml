@@ -9,7 +9,7 @@
 backend:
   name: github
   repo: aloxe/huwindty # Path to your GitHub repository
-  branch: ecrire
+  branch: optimize-images
   base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
 
 
