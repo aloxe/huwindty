@@ -5,10 +5,12 @@ subtitle: Finally I am not single
 ---
 Let's have an image
 
-![slotter place](radar.jpg)
+![avec des vaches](vaches.jpg)
 
 let's have another image
 
-![chenilles](//second-page/4516293924_6c2d993013_o.jpg)
-
-![avec des vaches](4689679012_b622a49cfa_o.jpg)
+{% Picture page, "radar.jpg", "A radar image but responsible", undefined, undefined, undefined, "(max-width: 1200px) 40vw, 1200px" %}
+<!-- 
+Picture attributes: 
+page, file name, alt text, class, widths, formats, sizes 
+-->
