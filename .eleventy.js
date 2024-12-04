@@ -5,7 +5,6 @@ const tailwind = require('tailwindcss');
 const postCss = require('postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
-const markdown = require('markdown-it')()
 const mdit = require('markdown-it')
 const mditAttrs = require('markdown-it-attrs');
 const mditHighlight = require('markdown-it-highlightjs');
@@ -28,26 +27,26 @@ module.exports = async function(eleventyConfig) {
     typographer: true,
   }
   const mdLib = mdit(mditOptions).use(mditAttrs).use(mditHighlight, { inline: true }).disable('code')
-  eleventyConfig.setLibrary('md', mdLib)
 
   // generate responsive images from img Markdown
   // from https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/
-  markdown.renderer.rules.image = (tokens, idx, options, env, self) => {
+  mdLib.renderer.rules.image = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
     const imgSrc = env.eleventy.directories.input.slice(0, -1) + token.attrGet('src')
     const imgAlt = token.content
     const imgTitle = token.attrGet('title') ?? ''
-    const className = undefined
+    const className = token.attrGet('class')
     const widths = [350, 750, 1200] // sizes of generated images
     const formats = ['webp', 'jpeg'] // formats of generated images
     const sizes = '100vw"'
     const ImgOptions = getImgOptions(env.page, imgSrc, imgAlt, className, widths, formats, sizes);
     const htmlOptions = {
-      sizes: '(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px"',
-      title: imgTitle,
       alt: imgAlt,
-      loading: 'lazy',
-      decoding: 'async'
+      class: className,
+      sizes: '(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px',
+      loading: className?.includes('lazy') ? 'lazy' : undefined,
+      decoding: 'async',
+      title: imgTitle
     }
     Image(imgSrc, ImgOptions)
     const metadata = Image.statsSync(imgSrc, ImgOptions)
@@ -55,8 +54,7 @@ module.exports = async function(eleventyConfig) {
 
     return picture
   }
-
-  eleventyConfig.setLibrary('md', markdown)
+  eleventyConfig.setLibrary('md', mdLib)
 
   // Passthrough
   eleventyConfig.addPassthroughCopy({ "src/assets": "." });
@@ -121,7 +119,7 @@ module.exports = async function(eleventyConfig) {
     width: largestUnoptimizedImg.width,
     height: largestUnoptimizedImg.height,
     alt,
-    loading: 'lazy',
+    loading: className?.includes('lazy') ? 'lazy' : undefined,
     decoding: 'async',
   });
 
@@ -159,7 +157,7 @@ module.exports = async function(eleventyConfig) {
     const imageAttributes = {
       alt,
       sizes: '(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px"',
-      loading: "lazy",
+      loading: className?.includes('lazy') ? 'lazy' : undefined,
       decoding: "async",
     }
     return Image.generateHTML(imageMetadata, imageAttributes)
