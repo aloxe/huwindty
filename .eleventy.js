@@ -10,6 +10,14 @@ const mditAttrs = require('markdown-it-attrs');
 const mditHighlight = require('markdown-it-highlightjs');
 const Image = require('@11ty/eleventy-img');
 
+// sizes and formats of resized images to make them responsive
+// it can be overwriten when using the "Picture" short code
+const Images = {
+  WIDTHS: [426, 460, 580, 768, 1200], // sizes of generated images
+  FORMATS: ['webp', 'jpeg'], // formats of generated images
+  SIZES: '(max-width: 1200px) 70vw, 1200px' // size of image rendered
+}
+
 module.exports = async function(eleventyConfig) {
 
   const { EleventyHtmlBasePlugin } = await import("@11ty/eleventy");
@@ -28,7 +36,7 @@ module.exports = async function(eleventyConfig) {
   }
   const mdLib = mdit(mditOptions).use(mditAttrs).use(mditHighlight, { inline: true }).disable('code')
 
-  // generate responsive images from img Markdown
+  // generate responsive images from Markdown img
   // from https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/
   mdLib.renderer.rules.image = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
@@ -36,14 +44,11 @@ module.exports = async function(eleventyConfig) {
     const imgAlt = token.content
     const imgTitle = token.attrGet('title') ?? ''
     const className = token.attrGet('class')
-    const widths = [350, 750, 1200] // sizes of generated images
-    const formats = ['webp', 'jpeg'] // formats of generated images
-    const sizes = '100vw"'
-    const ImgOptions = getImgOptions(env.page, imgSrc, imgAlt, className, widths, formats, sizes);
+    const ImgOptions = getImgOptions(env.page, imgSrc, imgAlt, className, Images.WIDTHS, Images.FORMATS, Images.SIZES);
     const htmlOptions = {
       alt: imgAlt,
       class: className,
-      sizes: '(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px',
+      sizes: Images.SIZES,
       loading: className?.includes('lazy') ? 'lazy' : undefined,
       decoding: 'async',
       title: imgTitle
@@ -68,18 +73,15 @@ module.exports = async function(eleventyConfig) {
   // process css
   eleventyConfig.addNunjucksAsyncFilter('postcss', postcssFilter);
 
-  // images
-  ///////////
-
-  // Picture shortcode with <picture>
+  // Image shortcode with <picture>
   eleventyConfig.addShortcode("Picture", async (
     page,
     src,
     alt,
     className = undefined,
-    widths = [350, 750, 1200],
-    formats = ['jpeg'],
-    sizes = '100vw"'
+    widths = Images.WIDTHS,
+    formats = Images.FORMATS,
+    sizes = Images.SIZES
   ) => {
     if (!alt) {
       throw new Error(`Missing \`alt\` on myImage from: ${src}`);
@@ -136,32 +138,6 @@ module.exports = async function(eleventyConfig) {
   return `${picture}`;
   });
 
-  // Image shortcode with <img>
-  eleventyConfig.addShortcode("Image", async (
-    page,
-    src,
-    alt,
-    className = undefined,
-    widths = [350, 750, 1200],
-    formats = ['jpeg'],
-    sizes = '100vw"',
-  ) => {
-    if (!alt) {
-      throw new Error(`Missing \`alt\` on myImage from: ${src}`);
-    }
-    const srcImage = getSrcImage(page, src);
-  
-    const options = getImgOptions(page, src, alt, className, widths, formats, sizes);
-    const imageMetadata = await Image(srcImage, options);
-
-    const imageAttributes = {
-      alt,
-      sizes: '(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px"',
-      loading: className?.includes('lazy') ? 'lazy' : undefined,
-      decoding: "async",
-    }
-    return Image.generateHTML(imageMetadata, imageAttributes)
-  });
 
   // Collections 
   eleventyConfig.addCollection("documentation", function (collection) {
@@ -243,7 +219,9 @@ const stringifyAttributes = (attributeMap) => {
     urlPath = "/" + urlPath.join("/");
     
     const options = {
-      widths: [...widths, null],
+      widths: widths
+        .concat(widths.map((w) => w * 2)) // generate 2x sizes
+        .filter((v, i, s) => s.indexOf(v) === i), // dedupe
       formats: [...formats, null],
       outputDir: outputFolder,
       urlPath: urlPath,
