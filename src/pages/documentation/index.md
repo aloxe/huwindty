@@ -6,6 +6,6 @@ layout: base.njk
 ismarkdown: true
 ---
 
-### wind 🌬️
+## wind 🌬️
 
-{% Picture page, "vera.jpg", "Wind is playing with the grass and they are dancing and enjoying the magical moment in their lives. Tinos, Greece", undefined, undefined, undefined, "(max-width: 1200px) 40vw, 1200px" %}
+{% Picture page, "vera.jpg", "Wind is playing with the grass and they are dancing and enjoying the magical moment in their lives. Tinos, Greece", "lazy", undefined, undefined, "(max-width: 1200px) 40vw, 1200px" %}

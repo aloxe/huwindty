@@ -45,7 +45,7 @@ The following plugins are included in the default configuration:
 
   ### [markdown-it-highlight](https://www.npmjs.com/package/markdown-it-highlight)
 
-    This plugin allows you to highlight code in markdown syntax. For example, ````javascript` will output `<pre><code class="language-javascript"></code></pre>` in the html.
+    This plugin allows you to highlight code in markdown syntax. For example, ` ```javascript` will output `<pre><code class="language-javascript"></code></pre>` in the html.
 
   The highlights use a theme which is added in a css in the `src/_assets/public/css/highlightjs.css`
 

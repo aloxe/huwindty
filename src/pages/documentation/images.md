@@ -2,11 +2,10 @@
 layout: base
 title: Images
 subtitle: Edit and manage images
+ismarkdown: true
 ---
-example image
+## example image
+![drooderfiets and yallow boat](/documentation/boat.jpg)
 
-![bateau](/documentation/boat.jpg)
-
-another image
-
-![circus](/documentation/circus.jpg)
+## another image
+![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
