@@ -163,6 +163,11 @@ module.exports = async function(eleventyConfig) {
     return Image.generateHTML(imageMetadata, imageAttributes)
   });
 
+  // Collections 
+  eleventyConfig.addCollection("documentation", function (collection) {
+    return collection.getFilteredByGlob("./src/pages/documentation/**/*.md");
+  });
+
   return {
     dir: {
       input: "src/pages",

@@ -2,6 +2,7 @@
 layout: base.njk
 title: Markdown
 subtitle: Using Markdown in 11ty
+tags: documentation
 ismarkdown: true
 ---
 ## Markdown
