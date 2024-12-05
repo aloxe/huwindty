@@ -68,3 +68,7 @@ This is explained in detail in [Eleventy: Escaping Nunjucks Statements in Markdo
 ### Images
 
 Markdown is not known to be flexible with styling images, but you find a workaround for most of your wishes. There is an extensive blog post about the matter in [How to Style Images With Markdown](https://dzone.com/articles/how-to-style-images-with-markdown).
+
+### Responsive images
+
+A specific chapter on responsive images explains how this template manages [responsive images](/documentation/images/).
