@@ -36,8 +36,7 @@ module.exports = async function(eleventyConfig) {
   }
   const mdLib = mdit(mditOptions).use(mditAttrs).use(mditHighlight, { inline: true }).disable('code')
 
-  // generate responsive images from Markdown img
-  // from https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/
+  // generate responsive images from Markdown
   mdLib.renderer.rules.image = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
     const imgSrc = env.eleventy.directories.input.slice(0, -1) + token.attrGet('src')
