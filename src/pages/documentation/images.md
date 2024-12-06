@@ -2,6 +2,7 @@
 layout: base
 title: Images
 subtitle: Edit and manage images
+templateEngineOverride: md
 ismarkdown: true
 ---
 
