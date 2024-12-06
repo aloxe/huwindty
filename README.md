@@ -1,20 +1,33 @@
 # huwindty 🌬️
 
-I wanted to use [Windty](https://github.com/distantcam/windty/) for my next [eleventy](https://www.11ty.dev/) project before I realised I need more than just a single page with [Tailwindcss](https://tailwindcss.com/). So I kept the good work and am adding more.
+I wanted to use [Windty](https://github.com/distantcam/windty/) for my next [eleventy](https://www.11ty.dev/) project before I realised I need more than just a single page with [Tailwindcss](https://tailwindcss.com/). So I kept the good work and added more.
 
-## What has been added
-- CI to deploy via FTP to any server
+## What was added
+### Continuous Integration
+- Publication to github pages
+- Deployment to stand alone server via ssh (manual action)
+- Lighthouse checks on key pages for each PR to keep the triple 💯
+### Styles
 - Tailwind css are processed directly by 11ty
-- adding navigation menu generated from pages
+### Navigation
+- Navigation menu is directly generated from page structure
+### Site output
 - Handle markdown with style
+- Process images to make them responsive
+### Content Managment System
+- Installed Decap CMS with content flow
+- Possibility to use Sveltia CMS with the same config
+### Documentation
+- Documentation comes with the package as an example
+- Explains how features are developped
 
-## What I plan to add
-- responsive image processor
+
+## What is still missing
 - better SEO metadata
-- decap CMS
-- in depth doc so I don't get lost when I get back here in 2 years
+- documentation on the CMS
+- maybe a nicer design
 
-## How to use
+## Install
 1. [windty’s template](https://github.com/distantcam/windty/generate), or [clone this one](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 2. Install dependencies: `npm install`
 3. Start development: `npm start`
