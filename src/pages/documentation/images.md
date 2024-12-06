@@ -9,11 +9,7 @@ ismarkdown: true
 
 With the huwindity template, images are stored within the content (after all, they are part of the content too). They can be added in any folder and their url will always relative the the `pages` folder which is the root folder.
 
-For example, the image bellow (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The url used to show it on the page will be `/documentation/boat.jpg`. Always mark the url as an absolute url (starting with a `/`).
-
-```markdown
-![drooderfiets and yellow boat](/documentation/boat.jpg)
-```
+For example, the image bellow (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The url used to show it on the page will be `/documentation/boat.jpg`. Always use an absolute url for the image source (starting with a `/`).
 
 ### example image
 ![drooderfiets and yellow boat](/documentation/boat.jpg)
