@@ -9,9 +9,9 @@ ismarkdown: true
 ## Table of content
 
 {% for post in collections.documentation | reverse %}
-{% if post.data.title != 'documentation' %}
-- [{{post.data.title}}]({{post.url}})
-{% endif %}
+  {% if post.data.title != 'documentation' %}
+  - [{{post.data.title}}]({{post.url}})
+  {% endif %}
 {% endfor %}
 
 ## wind 🌬️
