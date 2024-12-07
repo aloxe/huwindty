@@ -3,7 +3,7 @@ layout: base
 title: Cows
 subtitle: Yet another example page
 ---
-Let's have an image
+## A picture of cows
 
-![drooderfiets and cows](/examples/vaches.jpg)
+![drooderfiets and cows](/examples/cows.jpg)
 
