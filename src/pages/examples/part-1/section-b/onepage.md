@@ -3,7 +3,7 @@ layout: base
 title: RAI
 subtitle: Yet another example page
 ---
-Let's have an image
+## A picture of a bike path
 
 ![drooderfiets at RAI](/examples/rai.jpg)
 
