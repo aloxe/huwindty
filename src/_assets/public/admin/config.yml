@@ -39,9 +39,9 @@ collections:
       - label: "Body"
         name: "body"
         widget: "markdown"
-  - name: "singlepage" # Used in routes, e.g., /admin/collections/blog
-    label: "Single page" # Used in the UI
-    folder: "src/pages/singlepage" # The path to the folder where the documents are stored
+  - name: "examples" # Used in routes, e.g., /admin/collections/blog
+    label: "Examples" # Used in the UI
+    folder: "src/pages/examples" # The path to the folder where the documents are stored
     # about media and public folder https://decapcms.org/docs/collection-folder/#media-and-public-folder
     media_folder: '' 
     public_folder: '/{{dirname}}/{{filename}}'
@@ -56,6 +56,9 @@ collections:
         widget: "string"
       - label: "subtitle"
         name: "subtitle"
+        widget: "string"
+      - label: "description"
+        name: "description"
         widget: "string"
       - label: "Body"
         name: "body"
