@@ -4,6 +4,14 @@ title: Content Managment System
 subtitle: Install Sveltia CMS step by step
 ismarkdown: true
 ---
+## Foreword
+
+I tried a few CMS for eleventy but the only that do not require an extra account other that the git repository system (Forgejo, gitlab or github) are [Decap CMS](https://decapcms.org/) and its recent fork [Sveltia CMS](https://github.com/sveltia/sveltia-cms). This last CMS is my choice because it looks promising with a general better UX. 
+
+Nevertheless, Decap CMS still offers more functionality that might be useful, like the workflow or image integration in the editor. For this reason, I chose to live both CMS in this temple. This may help you to choose the one you keep.
+
+Sveltia CMS is available under `https://aloxe.github.io/huwindty/svetlia` and Decap CMS is available under `https://aloxe.github.io/huwindty/decap/`. both use the same config that is maintained in `_assets/public/admin/config.yml`.
+
 ## Sveltia CMS
 
 [Sveltia CMS](https://github.com/sveltia/sveltia-cms) is a content management system (CMS) designed to provide a user-friendly interface to manage content for static site generators. It is firstly created to be hosted by Netifly. It offers a clean interface to create and edit pages that are still saved with git.
@@ -14,9 +22,9 @@ Sveltia CMS is a [single-page app](https://github.com/decaporg/decap-cms?tab=rea
 
 ### Create OAuth Application
 
-Go to the [Github OAuth settings](https://github.com/settings/applications/new) from *Settings* > *Developer Settings* > *OAuth Apps* > *Generate New*.
+Go to the [Github OAuth settings](https://github.com/settings/applications/new) from _Settings_ > _Developer Settings_ > _OAuth Apps_ > _Generate New_.
 
-Fill *Homepage URL* with the url of where you will install your external OAuth client. *Authorization callback URL* will get the same url followed by 'callback' `https://example.com/callback`.
+Fill _Homepage URL_ with the url of where you will install your external OAuth client. _Authorization callback URL_ will get the same url followed by 'callback' `https://example.com/callback`.
 
 Then hit on the button \[Register application].
 
@@ -55,8 +63,8 @@ The index page of your site should say hello and offer a link to "[Log in with G
 
 In this starter, the CMS is already installed in the `_assets/public/admin`. You will find two files: index.html and config.yml.
 
-* The index.html is the page that will load the CMS application.
-* config.yml is the config file. You can update it to set the behaviour of your CMS. Before that, you will need to update the `base_url:` with the path to the cms oauth provider you just published.
+- The index.html is the page that will load the CMS application.
+- config.yml is the config file. You can update it to set the behaviour of your CMS. Before that, you will need to update the `base_url:` with the path to the cms oauth provider you just published.
 
 ```
 base_url: https://oauth.example.com # Path to ext auth provider
