@@ -28,7 +28,7 @@ I wanted to use [Windty](https://github.com/distantcam/windty/) for my next [ele
 - maybe a nicer design
 
 ## Install
-1. [windty’s template](https://github.com/distantcam/windty/generate), or [clone this one](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
+1. Create a new repository from [huwindty’s template](https://github.com/aloxe/huwindty/generate), or [clone huwindty](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) where you want.
 2. Install dependencies: `npm install`
 3. Start development: `npm start`
 4. See your website at http://localhost:8080/
