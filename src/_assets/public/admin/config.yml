@@ -9,7 +9,7 @@
 backend:
   name: github
   repo: aloxe/huwindty # Path to your GitHub repository
-  branch: optimize-images
+  branch: ecrire
   base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
 
 
@@ -39,9 +39,9 @@ collections:
       - label: "Body"
         name: "body"
         widget: "markdown"
-  - name: "singlepage" # Used in routes, e.g., /admin/collections/blog
-    label: "Single page" # Used in the UI
-    folder: "src/pages/singlepage" # The path to the folder where the documents are stored
+  - name: "examples" # Used in routes, e.g., /admin/collections/blog
+    label: "Examples" # Used in the UI
+    folder: "src/pages/examples" # The path to the folder where the documents are stored
     # about media and public folder https://decapcms.org/docs/collection-folder/#media-and-public-folder
     media_folder: '' 
     public_folder: '/{{dirname}}/{{filename}}'
@@ -56,6 +56,33 @@ collections:
         widget: "string"
       - label: "subtitle"
         name: "subtitle"
+        widget: "string"
+      - label: "description"
+        name: "description"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+  - name: "part-1" # Used in routes, e.g., /admin/collections/blog
+    label: "Part 1" # Used in the UI
+    folder: "src/pages/examples/part-1" # The path to the folder where the documents are stored
+    # about media and public folder https://decapcms.org/docs/collection-folder/#media-and-public-folder
+    media_folder: '' 
+    public_folder: '/{{dirname}}/{{filename}}'
+    create: true # Allow users to create new documents in this collection
+    fields: # All the fields for each document, usually in front matter + body
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "base"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "subtitle"
+        name: "subtitle"
+        widget: "string"
+      - label: "description"
+        name: "description"
         widget: "string"
       - label: "Body"
         name: "body"
