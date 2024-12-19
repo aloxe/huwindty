@@ -15,8 +15,10 @@ backend:
 
 publish_mode: editorial_workflow # simple, editorial_workflow
 
+# both values bellow must be copied in _data/meta.json
+# to allow responsive formating of images from the right source
 media_folder: "src/static/img"
-public_folder: "/img"
+public_folder: "/img" 
 
 collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
