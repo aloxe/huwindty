@@ -6,11 +6,13 @@ ismarkdown: true
 ---
 ## Foreword
 
-I tried a few CMS for eleventy but the only that do not require an extra account other that the git repository system (Forgejo, gitlab or github) are [Decap CMS](https://decapcms.org/) and its recent fork [Sveltia CMS](https://github.com/sveltia/sveltia-cms). This last CMS is my choice because it looks promising with a general better UX. 
+I tried a few CMS for eleventy but the only that do not require an extra account other that the git repository system (Forgejo, gitlab or github) are [Decap CMS](https://decapcms.org/) and its recent fork [Sveltia CMS](https://github.com/sveltia/sveltia-cms). This last CMS is my choice because it looks promising with a better UX a a clear roadmap. 
 
-Nevertheless, Decap CMS still offers more functionality that might be useful, like the workflow or image integration in the editor. For this reason, I chose to live both CMS in this temple. This may help you to choose the one you keep.
+Nevertheless, Decap CMS still offers more functionalities that can also be useful, like an editorial workflow or image integration in the editor. For this reason, I chose to leave both CMS in this template for now. This may help you to choose the one you keep.
 
 Sveltia CMS is available under `https://aloxe.github.io/huwindty/svetlia` and Decap CMS is available under `https://aloxe.github.io/huwindty/decap/`. both use the same config that is maintained in `_assets/public/admin/config.yml`.
+
+The documentation bellow will detail how to install Sveltia CMS in `_assets/public/admin`, but the same steps apply to Decap CMS and you may rename the admin folder in your site.
 
 ## Sveltia CMS
 
@@ -72,8 +74,10 @@ base_url: https://oauth.example.com # Path to ext auth provider
 
 You may also change the `media_folder` where all images and media will be uploaded to. The last part, with the `collections` defines what folders and pages are editable by the CMS as well as the fields that will be available in the CMS. Usually you will set here all variables that are present in the Front Matter of your pages.
 
+In the current setup, I used `media_folder: ''` and `public_folder: '/{{dirname}}/{{filename}}'` to allowimages to be saved in the same folder as the page.
+
 Once the CMS installed, you can go to your website admin section. (i.e. <https://aloxe.github.io/huwindty/admin/>), and once you are authenticated with your github account, you can start edit the pages that are in your config file.
 
 ### User management with github
 
-In your repository settings on Github, go to settings > collaborators and click on the button \[Add people]. Only people that you added will be able to edit your pages.
+In your repository settings on Github, go to settings > collaborators and click on the button \[Add people]. You will be able to add any github user are collaborator. Only people that you added will be able to edit your pages and you can revoque them at any time by removing them from the list.
