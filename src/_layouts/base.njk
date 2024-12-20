@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{ meta.language }}">
+<html lang="{{ meta.language }}" class="h-full">
   <head>
     {% block head %}
       {% include "head.njk" %}
     {% endblock %}
   </head>
-  <body>
+  {# <body> #}
+  <body class="flex flex-col h-full">
     {% block menu %}
       {% include "menu.njk" %}
     {% endblock %}
 
     {% block main %}
-      <main class="container mx-auto px-6 pt-4 pb-16 {% if ismarkdown %}mkdn{% endif %}">
+      <main class="container mx-auto px-6 py-4 flex-1 {% if ismarkdown %}mkdn{% endif %}" >
         {% block header %}
           {% include "header.njk" %}
         {% endblock %}
