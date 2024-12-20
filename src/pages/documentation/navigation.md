@@ -2,6 +2,7 @@
 layout: base.njk
 title: Navigation
 subtitle: Documentation about navigation.
+description: How huwindty manages the navigation menu without dependency
 ismarkdown: true
 templateEngineOverride: md
 ---
