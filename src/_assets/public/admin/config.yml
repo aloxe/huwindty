@@ -32,6 +32,10 @@ collections:
         name: "layout"
         widget: "hidden"
         default: "base"
+      - label: "isMarkdown"
+        name: "isMarkdown"
+        widget: "hidden"
+        default: true
       - label: "Title"
         name: "title"
         widget: "string"
@@ -54,6 +58,10 @@ collections:
         name: "layout"
         widget: "hidden"
         default: "base"
+      - label: "isMarkdown"
+        name: "isMarkdown"
+        widget: "hidden"
+        default: true
       - label: "Title"
         name: "title"
         widget: "string"
