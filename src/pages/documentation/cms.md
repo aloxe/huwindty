@@ -8,7 +8,7 @@ ismarkdown: true
 
 I tried a few CMS for eleventy but the only that do not require an extra account other that the git repository system (Forgejo, gitlab or github) are [Decap CMS](https://decapcms.org/) and its recent fork [Sveltia CMS](https://github.com/sveltia/sveltia-cms). This last CMS is my choice because it looks promising with a better UX a a clear roadmap. 
 
-Nevertheless, Decap CMS still offers more functionalities that can also be useful, like an editorial workflow or image integration in the editor. For this reason, I chose to leave both CMS in this template for now. This may help you to choose the one you keep.
+Nevertheless, Decap CMS still offers more functionalities that can also be useful, like an editorial workflow or image integration in the editor. For this reason, I chose to leave both CMS in this starter for now. This may help you to choose the one you keep.
 
 Sveltia CMS is available under `https://aloxe.github.io/huwindty/svetlia` and Decap CMS is available under `https://aloxe.github.io/huwindty/decap/`. both use the same config that is maintained in `_assets/public/admin/config.yml`.
 

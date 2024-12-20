@@ -73,4 +73,4 @@ Markdown is not known to be flexible with styling images, but you find a workaro
 
 ### Responsive images
 
-A specific chapter on responsive images explains how this template manages [responsive images](/documentation/images/).
+A specific chapter on responsive images explains how this 11ty starter manages [responsive images](/documentation/images/).

@@ -7,7 +7,7 @@ ismarkdown: true
 ---
 ## Image location
 
-With the huwindty template, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always relative the `pages` folder which is the root folder.
+With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always relative the `pages` folder which is the root folder.
 
 For example, the image below (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The url used to show it on the page will be `/documentation/boat.jpg`. Always use an absolute url for the image source (starting with a `/`).
 
@@ -93,7 +93,7 @@ The makrdown example above shows you how to add this class to an image in markdo
 
 ## Images in CMS
 
-This template comes with a [simple CMS](../cms/) that allows you to add, remove and update pages and media. Images in Svetlia CMS can be added in two ways:
+This starter comes with a [simple CMS](../cms/) that allows you to add, remove and update pages and media. Images in Svetlia CMS can be added in two ways:
  - in a dedicated media folder making all images available in all pages
  - in the folder of the current page where images are not reusable in other pages
 
