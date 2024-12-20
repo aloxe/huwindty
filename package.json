@@ -16,11 +16,11 @@
     "11ty",
     "tailwind"
   ],
-  "author": "Cam MacFarland",
-  "license": "Unlicense",
-  "homepage": "https://github.com/distantcam/windty#readme",
+  "author": "Alix Guillard",
+  "license": "Art Libre",
+  "homepage": "https://github.com/distantcam/huwindty#readme",
   "bugs": {
-    "url": "https://github.com/distantcam/windty/issues"
+    "url": "https://github.com/distantcam/huwindty/issues"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",

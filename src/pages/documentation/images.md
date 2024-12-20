@@ -7,7 +7,7 @@ ismarkdown: true
 ---
 ## Image location
 
-With the huwindty template, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always relative the `pages` folder which is the root folder.
+With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always relative the `pages` folder which is the root folder.
 
 For example, the image below (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The url used to show it on the page will be `/documentation/boat.jpg`. Always use an absolute url for the image source (starting with a `/`).
 
@@ -90,3 +90,13 @@ It is not recommanded to lazy load images that are visible on screen when the pa
 Because of that, all images can't be lazy loaded by default. Instead, content editors can intentionally request lazy loading by adding `"lazy"` as a css class. The responsive image script will add `loading="lazy"` in the output code.
 
 The makrdown example above shows you how to add this class to an image in markdown.
+
+## Images in CMS
+
+This starter comes with a [simple CMS](../cms/) that allows you to add, remove and update pages and media. Images in Svetlia CMS can be added in two ways:
+ - in a dedicated media folder  
+ *(All images are available for all pages)*
+ - in the folder of the current page  
+ *(Images are not reusable in other pages)*
+ 
+Because the CMS uses Markdown and that images in Markdown are automaticaly converted in responsive pictures, there is nothing else to do other than organise well your images and never forget the alt text.

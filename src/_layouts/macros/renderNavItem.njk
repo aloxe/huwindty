@@ -24,7 +24,9 @@
   {% for menuEntry in Allentries %}
     {% if menuEntry.url.split("/").length === level + 1 %}
       {%  if menuEntry.url.split("/")[level-2] === entry.url.split("/")[level-2] %}
-        {% set children = (children.push(menuEntry), children) %}
+        {%  if menuEntry.url.split("/")[level-3] === entry.url.split("/")[level-3] %} {# check parent too in case of duplicates #}
+          {% set children = (children.push(menuEntry), children) %}
+       {% endif %}
       {% endif %}
     {% endif %}
   {% endfor %}
@@ -33,14 +35,17 @@
     <li class="relative group {% if entry.url.split("/").length === 4 %}hover:bg-gray-100{% endif %}">
       <div>
         <summary>
+        
           <a href="{{ entry.url }}" {% if entry.url == page.url %} aria-current="page"{% endif %} 
-          class="{{aClass(entry)}} 
+          class="{{aClass(entry)}}
           {% if entry.url.split("/").length === 4 %}-mb-4{% endif %}">
             {{ entry.data.title }}</a>
         </summary>
         <ul role="list" class="{{ulClass(entry)}}
           {% if entry.url.split("/").length >= 4 %}ml-2{% endif %}">
-          {%- for child in children %}{{ renderNavItem(child) }}{% endfor -%}
+          {%- for child in children %}
+            {{ renderNavItem(child) }}
+          {% endfor -%}
         </ul>
       </div>
     </li>

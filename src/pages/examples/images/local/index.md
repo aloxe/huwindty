@@ -1,7 +1,8 @@
 ---
 layout: base
-title: Section A
+title: Local images
 subtitle: Yet another example page
+ismarkdown: true
 ---
 ## This is section A of Part 1
 

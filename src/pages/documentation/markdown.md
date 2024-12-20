@@ -65,10 +65,12 @@ templateEngineOverride: md # for when you have njk in code blocks
 
 This is explained in detail in [Eleventy: Escaping Nunjucks Statements in Markdown Code Blocks](https://markllobrera.com/posts/eleventy-escaping-nunjucks-statements-in-markdown-code-blocks/)
 
+Note that this option is not added in the default pages when they are created by the [CMS](/documentation/cms/).
+
 ### Images
 
 Markdown is not known to be flexible with styling images, but you find a workaround for most of your wishes. There is an extensive blog post about the matter in [How to Style Images With Markdown](https://dzone.com/articles/how-to-style-images-with-markdown).
 
 ### Responsive images
 
-A specific chapter on responsive images explains how this template manages [responsive images](/documentation/images/).
+A specific chapter on responsive images explains how this 11ty starter manages [responsive images](/documentation/images/).

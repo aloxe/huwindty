@@ -16,4 +16,4 @@ ismarkdown: true
 
 ## wind 🌬️
 
-![Wind is playing with the grass and they are dancing and enjoying the magical moment in their lives. Tinos, Greece](/documentation/vera.jpg)
+![Wind is playing with the grass and they are dancing and enjoying the magical moment in their lives. Tinos, Greece](/img/vera.jpg)
