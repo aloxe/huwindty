@@ -10,13 +10,15 @@
       {% include "menu.njk" %}
     {% endblock %}
 
-    {% block header %}
-      {% include "header.njk" %}
-    {% endblock %}
-
     {% block main %}
       <main class="container mx-auto px-6 pt-4 pb-16 {% if ismarkdown %}mkdn{% endif %}">
-        {{ content | safe }}
+        {% block header %}
+          {% include "header.njk" %}
+        {% endblock %}
+
+        {% block content %}
+          {{ content | safe }}
+        {% endblock %}
       </main>
     {% endblock %}
 
