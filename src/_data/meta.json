@@ -5,5 +5,7 @@
   "language": "en",
   "author": {
     "name": "Alix Guillard"
-  }
+  },
+"media_folder": "src/static/img",
+"public_folder": "/img"
 }

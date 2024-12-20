@@ -15,8 +15,10 @@ backend:
 
 publish_mode: editorial_workflow # simple, editorial_workflow
 
+# both values bellow must be copied in _data/meta.json
+# to allow responsive formating of images from the right source
 media_folder: "src/static/img"
-public_folder: "/img"
+public_folder: "/img" 
 
 collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
@@ -30,12 +32,17 @@ collections:
         name: "layout"
         widget: "hidden"
         default: "base"
+      - label: "isMarkdown"
+        name: "isMarkdown"
+        widget: "hidden"
+        default: true
       - label: "Title"
         name: "title"
         widget: "string"
       - label: "subtitle"
         name: "subtitle"
         widget: "string"
+        required: false
       - label: "Body"
         name: "body"
         widget: "markdown"
@@ -51,39 +58,21 @@ collections:
         name: "layout"
         widget: "hidden"
         default: "base"
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "subtitle"
-        name: "subtitle"
-        widget: "string"
-      - label: "description"
-        name: "description"
-        widget: "string"
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
-  - name: "part-1" # Used in routes, e.g., /admin/collections/blog
-    label: "Part 1" # Used in the UI
-    folder: "src/pages/examples/part-1" # The path to the folder where the documents are stored
-    # about media and public folder https://decapcms.org/docs/collection-folder/#media-and-public-folder
-    media_folder: '' 
-    public_folder: '/{{dirname}}/{{filename}}'
-    create: true # Allow users to create new documents in this collection
-    fields: # All the fields for each document, usually in front matter + body
-      - label: "Layout"
-        name: "layout"
+      - label: "isMarkdown"
+        name: "isMarkdown"
         widget: "hidden"
-        default: "base"
+        default: true
       - label: "Title"
         name: "title"
         widget: "string"
       - label: "subtitle"
         name: "subtitle"
         widget: "string"
+        required: false
       - label: "description"
         name: "description"
         widget: "string"
+        required: false
       - label: "Body"
         name: "body"
         widget: "markdown"

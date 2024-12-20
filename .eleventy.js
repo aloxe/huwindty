@@ -39,7 +39,15 @@ module.exports = async function(eleventyConfig) {
   // generate responsive images from Markdown
   mdLib.renderer.rules.image = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
-    const imgSrc = env.eleventy.directories.input.slice(0, -1) + token.attrGet('src')
+    const imgPath = token.attrGet('src')
+    const isGlobal = imgPath.slice(0, env.meta.public_folder.length) === env.meta.public_folder
+
+    const imgSrc = isGlobal 
+      ? "./" + env.meta.media_folder + imgPath.slice(env.meta.public_folder.length)
+      : imgPath.slice(0,1) === "/" 
+        ? env.eleventy.directories.input.slice(0, -1) + imgPath
+        : env.page.inputPath.substring(0, env.page.inputPath.lastIndexOf('/')) + "/" + imgPath
+
     const imgAlt = token.content
     const imgTitle = token.attrGet('title') ?? ''
     const className = token.attrGet('class')
@@ -146,6 +154,7 @@ module.exports = async function(eleventyConfig) {
   return {
     dir: {
       input: "src/pages",
+      media: "src/static/img",
       layouts: '../_layouts',
       includes: '../_layouts/includes',
       data: '../_data',

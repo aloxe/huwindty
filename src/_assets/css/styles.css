@@ -9,10 +9,19 @@
   .mkdn h3 {
     @apply my-4 text-left text-xl font-bold leading-normal text-blue-950
   }
-  .mkdn p {
+  .mkdn p, .mkdn ul, .mkdn ol {
     @apply my-4 text-xl font-light leading-6 text-slate-900
   }
-  .mkdn code, .mkdn ul, .mkdn ol {
+  .mkdn ul {
+    @apply list-disc list-inside
+  }
+  .mkdn ol {
+    @apply list-decimal list-inside
+  }
+  .mkdn li {
+    @apply ml-8 mb-2
+  }
+  .mkdn code {
     @apply text-xl
   }
   .mkdn a {
