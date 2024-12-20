@@ -32,7 +32,7 @@
   {% endfor %}
 
   {% if children.length %}
-    <li class="relative group {% if entry.url.split("/").length === 4 %}hover:bg-gray-100{% endif %}">
+    <li class="relative group {% if entry.url.split("/").length === 4 %}hover:bg-gray-100 pb-2{% endif %}">
       <div>
         <summary>
         
@@ -42,7 +42,8 @@
             {{ entry.data.title }}</a>
         </summary>
         <ul role="list" class="{{ulClass(entry)}}
-          {% if entry.url.split("/").length >= 4 %}ml-2{% endif %}">
+          {% if entry.url.split("/").length === 3 %} min-w-[200px] shadow-lg{% endif %}
+          {% if entry.url.split("/").length >= 4 %} ml-2{% endif %}">
           {%- for child in children %}
             {{ renderNavItem(child) }}
           {% endfor -%}
