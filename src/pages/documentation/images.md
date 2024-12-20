@@ -94,7 +94,9 @@ The makrdown example above shows you how to add this class to an image in markdo
 ## Images in CMS
 
 This starter comes with a [simple CMS](../cms/) that allows you to add, remove and update pages and media. Images in Svetlia CMS can be added in two ways:
- - in a dedicated media folder making all images available in all pages
- - in the folder of the current page where images are not reusable in other pages
-
+ - in a dedicated media folder  
+ *(All images are available for all pages)*
+ - in the folder of the current page  
+ *(Images are not reusable in other pages)*
+ 
 Because the CMS uses Markdown and that images in Markdown are automaticaly converted in responsive pictures, there is nothing else to do other than organise well your images and never forget the alt text.
