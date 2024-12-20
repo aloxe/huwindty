@@ -2,6 +2,7 @@
 layout: base.njk
 title: Styles
 subtitle: How to style your site with Tailwind css
+description: Styles in huwindty with tailwind
 ismarkdown: true
 ---
 ## Tailwind CSS

@@ -2,6 +2,7 @@
 layout: base.njk
 title: Markdown
 subtitle: Using Markdown in 11ty
+description: How do use Markdown in your 11ty website and how does it work
 ismarkdown: true
 ---
 ## Markdown
@@ -73,4 +74,4 @@ Markdown is not known to be flexible with styling images, but you find a workaro
 
 ### Responsive images
 
-A specific chapter on responsive images explains how this 11ty starter manages [responsive images](/documentation/images/).
+Markdown images are automatically redered as responsive. A specific chapter on responsive images explains how this 11ty starter manages [responsive images](/documentation/images/).
