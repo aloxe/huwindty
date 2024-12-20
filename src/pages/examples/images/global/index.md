@@ -1,7 +1,7 @@
 ---
 layout: base
-title: Part 1
+title: Global images
 subtitle: Yet another example page
 ---
+This is the head of section global
 
-This is the page Part 1
