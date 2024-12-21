@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: base
 title: Documentation
 subtitle: How Huwindty works and how to install it
 description: Documentation for Huwindty.
