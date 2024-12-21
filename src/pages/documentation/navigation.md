@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: base
 title: Navigation
 subtitle: Documentation about navigation.
 description: How huwindty manages the navigation menu without dependency
