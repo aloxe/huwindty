@@ -2,38 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .mkdn h2 {
-    @apply mt-8 mb-6 text-left text-2xl font-bold leading-tight text-indigo-800
-  }
-  .mkdn h3 {
-    @apply my-4 text-left text-xl font-bold leading-normal text-blue-950
-  }
-  .mkdn p, .mkdn ul, .mkdn ol {
-    @apply my-4 text-xl font-light leading-6 text-slate-900
-  }
-  .mkdn ul {
-    @apply list-disc
-  }
-  .mkdn ol {
-    @apply list-decimal
-  }
-  .mkdn li {
-    @apply ml-8 mb-2
-  }
-  .mkdn code {
-    @apply text-xl
-  }
-  .mkdn a {
-    @apply text-blue-900 underline underline-offset-2 hover:no-underline
-  }
-  .mkdn .note {
-    @apply text-cyan-900 bg-sky-200 border p-4 border-cyan-900 border-l-8
-    before:content-['ⓘ_Note:_'] before:font-bold
-  }
-}
-
-/* other solution for styling
-read: https://dev.to/matthewtole/eleventy-markdown-and-tailwind-css-14f8
-*/
 

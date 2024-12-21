@@ -4,6 +4,7 @@ title: Styles
 subtitle: How to style your site with Tailwind css
 description: Styles in huwindty with tailwind
 ismarkdown: true
+templateEngineOverride: md
 ---
 ## Tailwind CSS
 
@@ -15,11 +16,32 @@ Tailwind CSS generates CSS code using a combination of configuration files, Java
 
 For this starter project, CSS generation is managed by eleventy.js.
 
-In [windty](https://github.com/distantcam/windty), the previous starter,  css was generated with a separate run script in packages.json. The default `npm start` was triggering both 11ty and tailwind generation. The Postcss configuration was in a separate file.
+In the origin starter [windty](https://github.com/distantcam/windty), css was generated with a separate run script in packages.json. The default `npm start` was triggering both 11ty and tailwind generation. The Postcss configuration was in a separate file.
 
-I moved the css generation directly to the `eleventy.js` config file. It still uses Postcss. 
+Now the css is generated from a specific css template that is processed by eleventy.
+```js
+---
+eleventyExcludeFromCollections: true
+permalink: /css/styles.css
+---
 
-Here is what processes the styles in `eleventy.js`:
+{% set css %}
+  {% include "../../_assets/css/styles.css" %}
+{% endset %}
+{{css | postcss | safe}}
+```
+
+Thanks to the `permalink: /css/styles.css`, the file is created in the `_site` folder, and because the include file is in the watch target, the tailwind css is processed.
+
+```js
+  // Watch targets
+  eleventyConfig.addWatchTarget("./src/_assets/css/");
+
+  // process css
+  eleventyConfig.addNunjucksAsyncFilter('postcss', postcssFilter); 
+```
+
+The css generation still uses Postcss which is set directly in the `eleventy.js` config file:
 
 ```js
 const postcssFilter = (cssCode, done) => {
@@ -62,6 +84,11 @@ In order to keep markdown files to focus on content I chose to implement the fir
   …
 }
 ```
+
+### The mkdn.css stylesheet
+
+For better performence the stylesheet loaded for markdown is only loaded for pages generated from markdown. This allows pages generated from html to load the basic styles.css stylesheet without the markdown styles.
+
 
 ### Additional markdown styles
 

@@ -1,9 +1,9 @@
 ---
 eleventyExcludeFromCollections: true
-permalink: /css/styles.css
+permalink: /css/mkdn.css
 ---
 
 {% set css %}
-  {% include "../../_assets/css/styles.css" %}
+  {% include "../../_assets/css/mkdn.css" %}
 {% endset %}
 {{css | postcss | safe}}
