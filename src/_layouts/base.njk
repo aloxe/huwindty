@@ -6,25 +6,22 @@
     {% endblock %}
   </head>
   <body>
-    <!-- wrapper for sticky footer needs a fixed height for the footer 
-    because the flex solution breaks in lighthouse -->
-    {# <div class="min-h-[calc(100vh-3.5rem)]">  #}
-      {% block menu %}
-        {% include "menu.njk" %}
-      {% endblock %}
+    {% block menu %}
+      {% include "menu.njk" %}
+    {% endblock %}
 
-      {% block main %}
-        <main class="container mx-auto px-6 py-4 {% if ismarkdown %}mkdn{% endif %}">
-          {% block header %}
-            {% include "header.njk" %}
-          {% endblock %}
+    {% block main %}
+      <main class="container mx-auto px-6 pt-4 pb-16 {% if ismarkdown %}mkdn{% endif %}">
+        {% block header %}
+          {% include "header.njk" %}
+        {% endblock %}
 
-          {% block content %}
-            {{ content | safe }}
-          {% endblock %}
-        </main>
-      {% endblock %}
-    {# </div> #}
+        {% block content %}
+          {{ content | safe }}
+        {% endblock %}
+      </main>
+    {% endblock %}
+
     {% block footer %}
         {% include "footer.njk" %}
     {% endblock %}
