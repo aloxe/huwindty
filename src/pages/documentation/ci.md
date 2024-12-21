@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: base
 title: Continuous Integration
 subtitle: Github CI pipelines
 ismarkdown: true

@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: base
 title: Styles
 subtitle: How to style your site with Tailwind css
 description: Styles in huwindty with tailwind
