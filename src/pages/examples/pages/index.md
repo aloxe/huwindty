@@ -1,7 +1,9 @@
 ---
 layout: base
-title: Part 2
-subtitle: Yet another example page
+title: Other pages
+subtitle: Another example page
+ismarkdown: true
 ---
+## Other pages
 
-This is the page Part 2 Index
+This is the Index page of the second section

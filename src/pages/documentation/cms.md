@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: base
 title: Content Managment System
 subtitle: Install Sveltia CMS step by step
 description: How do use Sveltia CMS as a for your 11ty website
