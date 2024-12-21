@@ -51,7 +51,7 @@ The link to the home page which has fewer chucks of url is hard coded at the beg
     <li class="relative group">
     <a href="/" {% if entry.url == "/" %} aria-current="page" {% endif %}
       class="block p-4 text-nowrap hover:text-blue-300"
-      >ॐ home</a> 
+      >ॐ sweet home</a> 
     </li>
 ```
 
