@@ -182,11 +182,9 @@ const postcssFilter = (cssCode, done) => {
     require('postcss-import'),
     tailwind(require('./tailwind.config')),
     autoprefixer(),
-    // TODO use purgecss for each layout
-    // cssnano({ preset: 'default' })
+    cssnano({ preset: 'default' }) // minify css
   ])
     .process(cssCode, {
-      // path to our CSS file
       from: './src/_assets/css/styles.css'
     })
     .then(

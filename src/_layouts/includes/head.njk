@@ -34,10 +34,23 @@
 
 <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "feed.xml" }}" />
 
-<link rel="stylesheet" href="{{ '/css/styles.css' }}" rel="stylesheet" preload>
-<!--
-/*
-highlightjs theme from https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css
-other examples here: https://highlightjs.org/examples
-*/ -->
-<link rel="stylesheet" href="{{ '/css/highlightjs.css' }}" rel="stylesheet">
+{% if ismarkdown %}
+  <link rel="stylesheet" href="{{ '/css/mkdn.css' }}" preload>
+{% else %}
+  <link rel="stylesheet" href="{{ '/css/styles.css' }}" preload>
+{% endif %}
+
+{% if ismarkdown %}
+  {# the markdown styles are included online to avoid render-blocking styles
+  https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources/
+  If you have more big styles on many pages, it may be a better idea 
+  to load them via a <link rel="stylesheet" as the stylesheets above.
+  In that case, you will need to create a new file in /src/pages/css/ 
+  #}
+  <style>
+    {% set css %}
+      {% include "src/_assets/css/highlightjs.css" %}
+    {% endset %}
+    {{css | postcss | safe}}
+  </style>
+{% endif %}

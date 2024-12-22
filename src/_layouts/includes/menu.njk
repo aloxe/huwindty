@@ -1,13 +1,13 @@
 {% from '../macros/renderNavItem.njk' import renderNavItem with context %}
 
 
-<nav class="w-full bg-blue-600 text-white text-xl">
+<nav class="w-full bg-blue-600 text-white text-xl flex-shrink-0">
   {% set allEntries = collections.all %}
   <ul role="list" class="flex">
     <li class="relative group">
     <a href="/" {% if entry.url == "/" %} aria-current="page" {% endif %}
       class="block p-4 text-nowrap hover:text-blue-300"
-      >ॐ home</a> 
+      >ॐ sweet home</a> 
     </li>
     {%- for entry in allEntries %}
       {% if entry.url.split("/").length === 3 %}

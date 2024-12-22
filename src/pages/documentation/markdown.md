@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: base
 title: Markdown
 subtitle: Using Markdown in 11ty
 description: How do use Markdown in your 11ty website and how does it work

@@ -15,17 +15,16 @@ I wanted to use [Windty](https://github.com/distantcam/windty/) for my next [ele
 - Handle markdown with style
 - Process images to make them responsive
 ### Content Managment System
-- Installed Decap CMS with content flow
+- Installed Sveltia and Decap CMS with content flow
 - Possibility to use Sveltia CMS with the same config
 ### Documentation
-- Documentation comes with the package as an example
+- Documentation comes with the starter as an example
 - Explains how features are developped
 
 
 ## What is still missing
 - better SEO metadata
-- documentation on the CMS
-- maybe a nicer design
+- dark mode
 
 ## Install
 1. Create a new repository from [huwindty’s template](https://github.com/aloxe/huwindty/generate), or [clone huwindty](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) where you want.
@@ -33,4 +32,4 @@ I wanted to use [Windty](https://github.com/distantcam/windty/) for my next [ele
 3. Start development: `npm start`
 4. See your website at http://localhost:8080/
 5. To build the release version: `npm run build`
-6. When ready, push to GitHub and the action will build and publish your site to [GitHub Pages](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages)
+6. When ready, push to GitHub and the action will build and publish your site to [GitHub Pages](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages) (needs configuration)
