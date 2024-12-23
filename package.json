@@ -40,7 +40,7 @@
     "@11ty/eleventy-img": "^5.0.0",
     "@fullhuman/postcss-purgecss": "^7.0.2",
     "@toycode/markdown-it-class": "^1.2.4",
-    "markdown-it-attrs": "^4.3.0",
+    "markdown-it-attrs": "^4.3.1",
     "markdown-it-highlightjs": "^4.2.0"
   }
 }
