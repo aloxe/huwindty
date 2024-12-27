@@ -46,6 +46,25 @@ collections:
       - label: "Body"
         name: "body"
         widget: "markdown"
+      - label: "description"
+        name: "description"
+        widget: "string"
+        picker_utc: false
+      - label: "tags"
+        name: "tags"
+        widget: "string"
+        picker_utc: false
+      - label: "author"
+        name: "author"
+        widget: "string"
+        picker_utc: false
+      - label: "date"
+        name: "date"
+        widget: "datetime"
+        default: "{{now}}"
+        date_format: "DD.MM.YYYY"
+        format: "l"
+        picker_utc: false
   - name: "examples" # Used in routes, e.g., /admin/collections/blog
     label: "Examples" # Used in the UI
     folder: "src/pages/examples" # The path to the folder where the documents are stored
@@ -69,10 +88,25 @@ collections:
         name: "headline"
         widget: "string"
         required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
       - label: "description"
         name: "description"
         widget: "string"
         required: false
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
+      - label: "tags"
+        name: "tags"
+        widget: "string"
+        required: false
+      - label: "author"
+        name: "author"
+        widget: "string"
+        required: false
+      - label: "date"
+        name: "date"
+        widget: "datetime"
+        default: "{{now}}"
+        date_format: "DD.MM.YYYY"
+        format: "l"
+        picker_utc: false
