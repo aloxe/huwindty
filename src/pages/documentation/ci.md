@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Continuous Integration
-subtitle: Github CI pipelines
+headline: Github CI pipelines
 ismarkdown: true
 ---
 ## Github Continuous Integration

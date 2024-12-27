@@ -39,8 +39,8 @@ collections:
       - label: "Title"
         name: "title"
         widget: "string"
-      - label: "subtitle"
-        name: "subtitle"
+      - label: "headline"
+        name: "headline"
         widget: "string"
         required: false
       - label: "Body"
@@ -65,8 +65,8 @@ collections:
       - label: "Title"
         name: "title"
         widget: "string"
-      - label: "subtitle"
-        name: "subtitle"
+      - label: "headline"
+        name: "headline"
         widget: "string"
         required: false
       - label: "description"

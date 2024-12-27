@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Grasshoper
-subtitle: drooderfiets and grasshopper
+headline: drooderfiets and grasshopper
 description: An example page with a grasshopper from general folder
 ismarkdown: true
 ---

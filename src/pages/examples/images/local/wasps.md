@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Wasps
-subtitle: Yet another example page
+headline: Yet another example page
 ismarkdown: true
 ---
 ## A picture with wasps

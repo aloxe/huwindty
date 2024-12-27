@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Heron
-subtitle: drooderfiets and heron
+headline: drooderfiets and heron
 description: An example page with a heron from general folder
 ismarkdown: true
 ---

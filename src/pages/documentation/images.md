@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Images
-subtitle: Edit and manage images
+headline: Edit and manage images
 description: How do responsive images work in huwindty
 templateEngineOverride: md
 ismarkdown: true

@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Cows
-subtitle: Yet another example page
+headline: Yet another example page
 ismarkdown: true
 ---
 

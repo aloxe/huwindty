@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Other pages
-subtitle: Another example page
+headline: Another example page
 ismarkdown: true
 ---
 ## Other pages

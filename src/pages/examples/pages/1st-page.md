@@ -1,7 +1,7 @@
 ---
 layout: base
 title: First page
-subtitle: Here I am
+headline: Here I am
 ismarkdown: true
 ---
 ## First Page
