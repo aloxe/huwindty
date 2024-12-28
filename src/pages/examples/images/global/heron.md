@@ -5,7 +5,7 @@ headline: An image with a grey heron
 description: An example page with a heron from general folder
 tags: ""
 author: aloxe
-date: 12/4/2024
+date: 2024-12-04
 subtitle: drooderfiets and heron
 ismarkdown: true
 ---

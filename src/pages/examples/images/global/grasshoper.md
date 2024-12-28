@@ -5,7 +5,7 @@ headline: Still image with steal grasshopper
 description: An example page with a grasshopper from general folder
 tags: ""
 author: ""
-date: 12/17/2024
+date: 2024-12-17
 subtitle: drooderfiets and grasshopper
 ismarkdown: true
 ---

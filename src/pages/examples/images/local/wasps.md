@@ -5,7 +5,7 @@ headline: Ten wasps on a photo
 description: ""
 tags: ""
 author: ""
-date: 12/5/2024
+date: 2024-12-05
 subtitle: Yet another example page
 ismarkdown: true
 ---

@@ -5,7 +5,7 @@ headline: A picture with cows
 description: photo of drooderfiets with cows at the background
 tags: drooderfiets, bike, cows, fields
 author: aloxe
-date: 12/2/2024
+date: 2024-12-02
 subtitle: Yet another example page
 ismarkdown: true
 ---

@@ -5,7 +5,7 @@ headline: A nice photo with sheep
 description: A page with a photo of drooderfiets with shhep in a field on the background.
 tags: ""
 author: aloxe
-date: 12/25/2024
+date: 2024-12-21
 subtitle: Yet another example page
 ismarkdown: true
 ---
