@@ -62,8 +62,7 @@ collections:
         name: "date"
         widget: "datetime"
         default: "{{now}}"
-        date_format: "DD.MM.YYYY"
-        format: "l"
+        format: "YYYY-MM-DD"
         picker_utc: false
   - name: "examples" # Used in routes, e.g., /admin/collections/blog
     label: "Examples" # Used in the UI
@@ -107,6 +106,5 @@ collections:
         name: "date"
         widget: "datetime"
         default: "{{now}}"
-        date_format: "DD.MM.YYYY"
-        format: "l"
+        format: "YYYY-MM-DD"
         picker_utc: false
