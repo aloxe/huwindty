@@ -1,6 +1,11 @@
 ---
 layout: base
 title: Wasps
+headline: Ten wasps on a photo
+description: ""
+tags: ""
+author: ""
+date: 12/5/2024
 subtitle: Yet another example page
 ismarkdown: true
 ---
@@ -13,4 +18,3 @@ This is an example page with a photo of wasps that sits in the same folder as th
 ```
 
 ![drooderfiets and wasps](wasps.jpg)
-
