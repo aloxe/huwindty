@@ -18,3 +18,5 @@ This is an example page with the image of a heron that was uploaded in a subfold
 ```
 
 ![drooderfiets and grasshopper](/img/animals/heron.jpg)
+
+Images from global folders can be used on all pages but they won't appear on the editor. Though, they will be displayed on the final page.
