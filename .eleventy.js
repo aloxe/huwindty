@@ -147,7 +147,12 @@ module.exports = async function(eleventyConfig) {
 
   // image path for meta tags
   eleventyConfig.addNunjucksAsyncShortcode("getOGImageUri", async (page, src) => {
-    if (!src) return "/img/tete-2006.png";
+    console.log("getOGImageUri");
+    
+    console.log(page);
+    console.log(src)
+    
+    if (!src) return "/img/vera-460w.jpeg";
 
     let inputFolder = page.inputPath.split("/")
     inputFolder.pop()
