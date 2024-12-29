@@ -4,7 +4,8 @@
   "description": "Huwindty enhanced template using 11ty.",
   "language": "en",
   "author": {
-    "name": "Alix Guillard"
+    "name": "Alix Guillard",
+    "fediverse": "@aloxe@mast.eu.org"
   },
 "media_folder": "src/static/img",
 "public_folder": "/img"

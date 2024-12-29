@@ -2,8 +2,6 @@
 <meta name="author" content="{{ meta.author.name }}" />
 <meta name="HandheldFriendly" content="True" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="title" content="{{ title }}">
-<meta name="description" content="{{ description }}">
 <link rel="icon" type="image/png" href="{{ '/favicon.ico' }}" />
 <link rel="manifest" href="{{ '/manifest.json' }}" />
 
@@ -14,6 +12,7 @@
 <title>
   {{ title or meta.title }}
 </title>
+  <meta name="description" content="{{ description }}">
 {% if page.fileSlug === "404" %}{% else %}
   <meta itemprop="name" content="{{ title }}">
   <meta itemprop="description" content="{{ description }}">
@@ -26,6 +25,7 @@
   <meta property="og:locale" content="{{ meta.language }}">
   {# <meta property="og:image" content="{{ meta.url }}{% getOGImageUri page, image %}"> #}
 
+  <meta name="fediverse:creator" content="{{ meta.author.fediverse }}" />
   <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:description" content="{{ description }}">
   {# <meta name="twitter:image:src" content="{{ meta.url }}{% getOGImageUri page, image %}"> #}
