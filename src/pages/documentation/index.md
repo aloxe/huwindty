@@ -4,6 +4,7 @@ title: Documentation
 headline: How Huwindty works and how to install it
 description: Documentation for Huwindty.
 ismarkdown: true
+thumbnail: /static/img/vera.jpg
 ---
 ## Table of content
 

@@ -9,7 +9,7 @@
 backend:
   name: github
   repo: aloxe/huwindty # Path to your GitHub repository
-  branch: ecrire
+  branch: seo-fields
   base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
 
 
@@ -24,6 +24,8 @@ collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
     label: "Documentation" # Used in the UI
     folder: "src/pages/documentation" # The path to the folder where the documents are stored
+    thumbnail: true
+    columns: [title, date]
     media_folder: '' # start with a slash
     public_folder: /documentation
     create: true # Allow users to create new documents in this collection
@@ -49,21 +51,26 @@ collections:
       - label: "description"
         name: "description"
         widget: "string"
-        picker_utc: false
+        required: false
       - label: "tags"
         name: "tags"
         widget: "string"
-        picker_utc: false
+        required: false
       - label: "author"
         name: "author"
         widget: "string"
-        picker_utc: false
+        required: false
       - label: "date"
         name: "date"
         widget: "datetime"
         default: "{{now}}"
         format: "YYYY-MM-DD"
         picker_utc: false
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+        allow_multiple: false
+        required: false
   - name: "examples" # Used in routes, e.g., /admin/collections/blog
     label: "Examples" # Used in the UI
     folder: "src/pages/examples" # The path to the folder where the documents are stored

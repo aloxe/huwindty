@@ -145,6 +145,37 @@ module.exports = async function(eleventyConfig) {
   return `${picture}`;
   });
 
+  // image path for meta tags
+  eleventyConfig.addNunjucksAsyncShortcode("getOGImageUri", async (page, src) => {
+    if (!src) return "/img/tete-2006.png";
+
+    let inputFolder = page.inputPath.split("/")
+    inputFolder.pop()
+    inputFolder = inputFolder.join("/");
+    const imageSrc = inputFolder+"/"+src;
+
+    let urlPath = page.outputPath.split("/")
+    urlPath.pop()
+    urlPath.shift()
+    urlPath = "/" + urlPath.join("/");
+
+    // TODO: limit to a certain max height 200x200 min 1200×1200 max
+    let metadata = await Image(imageSrc, {
+      widths: [1200],
+      formats: ["webp"],
+      urlPath: urlPath,
+      outputDir: `./_site/${page.url}`,
+      filenameFormat: function (id, src, width, format, options) {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}-og.${format}`;
+      }
+    })
+
+    const data = metadata.webp[0]
+    // data.url might be /blog/hello-world/xfO_genLg4-600.jpeg
+    return data.url
+  })
 
   // Collections 
   eleventyConfig.addCollection("documentation", function (collection) {
