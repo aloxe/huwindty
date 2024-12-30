@@ -14,18 +14,8 @@
 
 {% if page.fileSlug === "404" %}{% else %}
   <meta itemprop="name" content="{{ title }}">
-
   {% if description %}<meta itemprop="description" content="{{ description }}">{% endif %}
-
-
-
-  {% if thumbnail %}<meta itemprop="thumbnail" content="{{ meta.url }}{{ thumbnail }}">{% endif %}
-  
-  {% if thumbnail %}<meta itemprop="image" content="{{ meta.url }}{% getOGImageUri page, image %}">{% endif %}
-
-
-
-
+  {% if thumbnail %}<meta itemprop="image" content="{{ meta.url }}{% getOGImageUri meta, page, thumbnail %}">{% endif %}
 
   <meta property="og:title" content="{{ title }}">
   <meta property="og:type" content="article">
@@ -33,12 +23,12 @@
   {% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
   <meta property="og:site_name" content="{{ meta.title }}">
   <meta property="og:locale" content="{{ meta.language or "en" }}">
-  {% if thumbnail %}<meta property="og:image" content="{{ meta.url }}{{ thumbnail }}">{% endif %}
+  {% if thumbnail %}<meta property="og:image" content="{{ meta.url }}{% getOGImageUri meta, page, thumbnail %}">{% endif %}
 
   {% if meta.author.fediverse %}<meta name="fediverse:creator" content="{{ meta.author.fediverse }}" />{% endif %}
   <meta name="twitter:title" content="{{ title }}">
   {% if description %}<meta name="twitter:description" content="{{ description }}">{% endif %}
-  {% if thumbnail %}<meta name="twitter:image:src" content="{{ meta.url }}{{ thumbnail }}">{% endif %}
+  {% if thumbnail %}<meta name="twitter:image:src" content="{{ meta.url }}{% getOGImageUri meta, page, thumbnail %}">{% endif %}
   <meta name="twitter:card" content="summary_large_image">
 {% endif %}
 

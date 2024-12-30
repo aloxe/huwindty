@@ -46,7 +46,8 @@ module.exports = async function(eleventyConfig) {
       ? "./" + env.meta.media_folder + imgPath.slice(env.meta.public_folder.length)
       : imgPath.slice(0,1) === "/" 
         ? env.eleventy.directories.input.slice(0, -1) + imgPath
-        : env.page.inputPath.substring(0, env.page.inputPath.lastIndexOf('/')) + "/" + imgPath
+        : env.page.inputPath.substring(0, env.page.inputPath.lastIndexOf('/')+1) + imgPath
+      // TODO: is imgPath.slice(0,1) === "/" ? really necessary?
 
     const imgAlt = token.content
     const imgTitle = token.attrGet('title') ?? ''
@@ -145,41 +146,21 @@ module.exports = async function(eleventyConfig) {
   return `${picture}`;
   });
 
-  // image path for meta tags
-  eleventyConfig.addNunjucksAsyncShortcode("getOGImageUri", async (page, src) => {
-    console.log("getOGImageUri");
+  // image path for page thumbnail (used in meta tags)
+  eleventyConfig.addNunjucksAsyncShortcode("getOGImageUri", async (meta, page, src) => {
+    if (!src) return "/img/vera-460w.jpeg"; // use an existing image as fallback
     
-    console.log(page);
-    console.log(src)
+    const isGlobal = src.slice(0, meta.public_folder.length) === meta.public_folder
+
+    const imgSrc = isGlobal 
+    ? "./" + meta.media_folder + src.slice(meta.public_folder.length)
+    : page.inputPath.substring(0, page.inputPath.lastIndexOf('/')+1) + src
+
+    const ImgOptions = getImgOptions(page, src, "", "", [600], ["webp"], undefined);
+    const metadata = await Image(imgSrc, ImgOptions)
+    console.log("RETURN image " + metadata.webp[0].url);
     
-    if (!src) return "/img/vera-460w.jpeg";
-
-    let inputFolder = page.inputPath.split("/")
-    inputFolder.pop()
-    inputFolder = inputFolder.join("/");
-    const imageSrc = inputFolder+"/"+src;
-
-    let urlPath = page.outputPath.split("/")
-    urlPath.pop()
-    urlPath.shift()
-    urlPath = "/" + urlPath.join("/");
-
-    // TODO: limit to a certain max height 200x200 min 1200×1200 max
-    let metadata = await Image(imageSrc, {
-      widths: [1200],
-      formats: ["webp"],
-      urlPath: urlPath,
-      outputDir: `./_site/${page.url}`,
-      filenameFormat: function (id, src, width, format, options) {
-        const extension = path.extname(src);
-        const name = path.basename(src, extension);
-        return `${name}-og.${format}`;
-      }
-    })
-
-    const data = metadata.webp[0]
-    // data.url might be /blog/hello-world/xfO_genLg4-600.jpeg
-    return data.url
+    return metadata.webp[0].url
   })
 
   // Collections 
@@ -251,10 +232,8 @@ const stringifyAttributes = (attributeMap) => {
   }
 
   const getImgOptions = (page, src, alt, className, widths, formats, sizes) => {
-    let outputFolder = page.outputPath.split("/")
-    outputFolder.pop() // remove index.html
-    outputFolder = outputFolder.join("/");
-
+    let outputFolder = page.outputPath.slice(0, page.outputPath.lastIndexOf('/')+1) // remove index.html
+    
     let urlPath = outputFolder.split("/")
     urlPath.shift() // remove ./
     urlPath.shift() // remove _site
