@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <link rel="dns-prefetch" href="https://unpkg.com">
-    <title>CMS admin (decap CMS)</title>
+    <title>CMS admin sveltia CMS</title>
   </head>
   <body>
     <!--
-    This index can load sveltia or decap cms, just comment or uncomment the script you want to use
+    This index can load sveltia or decap cms, just comment or uncomment the script you want to use.
+    Huwindty uses sveltia CMS but you may prefer decap cms if you want certain features that are not yet implemented in sveltia (like workflow)
     -->
-    <!-- Include the script that builds the page and powers Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script> -->
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+
     <script>
-      // Take from demo https://github.com/decaporg/decap-cms/blob/main/dev-test/index.html
+      // Taken from demo https://github.com/decaporg/decap-cms/blob/main/dev-test/index.html
       const previewStyles = `
         html,
         body {

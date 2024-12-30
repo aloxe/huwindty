@@ -7,9 +7,9 @@
 # Sveltia CMS docs: https://github.com/sveltia/sveltia-cms#features
 
 backend:
-  name: github
+  name: github # current huwindty has been tested with github only
   repo: aloxe/huwindty # Path to your GitHub repository
-  branch: seo-fields
+  branch: ecrire # name of the branch where content edits will be pushed
   base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
 
 

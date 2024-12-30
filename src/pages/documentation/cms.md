@@ -9,17 +9,11 @@ ismarkdown: true
 
 I tried a few CMS for eleventy but the only that do not require an extra account other that the git repository system (Forgejo, gitlab or github) are [Decap CMS](https://decapcms.org/) and its recent fork [Sveltia CMS](https://github.com/sveltia/sveltia-cms). This last CMS is my choice because it looks promising with a better UX a a clear roadmap. 
 
-Nevertheless, Decap CMS still offers more functionalities that can also be useful, like an editorial workflow or image integration in the editor. For this reason, I chose to leave both CMS in this starter for now. This may help you to choose the one you keep.
-
-Sveltia CMS is available under `https://aloxe.github.io/huwindty/svetlia` and Decap CMS is available under `https://aloxe.github.io/huwindty/decap/`. both use the same config that is maintained in `_assets/public/admin/config.yml`.
-
-The documentation bellow will detail how to install Sveltia CMS in `_assets/public/admin`, but the same steps apply to Decap CMS and you may rename the admin folder in your site.
-
 ## Sveltia CMS
 
 [Sveltia CMS](https://github.com/sveltia/sveltia-cms) is a content management system (CMS) designed to provide a user-friendly interface to manage content for static site generators. It is firstly created to be hosted by Netifly. It offers a clean interface to create and edit pages that are still saved with git.
 
-Sveltia CMS is a complete reboot of **Netlify CMS** whose development was discontinued in 2022. It shares the same features as [Decap CMS](https://decapcms.org/),  a fork of Netlify CMS. For this reason, it is possible to follow the documentation of the later while using Svelte CMS.
+Sveltia CMS is a complete reboot of **Netlify CMS** whose development was discontinued in 2022 and then rebranded in 2023 under the name [Decap CMS](https://decapcms.org/). Since Sveltia CMS aims to offer all features of the original CMS, there is alost no difference between the two in terms of feature and configuration. For this reason, it is possible to follow the documentation of the later while using Sveltia CMS.
 
 Sveltia CMS is a [single-page app](https://github.com/decaporg/decap-cms?tab=readme-ov-file) that is pulled in the /admin part of this starter kit. Nevertheless, you will need to go through a few steps before you can take advantage of it.
 
