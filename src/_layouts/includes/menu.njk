@@ -1,13 +1,21 @@
 {% from '../macros/renderNavItem.njk' import renderNavItem with context %}
 
 
-<nav class="w-full bg-blue-600 text-white text-xl flex-shrink-0">
+<nav class="w-full bg-blue-600 text-white text-xl md:flex-shrink-0">
   {% set allEntries = collections.all %}
-  <ul role="list" class="flex">
-    <li class="relative group">
+  <div class="float-left">
     <a href="/" {% if entry.url == "/" %} aria-current="page" {% endif %}
-      class="block p-4 text-nowrap hover:text-blue-300"
-      >ॐ sweet home</a> 
+    class="block p-4 text-nowrap hover:text-blue-300"
+    >ॐ<span class="hidden md:inline"> sweet home</span></a> 
+  </div>
+  <label class="peer float-right p-4 after:content-['≡'] focus-within:after:content-['✕'] md:hidden">
+    <input type="checkbox" name="hamburger" checked class="sr-only" />
+    <span class="sr-only">Menu</span>
+  </label>
+  <ul role="list" class="md:flex hidden peer-has-[:focus]:block">
+    <li class="relative group">
+    <span class="block p-4 text-nowrap hover:text-blue-300"
+      > </span> 
     </li>
     {%- for entry in allEntries %}
       {% if entry.url.split("/").length === 3 %}
