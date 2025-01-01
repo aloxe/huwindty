@@ -8,7 +8,7 @@ ismarkdown: true
 ---
 ## Image location
 
-With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always relative the `pages` folder which is the root folder.
+With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always be relative to the `pages` folder which is the root folder for the content.
 
 For example, the image below (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The url used to show it on the page will be `/documentation/boat.jpg`. Always use an absolute url for the image source (starting with a `/`).
 
@@ -19,6 +19,7 @@ For example, the image below (`boat.jpg`) is located in the `/src/pages/document
 ## Responsive images
 
 Web pages can display on a small phone screen or a large high definition monitor. Displaying a 3000px wide image on a phone is a waste of resources that slows down display and showing a 150px picture on a wide monitor might miss some details. Making images responsive is the way to provide the appropriate picture to each screen.
+
 The article [Responsive images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/) covers everything you need to know about this topic when managing a web site.
 
 ## Default choice
@@ -35,7 +36,7 @@ const Images = {
 
 On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule.
 
-On HTML pages, you will need to use a specific shortcode defined in `eleventyConfig.addShortcode("Picture"` and provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
+On pure HTML pages, you will need to use a specific shortcode defined in `eleventyConfig.addShortcode("Picture"` and provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
 
 ## Responsive Images in HTML pages
 
@@ -73,7 +74,7 @@ The image below is generated with the simple code
 
 ![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
 
-When you inspect the code, you see that the generated code is the following:
+When you inspect the code, you see that the generated code is the following responsive HTML:
 
 ```html
 <picture>
@@ -94,10 +95,10 @@ The makrdown example above shows you how to add this class to an image in markdo
 
 ## Images in CMS
 
-This starter comes with a [simple CMS](../cms/) that allows you to add, remove and update pages and media. Images in Svetlia CMS can be added in two ways:
+This starter comes with the simple [Svetlia CMS](../cms/) that allows you to add, remove and update pages and media. Images in Svetlia CMS can be added in two ways:
  - in a dedicated media folder  
  *(All images are available for all pages)*
  - in the folder of the current page  
  *(Images are not reusable in other pages)*
  
-Because the CMS uses Markdown and that images in Markdown are automaticaly converted in responsive pictures, there is nothing else to do other than organise well your images and never forget the alt text.
+Because the CMS uses Markdown and that images in Markdown are automaticaly converted in responsive pictures, there is nothing else to do other than choose well your images, organise them, and never forget the alt text.
