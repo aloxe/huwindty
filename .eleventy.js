@@ -46,7 +46,8 @@ module.exports = async function(eleventyConfig) {
       ? "./" + env.meta.media_folder + imgPath.slice(env.meta.public_folder.length)
       : imgPath.slice(0,1) === "/" 
         ? env.eleventy.directories.input.slice(0, -1) + imgPath
-        : env.page.inputPath.substring(0, env.page.inputPath.lastIndexOf('/')) + "/" + imgPath
+        : env.page.inputPath.substring(0, env.page.inputPath.lastIndexOf('/')+1) + imgPath
+      // TODO: is imgPath.slice(0,1) === "/" ? really necessary?
 
     const imgAlt = token.content
     const imgTitle = token.attrGet('title') ?? ''
@@ -145,6 +146,22 @@ module.exports = async function(eleventyConfig) {
   return `${picture}`;
   });
 
+  // image path for page thumbnail (used in meta tags)
+  eleventyConfig.addNunjucksAsyncShortcode("getOGImageUri", async (meta, page, src) => {
+    if (!src) return "/img/vera-460w.jpeg"; // use an existing image as fallback
+    
+    const isGlobal = src.slice(0, meta.public_folder.length) === meta.public_folder
+
+    const imgSrc = isGlobal 
+    ? "./" + meta.media_folder + src.slice(meta.public_folder.length)
+    : page.inputPath.substring(0, page.inputPath.lastIndexOf('/')+1) + src
+
+    const ImgOptions = getImgOptions(page, src, "", "", [600], ["webp"], undefined);
+    const metadata = await Image(imgSrc, ImgOptions)
+    console.log("RETURN image " + metadata.webp[0].url);
+    
+    return metadata.webp[0].url
+  })
 
   // Collections 
   eleventyConfig.addCollection("documentation", function (collection) {
@@ -215,10 +232,8 @@ const stringifyAttributes = (attributeMap) => {
   }
 
   const getImgOptions = (page, src, alt, className, widths, formats, sizes) => {
-    let outputFolder = page.outputPath.split("/")
-    outputFolder.pop() // remove index.html
-    outputFolder = outputFolder.join("/");
-
+    let outputFolder = page.outputPath.slice(0, page.outputPath.lastIndexOf('/')+1) // remove index.html
+    
     let urlPath = outputFolder.split("/")
     urlPath.shift() // remove ./
     urlPath.shift() // remove _site

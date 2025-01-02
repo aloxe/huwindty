@@ -1,9 +1,7 @@
 <meta charSet="utf-8"/>
-<meta name="author" content="{{ meta.author.name }}" />
+{% if meta.author.name %}<meta name="author" content="{{ meta.author.name }}" />{% endif %}
 <meta name="HandheldFriendly" content="True" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="title" content="{{ title }}">
-<meta name="description" content="{{ description }}">
 <link rel="icon" type="image/png" href="{{ '/favicon.ico' }}" />
 <link rel="manifest" href="{{ '/manifest.json' }}" />
 
@@ -11,24 +9,26 @@
   <link rel="canonical" href="{{ meta.url }}{{ page.data.permalink or page.url | url }}" />
 {% endif %}
 
-<title>
-  {{ title or meta.title }}
-</title>
+<title>{{ title or meta.title }}</title>
+{% if description %}<meta name="description" content="{{ description }}">{% endif %}
+
 {% if page.fileSlug === "404" %}{% else %}
   <meta itemprop="name" content="{{ title }}">
-  <meta itemprop="description" content="{{ description }}">
-  {# <meta itemprop="image" content="{{ meta.url }}{% getOGImageUri page, image %}"> #}
+  {% if description %}<meta itemprop="description" content="{{ description }}">{% endif %}
+  {% if thumbnail %}<meta itemprop="image" content="{{ meta.url }}{% getOGImageUri meta, page, thumbnail %}">{% endif %}
+
   <meta property="og:title" content="{{ title }}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="{{ meta.url }}{{ page.data.permalink or page.url | url }}">
-  <meta property="og:description" content="{{ description }}">
+  {% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
   <meta property="og:site_name" content="{{ meta.title }}">
-  <meta property="og:locale" content="{{ meta.language }}">
-  {# <meta property="og:image" content="{{ meta.url }}{% getOGImageUri page, image %}"> #}
+  <meta property="og:locale" content="{{ meta.language or "en" }}">
+  {% if thumbnail %}<meta property="og:image" content="{{ meta.url }}{% getOGImageUri meta, page, thumbnail %}">{% endif %}
 
+  {% if meta.author.fediverse %}<meta name="fediverse:creator" content="{{ meta.author.fediverse }}" />{% endif %}
   <meta name="twitter:title" content="{{ title }}">
-  <meta name="twitter:description" content="{{ description }}">
-  {# <meta name="twitter:image:src" content="{{ meta.url }}{% getOGImageUri page, image %}"> #}
+  {% if description %}<meta name="twitter:description" content="{{ description }}">{% endif %}
+  {% if thumbnail %}<meta name="twitter:image:src" content="{{ meta.url }}{% getOGImageUri meta, page, thumbnail %}">{% endif %}
   <meta name="twitter:card" content="summary_large_image">
 {% endif %}
 

@@ -1,29 +1,29 @@
 # huwindty 🌬️
 
-I wanted to use [Windty](https://github.com/distantcam/windty/) for my next [eleventy](https://www.11ty.dev/) project before I realised I need more than just a single page with [Tailwindcss](https://tailwindcss.com/). So I kept the good work and added more.
+*I wanted to use [Windty](https://github.com/distantcam/windty/) for my next [eleventy](https://www.11ty.dev/) project before I realised I need more than just a single page with [Tailwindcss](https://tailwindcss.com/). So I kept the good work and added more.*
 
 ## What was added
 ### Continuous Integration
-- Publication to github pages
+- Publication to github pages (on merge)
 - Deployment to stand alone server via ssh (manual action)
-- Lighthouse checks on key pages for each PR to keep the triple 💯
+- Make sure you keep the lighthouse 💯 💯 💯 💯 (check on PR)
 ### Styles
 - Tailwind css are processed directly by 11ty
 ### Navigation
-- Navigation menu is directly generated from page structure
+- The navigation menu is generated from the page structure
 ### Site output
-- Handle markdown with style
+- Render markdown with styles
 - Process images to make them responsive
+- reder "SEO" meta tags on all pages
 ### Content Managment System
 - Installed Sveltia and Decap CMS with content flow
 - Possibility to use Sveltia CMS with the same config
+- Manage meta data and images on a per page basis
 ### Documentation
 - Documentation comes with the starter as an example
 - Explains how features are developped
 
-
 ## What is still missing
-- better SEO metadata
 - dark mode
 
 ## Install

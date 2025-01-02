@@ -7,9 +7,9 @@
 # Sveltia CMS docs: https://github.com/sveltia/sveltia-cms#features
 
 backend:
-  name: github
+  name: github # current huwindty has been tested with github only
   repo: aloxe/huwindty # Path to your GitHub repository
-  branch: ecrire
+  branch: ecrire # name of the branch where content edits will be pushed
   base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
 
 
@@ -24,6 +24,8 @@ collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
     label: "Documentation" # Used in the UI
     folder: "src/pages/documentation" # The path to the folder where the documents are stored
+    thumbnail: true
+    columns: [title, date]
     media_folder: '' # start with a slash
     public_folder: /documentation
     create: true # Allow users to create new documents in this collection
@@ -39,13 +41,36 @@ collections:
       - label: "Title"
         name: "title"
         widget: "string"
-      - label: "subtitle"
-        name: "subtitle"
+      - label: "headline"
+        name: "headline"
         widget: "string"
         required: false
       - label: "Body"
         name: "body"
         widget: "markdown"
+      - label: "description"
+        name: "description"
+        widget: "string"
+        required: false
+      - label: "tags"
+        name: "tags"
+        widget: "string"
+        required: false
+      - label: "author"
+        name: "author"
+        widget: "string"
+        required: false
+      - label: "date"
+        name: "date"
+        widget: "datetime"
+        default: "{{now}}"
+        format: "YYYY-MM-DD"
+        picker_utc: false
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+        allow_multiple: false
+        required: false
   - name: "examples" # Used in routes, e.g., /admin/collections/blog
     label: "Examples" # Used in the UI
     folder: "src/pages/examples" # The path to the folder where the documents are stored
@@ -65,14 +90,28 @@ collections:
       - label: "Title"
         name: "title"
         widget: "string"
-      - label: "subtitle"
-        name: "subtitle"
-        widget: "string"
-        required: false
-      - label: "description"
-        name: "description"
+      - label: "headline"
+        name: "headline"
         widget: "string"
         required: false
       - label: "Body"
         name: "body"
         widget: "markdown"
+      - label: "description"
+        name: "description"
+        widget: "string"
+        required: false
+      - label: "tags"
+        name: "tags"
+        widget: "string"
+        required: false
+      - label: "author"
+        name: "author"
+        widget: "string"
+        required: false
+      - label: "date"
+        name: "date"
+        widget: "datetime"
+        default: "{{now}}"
+        format: "YYYY-MM-DD"
+        picker_utc: false

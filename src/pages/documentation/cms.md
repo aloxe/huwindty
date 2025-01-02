@@ -1,25 +1,19 @@
 ---
 layout: base
 title: Content Managment System
-subtitle: Install Sveltia CMS step by step
+headline: Install Sveltia CMS step by step
 description: How do use Sveltia CMS as a for your 11ty website
 ismarkdown: true
 ---
 ## Foreword
 
-I tried a few CMS for eleventy but the only that do not require an extra account other that the git repository system (Forgejo, gitlab or github) are [Decap CMS](https://decapcms.org/) and its recent fork [Sveltia CMS](https://github.com/sveltia/sveltia-cms). This last CMS is my choice because it looks promising with a better UX a a clear roadmap. 
-
-Nevertheless, Decap CMS still offers more functionalities that can also be useful, like an editorial workflow or image integration in the editor. For this reason, I chose to leave both CMS in this starter for now. This may help you to choose the one you keep.
-
-Sveltia CMS is available under `https://aloxe.github.io/huwindty/svetlia` and Decap CMS is available under `https://aloxe.github.io/huwindty/decap/`. both use the same config that is maintained in `_assets/public/admin/config.yml`.
-
-The documentation bellow will detail how to install Sveltia CMS in `_assets/public/admin`, but the same steps apply to Decap CMS and you may rename the admin folder in your site.
+I tried a few CMS for 11ty, but the only that do not require an extra account —other that the git repository system (Forgejo, gitlab or github)— are [Decap CMS](https://decapcms.org/) and its recent fork [Sveltia CMS](https://github.com/sveltia/sveltia-cms). I chose the second one because it looks better maintained, more promising and it has a better UX. 
 
 ## Sveltia CMS
 
-[Sveltia CMS](https://github.com/sveltia/sveltia-cms) is a content management system (CMS) designed to provide a user-friendly interface to manage content for static site generators. It is firstly created to be hosted by Netifly. It offers a clean interface to create and edit pages that are still saved with git.
+[Sveltia CMS](https://github.com/sveltia/sveltia-cms) is a content management system (CMS) designed to provide a user-friendly interface to manage content for static site generators. It is firstly created to be hosted by Netifly. It offers a clean and accessible interface to create and edit pages that are still saved as files on the git repository of your project.
 
-Sveltia CMS is a complete reboot of **Netlify CMS** whose development was discontinued in 2022. It shares the same features as [Decap CMS](https://decapcms.org/),  a fork of Netlify CMS. For this reason, it is possible to follow the documentation of the later while using Svelte CMS.
+Sveltia CMS is a complete reboot of **Netlify CMS** whose development was discontinued in 2022 and then rebranded in 2023 under the name [Decap CMS](https://decapcms.org/). Since Sveltia CMS aims to offer all features of the original CMS, there is alost no difference between the two in terms of feature and configuration. For this reason, it is possible to follow the documentation of the later while using Sveltia CMS.
 
 Sveltia CMS is a [single-page app](https://github.com/decaporg/decap-cms?tab=readme-ov-file) that is pulled in the /admin part of this starter kit. Nevertheless, you will need to go through a few steps before you can take advantage of it.
 
@@ -60,11 +54,13 @@ Do not include any path or trailing slash on `ORIGIN` or it will not redirect.
 
 You will then have to upload everything to your server and make sure you set the document root of your server in the `public` directory. 
 
-The index page of your site should say hello and offer a link to "[Log in with Github](https://auth.xn--4lj4bfp6d.eu.org/auth)".
+The index page of your site should say hello and offer a link to Log in with Github. The current starter kit has a link to "[My login with Github](https://auth.xn--4lj4bfp6d.eu.org/auth)".
 
 ### Install Sveltia CMS to your static site
 
 In this starter, the CMS is already installed in the `_assets/public/admin`. You will find two files: index.html and config.yml.
+
+If you prefer to use Decap CMS over Sveltia, simple uncomment the line in index.html, where the decap script is loaded and remove the one for Sveltia.
 
 - The index.html is the page that will load the CMS application.
 - config.yml is the config file. You can update it to set the behaviour of your CMS. Before that, you will need to update the `base_url:` with the path to the cms oauth provider you just published.

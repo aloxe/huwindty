@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Second page
-subtitle: I am here too
+headline: I am here too
 ismarkdown: true
 ---
 ## Second Page
