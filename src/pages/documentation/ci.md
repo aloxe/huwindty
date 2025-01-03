@@ -2,6 +2,11 @@
 layout: base
 title: Continuous Integration
 headline: Github CI pipelines
+description: ''
+tags: ''
+author: ''
+date: 2025-01-04
+thumbnail: circus.jpg
 ismarkdown: true
 ---
 ## Github Continuous Integration
