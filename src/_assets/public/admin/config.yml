@@ -115,3 +115,8 @@ collections:
         default: "{{now}}"
         format: "YYYY-MM-DD"
         picker_utc: false
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+        allow_multiple: false
+        required: false

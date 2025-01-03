@@ -4,6 +4,7 @@ title: Images
 headline: Edit and manage images
 description: How do responsive images work in huwindty
 templateEngineOverride: md
+thumbnail: /img/vera.jpg
 ismarkdown: true
 ---
 ## Image location
