@@ -3,6 +3,7 @@ layout: base
 title: Markdown
 headline: Using Markdown in 11ty
 description: How do use Markdown in your 11ty website and how does it work
+thumbnail: /img/vera.jpg
 ismarkdown: true
 ---
 ## Markdown

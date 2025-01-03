@@ -3,6 +3,7 @@ layout: base
 title: Navigation
 headline: Documentation about navigation.
 description: How huwindty manages the navigation menu without dependency
+thumbnail: /img/vera.jpg
 ismarkdown: true
 templateEngineOverride: md
 ---
