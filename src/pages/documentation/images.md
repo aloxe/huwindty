@@ -3,9 +3,12 @@ layout: base
 title: Images
 headline: Edit and manage images
 description: How do responsive images work in huwindty
-templateEngineOverride: md
-thumbnail: /img/vera.jpg
+tags: ''
+author: ''
+date: 2025-01-04
+thumbnail: boat.jpg
 ismarkdown: true
+templateEngineOverride: md
 ---
 ## Image location
 
@@ -55,13 +58,13 @@ An example is available on the Huwindty home page
 
 The atributes are the following:
 
-* **page** will provide the current path to generate the right output path. Just leave `page` after the `Picture` and this will be fine
-* **file name**: On this example there is no path to the current image file since they are in the same folder.
-* \*\*alt text'' is made compulsory for various reason, I also encourage you to write nice descriptive text that really help blind people understand your page.
-* **class** will add a css class to the image so you can change its position and dimension. The specific class `lazy` will also make the image lazy load.
-* **widths** will override the default widths in with the output images will be generated. this is particularly useful if you change the size of the image using a css class, you will want to generate images with the same size.
-* **formats** will override the default formats
-* **sizes** will override the default sizes that are the size that you tell the browser the image will take ahead of downloading and rendering The default is 100vw but if you know your image will display on half of the page you may want to change this to 50vw.
+- **page** will provide the current path to generate the right output path. Just leave `page` after the `Picture` and this will be fine
+- **file name**: On this example there is no path to the current image file since they are in the same folder.
+- \*\*alt text'' is made compulsory for various reason, I also encourage you to write nice descriptive text that really help blind people understand your page.
+- **class** will add a css class to the image so you can change its position and dimension. The specific class `lazy` will also make the image lazy load.
+- **widths** will override the default widths in with the output images will be generated. this is particularly useful if you change the size of the image using a css class, you will want to generate images with the same size.
+- **formats** will override the default formats
+- **sizes** will override the default sizes that are the size that you tell the browser the image will take ahead of downloading and rendering The default is 100vw but if you know your image will display on half of the page you may want to change this to 50vw.
 
 ## Responsive Images in Markdown
 
@@ -73,7 +76,7 @@ The image below is generated with the simple code
 ![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
 ```
 
-![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
+![drooderfiets and red circus](/documentation/circus.jpg)
 
 When you inspect the code, you see that the generated code is the following responsive HTML:
 
@@ -97,9 +100,10 @@ The makrdown example above shows you how to add this class to an image in markdo
 ## Images in CMS
 
 This starter comes with the simple [Svetlia CMS](../cms/) that allows you to add, remove and update pages and media. Images in Svetlia CMS can be added in two ways:
- - in a dedicated media folder  
- *(All images are available for all pages)*
- - in the folder of the current page  
- *(Images are not reusable in other pages)*
+
+- in a dedicated media folder  
+ _(All images are available for all pages)_
+- in the folder of the current page  
+ _(Images are not reusable in other pages)_
  
 Because the CMS uses Markdown and that images in Markdown are automaticaly converted in responsive pictures, there is nothing else to do other than choose well your images, organise them, and never forget the alt text.
