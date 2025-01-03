@@ -24,7 +24,7 @@ collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
     label: "Documentation" # Used in the UI
     folder: "src/pages/documentation" # The path to the folder where the documents are stored
-    thumbnail: true
+    thumbnail: thumbnail
     columns: [title, date]
     media_folder: '' # start with a slash
     public_folder: /documentation
