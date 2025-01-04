@@ -8,6 +8,7 @@ author: aloxe
 date: 2024-12-04
 subtitle: drooderfiets and heron
 ismarkdown: true
+thumbnail: /img/animals/heron.jpg
 ---
 ## Picture of a heron
 

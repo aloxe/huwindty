@@ -8,6 +8,7 @@ author: aloxe
 date: 2024-12-02
 subtitle: Yet another example page
 ismarkdown: true
+thumbnail: /examples/cows.jpg
 ---
 ## Picture of cows
 
