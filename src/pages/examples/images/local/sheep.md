@@ -8,6 +8,7 @@ author: aloxe
 date: 2024-12-21
 subtitle: Yet another example page
 ismarkdown: true
+thumbnail: /examples/images/local/sheep.jpg
 ---
 ## A picture of sheep
 
