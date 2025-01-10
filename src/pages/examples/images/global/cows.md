@@ -8,7 +8,7 @@ author: aloxe
 date: 2024-12-02
 subtitle: Yet another example page
 ismarkdown: true
-thumbnail: /examples/cows.jpg
+thumbnail: ../../cows.jpg
 ---
 ## Picture of cows
 
@@ -20,6 +20,6 @@ It can be used with the path from the root of pages but will not be able to be u
 ![drooderfiets and cows](/examples/cows.jpg)
 ```
 
-Also it will not be visible in the CMS when editing the current page.
+Also it will not be visible in the CMS when editing the current page. You will also note that the thumbnail only accept a path relative to the current page.
 
 ![drooderfiets and cows](/examples/cows.jpg)
