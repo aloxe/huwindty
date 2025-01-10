@@ -34,10 +34,12 @@ collections:
         name: "layout"
         widget: "hidden"
         default: "base"
+        preview: false
       - label: "isMarkdown"
         name: "isMarkdown"
         widget: "hidden"
         default: true
+        preview: false
       - label: "Title"
         name: "title"
         widget: "string"
@@ -52,25 +54,30 @@ collections:
         name: "description"
         widget: "string"
         required: false
+        preview: false
       - label: "tags"
         name: "tags"
         widget: "string"
         required: false
+        preview: false
       - label: "author"
         name: "author"
         widget: "string"
         required: false
+        preview: false
       - label: "date"
         name: "date"
         widget: "datetime"
         default: "{{now}}"
         format: "YYYY-MM-DD"
         picker_utc: false
+        preview: false
       - label: "Featured Image"
         name: "thumbnail"
         widget: "image"
         allow_multiple: false
         required: false
+        preview: false
   - name: "examples" # Used in routes, e.g., /admin/collections/blog
     label: "Examples" # Used in the UI
     folder: "src/pages/examples" # The path to the folder where the documents are stored
@@ -83,10 +90,12 @@ collections:
         name: "layout"
         widget: "hidden"
         default: "base"
+        preview: false
       - label: "isMarkdown"
         name: "isMarkdown"
         widget: "hidden"
         default: true
+        preview: false
       - label: "Title"
         name: "title"
         widget: "string"
@@ -101,22 +110,27 @@ collections:
         name: "description"
         widget: "string"
         required: false
+        preview: false
       - label: "tags"
         name: "tags"
         widget: "string"
         required: false
+        preview: false
       - label: "author"
         name: "author"
         widget: "string"
         required: false
+        preview: false
       - label: "date"
         name: "date"
         widget: "datetime"
         default: "{{now}}"
         format: "YYYY-MM-DD"
         picker_utc: false
+        preview: false
       - label: "Featured Image"
         name: "thumbnail"
         widget: "image"
         allow_multiple: false
         required: false
+        preview: false
