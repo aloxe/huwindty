@@ -8,7 +8,7 @@ author: aloxe
 date: 2024-12-21
 subtitle: Yet another example page
 ismarkdown: true
-thumbnail: /examples/images/local/sheep.jpg
+thumbnail: sheep.jpg
 ---
 ## A picture of sheep
 
@@ -20,6 +20,6 @@ It is possible to display the image giving the entire path to the file as bellow
 ![drooderfiets and sheep](/examples/images/local/sheep.jpg)
 ```
 
-While this may help you understand where the file is, it is less practical in the CMS as the image will not be visible in the editor. Though it will still display in the page.
+While this may help you understand where the file is, it is less practical in the CMS as the image will not be visible in the editor. Though it will still display in the page. You will also note that the thumbnail only accept the relative path.
 
 ![drooderfiets and sheep](/examples/images/local/sheep.jpg)
