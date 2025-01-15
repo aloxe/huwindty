@@ -14,11 +14,11 @@ templateEngineOverride: md
 
 With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always be relative to the `pages` folder which is the root folder for the content.
 
-For example, the image below (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The url used to show it on the page will be `/documentation/boat.jpg`. Always use an absolute url for the image source (starting with a `/`).
-
 ### example image
 
 ![drooderfiets and yellow boat](/documentation/boat.jpg)
+
+For example, the image above (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The url used to show it on the page will be `/documentation/boat.jpg`. Always use an absolute url for the image source (starting with a `/`).
 
 ## Responsive images
 
@@ -76,7 +76,7 @@ The image below is generated with the simple code
 ![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
 ```
 
-![drooderfiets and red circus](/documentation/circus.jpg)
+![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
 
 When you inspect the code, you see that the generated code is the following responsive HTML:
 
