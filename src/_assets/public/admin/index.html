@@ -43,6 +43,7 @@
       `;
       CMS.registerPreviewStyle(previewStyles, { raw: true });
 
+      // from https://github.com/sveltia/sveltia-cms/issues/298
       const image = {
         image: {
           id: 'image',
@@ -88,7 +89,28 @@
       },
     },
       }
-      CMS.registerEditorComponent(image)
+      CMS.registerEditorComponent(image);
+
+      // from https://github.com/decaporg/decap-cms/blob/main/dev-test/index.html
+      CMS.registerEditorComponent({
+      id: "youtube",
+      label: "Youtube",
+      fields: [{name: 'id', label: 'Youtube Video ID'}],
+      pattern: /^{{<\s?youtube (\S+)\s?>}}/,
+      fromBlock: function(match) {
+        return {
+          id: match[1]
+        };
+      },
+      toBlock: function(obj) {
+        return '{{< youtube ' + obj.id + ' >}}';
+      },
+      toPreview: function(obj) {
+        return (
+          '<img src="http://img.youtube.com/vi/' + obj.id + '/maxresdefault.jpg" alt="Youtube Video"/>'
+        );
+      }
+    });
     </script>
   </body>
 </html>
