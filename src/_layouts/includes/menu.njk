@@ -1,7 +1,7 @@
 {% from '../macros/renderNavItem.njk' import renderNavItem with context %}
 
 
-<nav class="w-full bg-blue-600 text-white text-xl md:flex-shrink-0">
+<nav class="w-full bg-blue-600 text-white text-xl md:shrink-0">
   {% set allEntries = collections.all %}
   <div class="float-left">
     <a href="/" {% if entry.url == "/" %} aria-current="page" {% endif %}
