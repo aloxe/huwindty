@@ -79,7 +79,7 @@ module.exports = async function(eleventyConfig) {
   eleventyConfig.addWatchTarget("./src/_assets/css/");
 
   // process css
-  eleventyConfig.addNunjucksAsyncFilter('postcss', postcssFilter);
+//  eleventyConfig.addNunjucksAsyncFilter('postcss', postcssFilter);
 
   // Image shortcode with <picture>
   eleventyConfig.addShortcode("Picture", async (
