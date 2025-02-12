@@ -1,0 +1,47 @@
+name: '♿ Pa11y'
+on: pull_request
+
+jobs:
+  pa11y-ci:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: browser-actions/setup-chrome@latest
+      # - uses: Hesedi3l/pa11y-actions@v1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build
+
+      - name: Install pa11y-ci dependencies.
+        run: npm install -g pa11y-ci
+
+      - name: Run pa11y-ci.
+        run: pa11y-ci --threshold 10 | tee pa11y_output.txt
+        # run: npm run pa11y-ci:sitemap 2>&1 | tee pa11y_output.txt
+        
+      - name: Read pa11y_output file.
+        id: pa11y_output
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./pa11y_output.txt
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: '<details><summary>Pa11y testing results</summary>```${{ steps.pa11y_output.outputs.content }}```</details>'
+
+      - name: Check for pa11y failures.
+        if: contains(steps.pa11y_output.outputs.content, 'errno 2')
+        run: |
+          echo "::error::The site is failing accessibility tests. Please review the comment in the pull request or the pa11y-ci step in the workflow for details."
+          exit 1

@@ -1,0 +1,12 @@
+{
+  "defaults": {
+    "concurrency": 4,
+    "standard": "WCAG2AA",
+    "runners": ["axe"]
+  },
+  "urls": [ 
+    "https://aloxe.github.io/huwindty/",
+    "https://aloxe.github.io/huwindty/documentation/"
+    ],
+  "timeout": 6000
+}
