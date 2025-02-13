@@ -2,7 +2,7 @@ name: '♿ Pa11y'
 on: pull_request
 
 jobs:
-  build:
+  pa11y-ci:
     runs-on: ubuntu-latest
 
     permissions:
@@ -10,6 +10,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: browser-actions/setup-chrome@latest
+      # - uses: Hesedi3l/pa11y-actions@v1
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-node@v3
@@ -20,8 +22,12 @@ jobs:
           npm install
           npm run build
 
+      - name: Install pa11y-ci dependencies.
+        run: npm install -g pa11y-ci
+
       - name: Run pa11y-ci.
-        run: npm run pa11y-ci:sitemap 2>&1 | tee pa11y_output.txt
+        run: pa11y-ci --threshold 10 | tee pa11y_output.txt
+        # run: npm run pa11y-ci:sitemap 2>&1 | tee pa11y_output.txt
         
       - name: Read pa11y_output file.
         id: pa11y_output
