@@ -1,6 +1,6 @@
 ---
 layout: base
-title: Images
+title: Pages with Images
 headline: Yet another example page
 ---
 
