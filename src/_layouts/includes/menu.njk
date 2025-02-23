@@ -8,12 +8,22 @@
     class="block p-4 text-nowrap hover:text-blue-300"
     >ॐ<span class="hidden md:inline"> sweet home</span></a> 
   </div>
-    <label for="hamburger" class="after:float-right after:p-4 after:content-['≡'] peer-checked:after:content-['✕'] md:hidden cursor-pointer">
+  <button onclick="console.log('click');">≡</button>
+  <input id="hamburger" type="radio">
+    <input id="hamburger" type="checkbox" name="hamburger" class="sr-only peer" unchecked aria-label="menu" />
+    <label for="hamburger" class="after:float-right after:p-4 after:content-['≡'] peer-checked:after:content-['✕'] md:hidden cursor-pointer peer-[:focus]:after:outline-dotted">
+      <span class="sr-only">Menu</span>
+      {# <span class="float-right p-4 md:hidden cursor-pointer group-focus-within:outline-double text-nowrap peer-checked:hidden">≡</span>
+      <span class="float-right p-4 md:hidden cursor-pointer group-focus-within:outline-double hidden text-nowrap peer-checked:block">✕</span> #}
+    </label>
+    {# <div class="group bg-slate-500">
+    <label for="hamburger" class="after:float-right after:p-4 after:content-['≡'] peer-checked:after:content-['✕'] md:hidden cursor-pointer group-focus-within:after:border-4">
       <span class="sr-only">Menu</span>
     </label>
-    <input id="hamburger" type="checkbox" name="hamburger" class="sr-only peer" unchecked aria-label="menu" />
-  <ul role="list" class="md:flex hidden">
-    <li class="relative group peer-checked:block">
+    <input id="hamburger" type="checkbox" name="hamburger" class="peer" unchecked aria-label="menu" />
+  </div> #}
+  <ul role="list" class="md:flex hidden peer-checked:block perr">
+    <li class="relative group" tabindex="-1">
       <span class="mt-12 block text-nowrap"></span> 
     </li>
     {%- for entry in allEntries %}
