@@ -10,8 +10,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: browser-actions/setup-chrome@latest
-      # - uses: Hesedi3l/pa11y-actions@v1
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-node@v4
