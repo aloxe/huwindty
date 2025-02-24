@@ -8,14 +8,12 @@
     class="block p-4 text-nowrap hover:text-blue-300"
     >ॐ<span class="hidden md:inline"> sweet home</span></a> 
   </div>
-    <input id="hamburger" type="checkbox" name="hamburger" class="sr-only peer" unchecked aria-label="menu" />
+    <input id="hamburger" type="checkbox" name="hamburger" class="md:hidden sr-only peer" unchecked aria-label="menu" onkeypress="event.key === 'Enter' && getElementById('hamburger').click()" />
     <label for="hamburger" class="after:float-right after:p-4 after:content-['≡'] peer-checked:after:content-['✕'] md:hidden cursor-pointer peer-[:focus]:after:outline-dotted">
       <span class="sr-only">Menu</span>
     </label>
-  <ul role="list" class="md:flex hidden peer-checked:block perr">
-    <li class="relative group" tabindex="-1">
-      <span class="mt-12 block text-nowrap"></span> 
-    </li>
+
+  <ul role="list" class="mt-12 md:mt-0 md:flex hidden peer-checked:block peer">
     {%- for entry in allEntries %}
       {% if entry.url.split("/").length === 3 %}
         {# 

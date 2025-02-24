@@ -12,7 +12,7 @@
 
 {% macro ulClass(entry) %}
   {% if entry.url.split("/").length === 3 %}
-    md:absolute left-0 hidden bg-white text-black shadow-lg group-hover:block group-focus-within:block
+    md:absolute left-0 block md:hidden bg-white text-black shadow-lg group-hover:block group-focus-within:block
   {% endif %}
 {% endmacro %}
 
@@ -24,7 +24,8 @@
   {% for menuEntry in Allentries %}
     {% if menuEntry.url.split("/").length === level + 1 %}
       {%  if menuEntry.url.split("/")[level-2] === entry.url.split("/")[level-2] %}
-        {%  if menuEntry.url.split("/")[level-3] === entry.url.split("/")[level-3] %} {# check parent too in case of duplicates #}
+        {# check parent too in case of duplicates #}
+        {%  if menuEntry.url.split("/")[level-3] === entry.url.split("/")[level-3] %} 
           {% set children = (children.push(menuEntry), children) %}
        {% endif %}
       {% endif %}
@@ -38,7 +39,7 @@
           <a href="{{ entry.url }}" {% if entry.url == page.url %} aria-current="page"{% endif %} 
           class="{{aClass(entry)}}
           {% if entry.url.split("/").length === 4 %}-mb-4{% endif %}">
-            →{{ entry.data.title }}</a>
+            {{ entry.data.title }}</a>
         </div>
         <ul role="list" class="{{ulClass(entry)}}
           {% if entry.url.split("/").length === 3 %} min-w-[200px] shadow-lg{% endif %}
