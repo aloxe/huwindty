@@ -76,9 +76,9 @@ If the entry has children it will contain a sub list where all entries will be h
   {% if children.length %}
     <li>
       <div>
-        <summary>
+        <div>
           <a href="{{ entry.url }}">{{ entry.data.title }}</a>
-        </summary>
+        </div>
         <ul role="list">
           {%- for child in children %}{{ renderNavItem(child) }}{% endfor -%}
         </ul>
