@@ -37,7 +37,7 @@ const Images = {
   SIZES: '(max-width: 1200px) 70vw, 1200px' // size of image rendered
 }
 ```
-{tabindex=0}
+
 
 On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule.
 
@@ -49,7 +49,7 @@ To get a step by step understanding of what the eleventy-img plugin is used to c
 
 An example is available on the Huwindty home page
 
-```html{tabindex=0}
+```html
     {% Picture page, "vera-davidova.jpg", "Wind is playing with the grass and they are dancing and enjoying the magical moment in their lives. Tinos, Greece", undefined, undefined, undefined, undefined %}
     <!-- 
     Picture attributes: 
@@ -75,7 +75,7 @@ The image below is generated with the simple code
 
 ```markdown
 ![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
-```{tabindex=0}
+```
 
 ![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
 
@@ -86,7 +86,7 @@ When you inspect the code, you see that the generated code is the following resp
     <source type="image/webp" srcset="/documentation/images/circus-350w.webp 350w, /documentation/images/circus-700w.webp 700w, /documentation/images/circus-750w.webp 750w, /documentation/images/circus-1200w.webp 1200w, /documentation/images/circus-1500w.webp 1500w, /documentation/images/circus-2000w.webp 2000w" sizes="(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px">
     <img alt="drooderfiets and red circus" class="lazy" loading="lazy" decoding="async" title="" src="/documentation/images/circus-350w.jpeg" width="2000" height="1500" srcset="/documentation/images/circus-350w.jpeg 350w, /documentation/images/circus-700w.jpeg 700w, /documentation/images/circus-750w.jpeg 750w, /documentation/images/circus-1200w.jpeg 1200w, /documentation/images/circus-1500w.jpeg 1500w, /documentation/images/circus-2000w.jpeg 2000w" sizes="(max-width: 400px) 380px, (max-width: 470px) 450px, (max-width: 841px) 640px, (max-width: 1100px) 640px, 764px">
 </picture>
-```{tabindex=0}
+```
 
 ## Lazy loading
 

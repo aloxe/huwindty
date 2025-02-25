@@ -7,7 +7,7 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const mdit = require('markdown-it')
 const mditAttrs = require('markdown-it-attrs');
-const mditHighlight = require('markdown-it-highlightjs');
+const hljs = require('highlight.js/lib/core')
 const Image = require('@11ty/eleventy-img');
 
 // sizes and formats of resized images to make them responsive
@@ -34,16 +34,33 @@ module.exports = async function(eleventyConfig) {
     linkify: true,
     typographer: true,
   }
-  const mdLib = mdit(mditOptions).use(mditAttrs).use(mditHighlight, { inline: true }).disable('code')
+  const mdLib = mdit(mditOptions).use(mditAttrs)
 
-  // add attribute in code blocks Markdown
-  mdLib.renderer.rules.code = (tokens, idx, options, env, self) => {
-    console.log(tokens, idx, options, env, self);
+  // Load any languages you need to highlight
+  hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+  hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown'));
+  hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+  hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
+  hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
+
+  // highlight codeblocksaccording to language
+  mdLib.renderer.rules.fence = (tokens, idx) => {
+    const token = tokens[idx];
+    const str = token.content
+    const lg = token.info
     
-  }
+    if (lg && hljs.getLanguage(lg)) {
+      // add also tabindex=0 to give access to a block with scrolling (a11y)
+      return '<pre><code class="hljs  language-'+ lg +'" tabindex="0">' +
+      hljs.highlight(str, { language: lg, ignoreIllegals: true }).value +
+      '</code></pre>';
+    }
+    console.warn("language highlight not loaded: ", "\x1b[96m"+lg+"\x1b[0m")    
+    return '<pre><code class="to hljs" tabindex="0">' + mdLib.utils.escapeHtml(str) + '</code></pre>';
+  };
 
   // generate responsive images from Markdown
-  mdLib.renderer.rules.image = (tokens, idx, options, env, self) => {
+  mdLib.renderer.rules.image = (tokens, idx, options, env) => {
     const token = tokens[idx]
     const imgPath = token.attrGet('src')
     const isGlobal = imgPath.slice(0, env.meta.public_folder.length) === env.meta.public_folder
