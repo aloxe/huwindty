@@ -29,7 +29,7 @@ jobs:
         node-version: [20.x]
     steps:
       - name: ⛓️ Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: 🔍 Detect package manager
         id: detect-package-manager
         run: |
@@ -46,7 +46,7 @@ jobs:
             exit 1
           fi
       - name: 🪢 Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: ${{ steps.detect-package-manager.outputs.manager }}
@@ -69,7 +69,7 @@ jobs:
         # {{ github.event.repository.name }} can be replaced by another variable if you are using a different repo that github or van come from your own env variable
         run: BASE_HREF=${{ github.event.repository.name }} ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
 
@@ -83,5 +83,5 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
 

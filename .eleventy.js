@@ -219,9 +219,7 @@ function htmlminTransform(content, outputPath) {
 
 const postcssFilter = (cssCode, done) => {
   postCss([
-    require('postcss-import'),
-    tailwind(require('./tailwind.config')),
-    autoprefixer(),
+    require('@tailwindcss/postcss'), // process tailwind with postcss
     cssnano({ preset: 'default' }) // minify css
   ])
     .process(cssCode, {

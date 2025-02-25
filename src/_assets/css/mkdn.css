@@ -1,35 +1,64 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer components {
-  .mkdn h2 {
-    @apply mt-8 mb-6 text-left text-2xl font-bold leading-tight text-indigo-800
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
-  .mkdn h3 {
-    @apply my-4 text-left text-xl font-bold leading-normal text-blue-950
+}
+
+@utility mkdn {
+  & h2 {
+    @apply mt-8 mb-6 text-left text-2xl font-bold leading-tight text-indigo-800;
   }
-  .mkdn p, .mkdn ul, .mkdn ol {
-    @apply my-4 text-xl font-light leading-6 text-slate-900
+  & h3 {
+    @apply my-4 text-left text-xl font-bold leading-normal text-blue-950;
   }
-  .mkdn ul {
-    @apply list-disc
+  & p {
+    @apply my-4 text-xl font-light leading-6 text-slate-900;
   }
-  .mkdn ol {
-    @apply list-decimal
+  & ul {
+    @apply my-4 text-xl font-light leading-6 text-slate-900;
   }
-  .mkdn li {
-    @apply ml-8 mb-2
+  & ol {
+    @apply my-4 text-xl font-light leading-6 text-slate-900;
   }
-  .mkdn code {
-    @apply text-xl
+  & ul {
+    @apply list-disc;
   }
-  .mkdn a {
-    @apply text-blue-900 underline underline-offset-2 hover:no-underline
+  & ol {
+    @apply list-decimal;
   }
-  .mkdn .note {
+  & li {
+    @apply ml-8 mb-2;
+  }
+  & code {
+    @apply text-xl;
+  }
+  & a {
+    @apply text-blue-900 underline underline-offset-2 hover:no-underline;
+  }
+  & .note {
     @apply text-cyan-900 bg-sky-200 border p-4 border-cyan-900 border-l-8
-    before:content-['ⓘ_Note:_'] before:font-bold
+    before:content-['ⓘ_Note:_'] before:font-bold;
+  }
+}
+
+@utility note {
+  .mkdn & {
+    @apply text-cyan-900 bg-sky-200 border p-4 border-cyan-900 border-l-8
+    before:content-['ⓘ_Note:_'] before:font-bold;
   }
 }
 
