@@ -36,6 +36,12 @@ module.exports = async function(eleventyConfig) {
   }
   const mdLib = mdit(mditOptions).use(mditAttrs).use(mditHighlight, { inline: true }).disable('code')
 
+  // add attribute in code blocks Markdown
+  mdLib.renderer.rules.code = (tokens, idx, options, env, self) => {
+    console.log(tokens, idx, options, env, self);
+    
+  }
+
   // generate responsive images from Markdown
   mdLib.renderer.rules.image = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
