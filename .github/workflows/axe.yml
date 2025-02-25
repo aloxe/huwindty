@@ -1,8 +1,8 @@
-name: '♿ Pa11y'
+name: '♿ Acessibility'
 on: pull_request
 
 jobs:
-  pa11y:
+  axe:
     runs-on: ubuntu-latest
 
     permissions:
@@ -21,4 +21,4 @@ jobs:
       - name: Run axe
         run: |
           npm install -g @axe-core/cli
-          axe http://localhost:8080 --exit
+          axe http://localhost:8080/documentation/ --exit
