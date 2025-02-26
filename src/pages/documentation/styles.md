@@ -88,12 +88,21 @@ In order to keep markdown files to focus on content I chose to implement the fir
 
 ### The mkdn.css stylesheet
 
-For better performence the stylesheet loaded for markdown is only loaded for pages generated from markdown. This allows pages generated from html to load the basic styles.css stylesheet without the markdown styles.
+For better performence the stylesheet loaded for markdown is only loaded for pages generated from markdown. This allows pages generated from html to load the basic styles.css stylesheet without the unused markdown styles.
 
 
 ### Additional markdown styles
 
-In addition, the markdown-it-attrs plugins allows for additional classes to be added to the markdown output. This allows to specific styles to markdown components. As an example you can look at the note above within the same layer component.
+In addition, the markdown-it-attrs plugins allows for additional classes to be added to the markdown output. This allows to add specific styles to markdown components.
+
+This is capability can get styles look messy very quickly. It is recommanded to only use it for a few classes.{.note}
+
+As an example the note above is generated with the following markdown text:
+
+```txt
+This is capability can get css messy very quickly. It is recommanded to only use it for a few classes.{.note}
+```
+and is styled thanks to the following css class:
 
 ```css
   .mkdn .note {
@@ -102,21 +111,4 @@ In addition, the markdown-it-attrs plugins allows for additional classes to be a
   }
 ```
 
-To apply this style, the `markdown-it-attrs` plugin is simply added to the call for the markdown parser `markdown-it` that is loaded in `eleventy.js`.
-
-```js
-const mdit = require('markdown-it')
-const mditAttrs = require('markdown-it-attrs');
-const mditHighlight = require('markdown-it-highlightjs');
-
-module.exports = function(eleventyConfig) {
-  const mditOptions = {
-    html: true,
-    breaks: true,
-    linkify: true,
-    typographer: true,
-  }
-  const mdLib = mdit(mditOptions).use(mditAttrs).use(mditHighlight, { inline: true }).disable('code')
-  eleventyConfig.setLibrary('md', mdLib)
-}
-```
+To apply this style, the `markdown-it-attrs` plugin is simply added to the call for the markdown parser `markdown-it` that is loaded in `eleventy.js`. (See [Markdown](/documentation/markdown/))

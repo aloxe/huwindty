@@ -63,13 +63,13 @@
 }
 
 /* allows focus on blocks with overflow for better accessibility */
-.mkdn pre[class*="language-"] {
+/* .mkdn pre[class*="language-"] {
   overflow: auto;
-}
+} */
 
 /* Markdown style
 see: https://aloxe.github.io/huwindty/documentation/styles/
-other solution for markdown styling
+TODO: another solution for markdown styling is described here:
 read: https://dev.to/matthewtole/eleventy-markdown-and-tailwind-css-14f8
 */
 
