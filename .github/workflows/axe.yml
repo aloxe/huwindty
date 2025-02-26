@@ -1,0 +1,24 @@
+name: '♿ Acessibility'
+on: pull_request
+
+jobs:
+  axe:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm start & npx wait-on http://localhost:8080
+      - name: Run axe
+        run: |
+          npm install -g @axe-core/cli
+          axe http://localhost:8080/documentation/images/ --exit

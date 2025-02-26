@@ -53,3 +53,15 @@ The settings of lighthouse are done in `lighthouserc.js` at the root of the proj
 The current project tests three pages. It is possible to add more, but be aware that adding too many pages may cause the PR checks to time out.
 
 More on lighthouse-ci: https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/getting-started.md
+
+### Accessibility pipeline
+
+**pipeline:** axe.yml
+**prerequisites**: none
+
+The Accessibility pipeline is triggered on every pull request, it will run **Axe** on the generated site and return the number of accessibility violations found. If any violation is found, the action logs lists the broblem with explainations on the accessibility rule that is violated. Note that axe only knows the generated html so it cannot tell you which line of your code is wrong.
+
+The current pipeline only tests the homepage accessibility.
+
+Please note that only 20% to 50% of all accessibility issues can automatically be detected. 
+Manual testing is always required.

@@ -38,6 +38,7 @@ const Images = {
 }
 ```
 
+
 On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule.
 
 On pure HTML pages, you will need to use a specific shortcode defined in `eleventyConfig.addShortcode("Picture"` and provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
