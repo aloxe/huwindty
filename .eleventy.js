@@ -51,12 +51,12 @@ module.exports = async function(eleventyConfig) {
     
     if (lg && hljs.getLanguage(lg)) {
       // add also tabindex=0 to give access to a block with scrolling (a11y)
-      return '<pre><code class="hljs  language-'+ lg +'" tabindex="0">' +
+      return '<pre class="language-'+ lg +'"><code class="hljs language-'+ lg +'" twabindex="0">' +
       hljs.highlight(str, { language: lg, ignoreIllegals: true }).value +
       '</code></pre>';
     }
     console.warn("language highlight not loaded: ", "\x1b[96m"+lg+"\x1b[0m")    
-    return '<pre><code class="to hljs" tabindex="0">' + mdLib.utils.escapeHtml(str) + '</code></pre>';
+    return '<pre><code class="hljs" twabindex="0">' + mdLib.utils.escapeHtml(str) + '</code></pre>';
   };
 
   // generate responsive images from Markdown

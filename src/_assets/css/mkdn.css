@@ -62,6 +62,11 @@
   }
 }
 
+/* allows focus on blocks with overflow for better accessibility */
+.mkdn pre[class*="language-"] {
+  overflow: auto;
+}
+
 /* Markdown style
 see: https://aloxe.github.io/huwindty/documentation/styles/
 other solution for markdown styling

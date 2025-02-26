@@ -45,11 +45,11 @@ The following plugins are included in the default configuration:
 
   Some examples are available in [Add HTML classes to 11ty markdown content](https://giuliachiola.dev/posts/add-html-classes-to-11ty-markdown-content/).
 
-  ### [markdown-it-highlight](https://www.npmjs.com/package/markdown-it-highlight)
+  ### [highlight.js](https://www.npmjs.com/package/highlight.js)
 
     This plugin allows you to highlight code in markdown syntax. For example, ` ```javascript` will output `<pre><code class="language-javascript"></code></pre>` in the html.
 
-  The highlights use a theme which is added in a css in the `src/_assets/public/css/highlightjs.css`
+  The highlights use a theme which is added in a stand alone css in `src/_assets/public/css/highlightjs.css`
 
   Other themes are available in the [highlight.js example page](https://highlightjs.org/examples)
 
