@@ -1,21 +1,25 @@
 {% from '../macros/renderNavItem.njk' import renderNavItem with context %}
 
-
-<nav class="w-full bg-blue-600 text-white text-xl md:flex-shrink-0">
+<div>
+  <a href="#navigation"
+    class="transition right-0 bg-blue-600 text-white absolute p-3 m-2 -translate-y-16 focus:translate-y-0">Skip to navigation</a>
+  <a href="#maincontent"
+    class="transition right-0 bg-blue-600 text-white absolute p-3 m-2 -translate-y-16 focus:translate-y-0">Skip to main content</a>
+</div>
+<nav class="w-full bg-blue-600 text-white text-xl md:flex-shrink-0" id="navigation">
   {% set allEntries = collections.all %}
   <div class="float-left">
     <a href="/" {% if entry.url == "/" %} aria-current="page" {% endif %}
     class="block p-4 text-nowrap hover:text-blue-300"
     >ॐ<span class="hidden md:inline"> sweet home</span></a> 
   </div>
-    <input id="hamburger" type="checkbox" name="hamburger" 
-      class="md:hidden sr-only peer" 
-      unchecked aria-label="menu" 
-      onkeypress="event.key === 'Enter' && getElementById('hamburger').click()" />
-    <label for="hamburger" class="after:float-right after:p-4 after:content-['≡'] peer-checked:after:content-['✕'] md:hidden cursor-pointer after:border-2 after:border-blue-600 after:border-dotted peer-[:focus]:after:border-white">
-      <span class="sr-only">Menu</span>
-    </label>
-
+  <input id="hamburger" type="checkbox" name="hamburger" 
+    class="md:hidden sr-only peer" 
+    unchecked aria-label="menu" 
+    onkeypress="event.key === 'Enter' && getElementById('hamburger').click()" />
+  <label for="hamburger" class="after:float-right after:p-4 after:content-['≡'] peer-checked:after:content-['✕'] md:hidden cursor-pointer after:border-2 after:border-blue-600 after:border-dotted peer-[:focus]:after:border-white">
+    <span class="sr-only">Menu</span>
+  </label>
   <ul role="list" class="mt-12 md:mt-0 md:flex hidden peer-checked:block">
     {%- for entry in allEntries %}
       {% if entry.url.split("/").length === 3 %}
@@ -27,5 +31,4 @@
       {% endif %}
     {% endfor %}
   </ul>
-      
 </nav>
