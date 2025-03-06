@@ -29,7 +29,7 @@ Then hit on the button \[Register application].
 
 On the next step, you will have to create your Client Secret (CLIENT_SECRET) and save it in a secure file. Also save the Client ID (CLIENT_ID).
 
-### Deploy an external OAuth client
+### Deploy an external OAuth client on your server
 
 In Netify you can set up all you need to deploy and host your site on Netifly and maintain it with Sveltia CMS, but you can also deploy your site elsewhere and also use  your own external OAuth client. Decap documentation has [referenced a list](https://decapcms.org/docs/external-oauth-clients/) of external apps you can install on your server for this.
 
