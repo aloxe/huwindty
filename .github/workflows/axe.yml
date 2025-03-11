@@ -20,5 +20,5 @@ jobs:
       - run: npm start & npx wait-on http://localhost:8080
       - name: Run axe
         run: |
-          npm install -g @axe-core/cli@4.10.2-e53cd36.0
+          npm install -g @axe-core/cli@4.10.1
           axe http://localhost:8080/documentation/images/ --exit
