@@ -18,7 +18,7 @@ jobs:
       - name: Get Chromium version 🌐
         run: |
           CHROMIUM_VERSION=$(wget -qO- https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE | cut -d. -f1)
-          echo "Chromium version: $CHROMIUM_VERSION"
+          echo "Chromium 🌐 version: $CHROMIUM_VERSION"
           echo "CHROMIUM_VERSION=$CHROMIUM_VERSION" >> $GITHUB_ENV
       - name: Setup Chrome 🌐
         id: setup-chrome
@@ -36,4 +36,6 @@ jobs:
       - name: Run axe
         run: |
           npm install -g @axe-core/cli
+          CHROMIUM_VERSION=$(google-chrome --version | cut -d' ' -f3 | cut -d'.' -f1)
+          npm install chromedriver@$CHROMIUM_VERSION
           axe http://localhost:8080/documentation/images/ --exit
