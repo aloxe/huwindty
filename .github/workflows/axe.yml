@@ -15,10 +15,25 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
+      - name: Get Chromium version 🌐
+        run: |
+          CHROMIUM_VERSION=$(wget -qO- https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE | cut -d. -f1)
+          echo "Chromium version: $CHROMIUM_VERSION"
+          echo "CHROMIUM_VERSION=$CHROMIUM_VERSION" >> $GITHUB_ENV
+      - name: Setup Chrome 🌐
+        id: setup-chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: ${{ env.CHROMIUM_VERSION }}
+      - name: Install chromedriver 🚗
+        run: |
+          echo "Installing chromedriver version: $CHROMIUM_VERSION"
+          yarn add chromedriver@$CHROMIUM_VERSION
+          echo "chromedriver version: $(chromedriver --version)"
+      - run: npm install
       - run: npm run build --if-present
       - run: npm start & npx wait-on http://localhost:8080
       - name: Run axe
         run: |
-          npm install -g @axe-core/cli@4.10.0
+          npm install -g @axe-core/cli
           axe http://localhost:8080/documentation/images/ --exit
