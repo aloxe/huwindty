@@ -19,7 +19,7 @@ Sveltia CMS is a single-page app that is pulled from the page you decide to add 
 
 Because new content is saved as files on the git repository of your project. You need to have a user that has access to your git repository. For this you will need to create and OAuth Application and set up your git forge to authenticate. The steps described bellow are using OAuth and github.
 
-### Create OAuth Application
+### Create OAuth Application on github
 
 Go to the [Github OAuth settings](https://github.com/settings/applications/new) from _Settings_ > _Developer Settings_ > _OAuth Apps_ > _Generate New_.
 
@@ -29,11 +29,15 @@ Then hit on the button \[Register application].
 
 On the next step, you will have to create your Client Secret (CLIENT_SECRET) and save it in a secure file. Also save the Client ID (CLIENT_ID).
 
-### Deploy an external OAuth client on your server
+### Build an external OAuth client on your server
 
-In Netify you can set up all you need to deploy and host your site on Netifly and maintain it with Sveltia CMS, but you can also deploy your site elsewhere and also use  your own external OAuth client. Decap documentation has [referenced a list](https://decapcms.org/docs/external-oauth-clients/) of external apps you can install on your server for this.
+In Netify, you can set up all you need to deploy and host your site. Netifly will manage your authentication and will let you maintain your site with Sveltia CMS.
 
-I chose the [PHP Netlify CMS GitHub Oauth](https://github.com/mcdeck/netlify-cms-oauth-provider-php) that comes with [a blogpost](https://www.van-porten.de/blog/2021/01/netlify-auth-provider/) detailing how you can use it on a small hosting server.
+If you want todeploy your site elsewhere you will need an external OAuth client. Decap documentation has [referenced a list](https://decapcms.org/docs/external-oauth-clients/) of external apps you can install on your own server.
+
+I chose the [PHP Netlify CMS GitHub Oauth](https://github.com/mcdeck/netlify-cms-oauth-provider-php) that comes with [a blogpost](https://www.van-porten.de/blog/2021/01/netlify-auth-provider/) explaining in detail how to set it up.
+
+In short, you will have to clone the repo and install the dependencies:
 
 ```bash
 git clone https://github.com/mcdeck/netlify-cms-oauth-provider-php
@@ -41,7 +45,7 @@ cd netlify-cms-oauth-provider-php
 composer install
 ```
 
-You will then have to copy the `.env` file into a new `.env.local` where you will add the CLIENT_ID and CLIENT_SECRET you need from the OAuth Application that you previously created on github:
+You will then have to copy the `.env` file into a new `.env.local` where you will add the CLIENT_ID and CLIENT_SECRET and callback url from the OAuth Application that you previously created on github:
 
 ```
 OAUTH_PROVIDER=github
@@ -51,57 +55,54 @@ OAUTH_CLIENT_SECRET=CLIENT_SECRET
 REDIRECT_URI=https://oauth.example.com/callback
 ORIGIN=https://host.example.com
 ```
+The line with `ORIGIN` is the host url of your site. Do not include any path or trailing slash on `ORIGIN` or the authentication flow will not redirect to your backoffice.
 
-Do not include any path or trailing slash on `ORIGIN` or it will not redirect.
+### Deploy the OAuth client on your server
 
-You will then have to upload everything to your server and make sure you set the document root of your server in the `public` directory. 
+You will then have to upload everything from `netlify-cms-oauth-provider-php` onto your server. Your server must handle https and php. The root index should point to the `public` folder but all other folders should remain there.
 
-The index page of your site should say hello and offer a link to Log in with Github. The current starter kit has a link to "[My login with Github](https://auth.xn--4lj4bfp6d.eu.org/auth)".
+When correctly installed, the index page of your Auth site should say ''Hello'' and offer a link to ''Log in with Github''. The current starter kit has a link to "[My login with Github](https://auth.xn--4lj4bfp6d.eu.org/auth)".
 
-## The back office
+## The back office configuration
 
-The backoffice of the CMS is already installed in the admin folder. once authenticated you will be able to access and update content that is defined in the config.
-
-### Install Sveltia CMS to your static site
-
-In this starter, the CMS is already installed in the `_assets/public/admin`. You will find two files: index.html and config.yml.
+The backoffice is already installed with huwindity. You can find it under `_assets/public/admin`. This folder contains two files: index.html and config.yml.
 
 - The index.html is the page that will load the CMS application.
 - config.yml is the config file. You can update it to set the behaviour of your CMS. 
 
 If you prefer to use Decap CMS over Sveltia, simple uncomment the line in index.html, where the decap script is loaded and remove the one for Sveltia.
 
-### Configuration
+### Define backend
+In the `backend:` section of the config, you will document all details for Svetlia CMS to access and update your git repository.
 
-#### Connect to the authentication provider
-
-
-#### Define backend
-In the `backend:` you will document all details for Svetlia CMS to access and update your git repository.
-
+The name will be the forge system that you use. Currently Svetlia supports github and gitlab but the current starter uses github.
 ```
   name: github # current huwindty has been tested with github only
+```
+
+The repo will be the path to the git repository of your huwidty site on the chosen forge.
+```
   repo: aloxe/huwindty # Path to your GitHub repository
 ```
-The name will be the forge system that you use. Currently Svetlia supports github and gitlab but the current starter and documentation is focussing on github.
 
-```
-  branch: ecrire # name of the branch where content edits will be pushed
-```
 You need to specify the branch where the changes will be commited. The branch has to exist on your repository otherwise the CMS will return an error.
 
-If you choose to put your main branch, all saving of new content will push a commit that will, if [the CI](https://aloxe.github.io/huwindty/documentation/ci/) is in place, release the changes directly on your site.
+If you choose your main branch, all changes that you save in the CMS will be pushed to the main branch and therefore, if [the publication pipeline](https://aloxe.github.io/huwindty/documentation/ci/) is in place, will bedirectly visible on your site.
 
-Since Svetlia doesn't yet handle content workflow, you may also want to create a secondary branch that will go through your usual merge request where you can review changes.
+Since Svetlia doesn't yet handle content workflow, it is recommanded to create a secondary branch for edition that can go through editorial workflowthrough a pull request.
+```
+  branch: ecrire # name of the branch where edits will be pushed
+```
 
-Note that even if your website is not up to date, the content that will be shown in the back office will be the one from the branch you are editing from, and may not match what is on the public site.
+The content shown in the back office will be the one from the edition branch. If this branch contains many changes that are not merged into your main branch, the back end might be very different from the public site.{.note}
 
+Finally, before you can start, you will need to update `base_url:` with the url of the CMS Oauth provider you published as explained earlier.
 ```
 base_url: https://oauth.example.com # Path to ext auth provider
 ```
-Before you can start, you will need to update the `base_url:` with the path to the cms oauth provider you published as explained earlier.
 
-#### Media folders
+
+### Media folders
 
 You may also change the `media_folder` where all images and media will be uploaded to. The last part, with the `collections` defines what folders and pages are editable by the CMS as well as the fields that will be available in the CMS. Usually you will set here all variables that are present in the Front Matter of your pages.
 
@@ -109,10 +110,50 @@ In the current setup, I used `media_folder: ''` and `public_folder: '/{{dirname}
 
 Once the CMS installed, you can go to your website admin section. (i.e. <https://aloxe.github.io/huwindty/admin/>), and once you are authenticated with your github account, you can start edit the pages that are in your config file.
 
-#### Editable content
+### Editable content
 
-The editable content is defined in the `collections:`. It allows you to describe which part of the 11ty pages are editable and what are the fields you will be editing or not in the CMS backoffice interface.
+The editable content is defined in the `collections:`. It allows you to list which eleventy page in eleventy will be editable, descripe their properties and define which fieldscan be modified in the CMS backoffice interface.
 
-### User management with github
+For example the documentation pages of Huwindty are defined like this:
+```
+collections:
+  - name: "documentation" # Used in routes, e.g., /admin/collections/blog
+    label: "Documentation" # Used in the UI
+    folder: "src/pages/documentation" # The path to the folder where the documents are stored
+    thumbnail: thumbnail
+    columns: [title, date]
+```
 
-In your repository settings on Github, go to settings > collaborators and click on the button \[Add people]. You will be able to add any github user are collaborator. Only people that you added will be able to edit your pages and you can revoque them at any time by removing them from the list.
+With media and public folder following the [documentation of Decap CMS](https://decapcms.org/docs/collection-folder/#media-and-public-folder):
+```
+    media_folder: '' # start with a slash
+    public_folder: /documentation
+```
+
+Each page of this collection will have a layout "base" and isMarkdown set to true in the front matter. Then the title and headline can be modified as a string in the CMS.
+
+```
+    create: true # Allow users to create new documents in this collection
+    fields: # All the fields for each document, usually in front matter + body
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "base"
+        preview: false
+      - label: "isMarkdown"
+        name: "isMarkdown"
+        widget: "hidden"
+        default: true
+        preview: false
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "headline"
+        name: "headline"
+        widget: "string"
+        required: false
+```
+
+## User management with github
+
+In your repository settings on Github, go to settings > collaborators and click on the button \[Add people]. You will be able to add any github user as collaborator. Only people that you added will be able to edit your pages and you can revoque them at any time by removing them from the list.

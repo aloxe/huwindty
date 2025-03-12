@@ -9,7 +9,7 @@
 backend:
   name: github # current huwindty has been tested with github only
   repo: aloxe/huwindty # Path to your GitHub repository
-  branch: ecrire # name of the branch where content edits will be pushed
+  branch: ecrire # Branch where edits will be pushed
   base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
 
 
@@ -26,7 +26,7 @@ collections:
     folder: "src/pages/documentation" # The path to the folder where the documents are stored
     thumbnail: thumbnail
     columns: [title, date]
-    media_folder: '' # start with a slash
+    media_folder: ''
     public_folder: /documentation
     create: true # Allow users to create new documents in this collection
     fields: # All the fields for each document, usually in front matter + body
