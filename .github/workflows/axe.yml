@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      pull-requests: none
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@v4
@@ -25,5 +25,5 @@ jobs:
       - run: npm start & npx wait-on http://localhost:8080
       - name: Run axe 🪓
         run: |
-          npm install -g @axe-core/cli
+          npm install -g @axe-core/cli@4.10.2-e53cd36.0
           axe http://localhost:8080/documentation/images/ --exit
