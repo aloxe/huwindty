@@ -87,11 +87,11 @@ The repo will be the path to the git repository of your huwidty site on the chos
 
 You need to specify the branch where the changes will be commited. The branch has to exist on your repository otherwise the CMS will return an error.
 
-If you choose your main branch, all changes that you save in the CMS will be pushed to the main branch and therefore, if [the publication pipeline](https://aloxe.github.io/huwindty/documentation/ci/) is in place, will bedirectly visible on your site.
+If you choose your main branch, all changes that you save in the CMS will be pushed to the main branch and therefore, if [the publication pipeline](https://aloxe.github.io/huwindty/documentation/ci/) is in place, will be directly visible on your site.
 
 Since Svetlia doesn't yet handle content workflow, it is recommanded to create a secondary branch for edition that can go through editorial workflowthrough a pull request.
 ```
-  branch: ecrire # name of the branch where edits will be pushed
+  branch: edit # name of the branch where edits will be pushed
 ```
 
 The content shown in the back office will be the one from the edition branch. If this branch contains many changes that are not merged into your main branch, the back end might be very different from the public site.{.note}
@@ -104,17 +104,17 @@ base_url: https://oauth.example.com # Path to ext auth provider
 
 ### Media folders
 
-You may also change the `media_folder` where all images and media will be uploaded to. The last part, with the `collections` defines what folders and pages are editable by the CMS as well as the fields that will be available in the CMS. Usually you will set here all variables that are present in the Front Matter of your pages.
+You may also change the `media_folder` where all images and media will be uploaded to. The last part, with the `collections`, defines what folders and pages are editable by the CMS as well as the fields that will be available in the CMS. Usually you will set here all variables that are present in the Front Matter of your pages.
 
-In the current setup, I used `media_folder: ''` and `public_folder: '/{{dirname}}/{{filename}}'` to allowimages to be saved in the same folder as the page.
+In the current setup, I used `media_folder: ''` and `public_folder: '/{{dirname}}/{{filename}}'` to allow images to be saved in the same folder as the page.
 
-Once the CMS installed, you can go to your website admin section. (i.e. <https://aloxe.github.io/huwindty/admin/>), and once you are authenticated with your github account, you can start edit the pages that are in your config file.
+Once the CMS is installed, you can go to your website admin section. (i.e. <https://aloxe.github.io/huwindty/admin/>), and once you are authenticated with your github account, you can start edit the pages that are in your config file.
 
 ### Editable content
 
-The editable content is defined in the `collections:`. It allows you to list which eleventy page in eleventy will be editable, descripe their properties and define which fieldscan be modified in the CMS backoffice interface.
+The editable content is defined in the `collections:`. It allows you to list which Eleventy page in Eleventy will be editable, describe their properties and define which fields can be modified in the CMS backoffice interface.
 
-For example the documentation pages of Huwindty are defined like this:
+For example, the documentation pages of Huwindty are defined like this:
 ```
 collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
@@ -130,7 +130,7 @@ With media and public folder following the [documentation of Decap CMS](https://
     public_folder: /documentation
 ```
 
-Each page of this collection will have a layout "base" and isMarkdown set to true in the front matter. Then the title and headline can be modified as a string in the CMS.
+Each page of this collection will have a `layout` called "base" and `isMarkdown` set to `true`. These will not appear in the CMS but will be set in the front matter. Then the `title` and `headline` can be modified as a string in the CMS.
 
 ```
     create: true # Allow users to create new documents in this collection

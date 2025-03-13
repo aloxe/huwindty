@@ -9,7 +9,7 @@
 backend:
   name: github # current huwindty has been tested with github only
   repo: aloxe/huwindty # Path to your GitHub repository
-  branch: ecrire # Branch where edits will be pushed
+  branch: edit # Branch where edits will be pushed
   base_url: https://auth.xn--4lj4bfp6d.eu.org # Path to ext auth provider
 
 
