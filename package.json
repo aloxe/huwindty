@@ -34,7 +34,7 @@
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.0",
     "rimraf": "^6.0.1",
-    "tailwindcss": "^4.0.13"
+    "tailwindcss": "^4.0.14"
   },
   "dependencies": {
     "@11ty/eleventy-img": "^6.0.1",
