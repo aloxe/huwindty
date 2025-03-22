@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Global images
-headline: Yet another example page
+headline: pages with images in global folders
 ismarkdown: true
 thumbnail: /img/animals/heron.jpg
 ---

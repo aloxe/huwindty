@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Local images
-headline: Yet another example page
+headline: Pages with images locally
 ismarkdown: true
 thumbnail: wasps.jpg
 ---
