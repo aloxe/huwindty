@@ -1,24 +1,25 @@
 {% extends './base.njk' %}
 
     {% block main %}
-      <main class="m0 p0 flex-1 bg-center bg-no-repeat
-        md:bg-[url(/examples/pages/vera-1536w.webp)] 
-        bg-[url(/examples/pages/vera-920w.webp)] 
+      <main class="m0 p0 flex-1 bg-no-repeat bg-cover bg-center
+        bg-[url(/examples/pages/vera-davidova-852w.webp)] 
+        md:bg-[url(/examples/pages/vera-davidova-1160w.webp)] 
+        lg:bg-[url(/examples/pages/vera-davidova-1536w.webp)] 
       {% if ismarkdown %}mkdn{% endif %}" id="maincontent">
         {% block header %}
-  <header class="p-5
-  flex w-full flex-col justify-center overflow-y-hidden lg:items-start ">
-    <h1 class="my-4  font-bold leading-tight text-blue-500 md:text-white
-    text-center text-5xl md:text-left md:text-7xl">
+  <header class="p-16
+  flex w-full flex-col justify-center overflow-y-hidden 
+  
+  ">
+    <h1 class="my-4 font-bold leading-relaxed text-white
+    text-center text-5xl [text-shadow:_0_0_2px_rgb(0_0_0)] md:text-8xl">
       {{ title }}
     </h1>
-    <p class="mb-6 text-center text-base leading-normal 
-      md:text-left md:text-2xl md:text-white">
+    <p class="mb-6 text-center text-white [text-shadow:_0_0_2px_rgb(0_0_0_/_50%)] text-lg sm:text-2xl md:text-3xl">
       {{ headline }}
     </p>
   </header>
         {% endblock %}
-
         {% block content %}
           {{ content | safe }}
         {% endblock %}
