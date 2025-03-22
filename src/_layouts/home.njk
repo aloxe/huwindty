@@ -1,0 +1,31 @@
+{% extends './base.njk' %}
+
+    {% block main %}
+      <main class="m0 p0 flex-1 bg-center bg-no-repeat
+        md:bg-[url(/examples/pages/vera-1536w.webp)] 
+        bg-[url(/examples/pages/vera-920w.webp)] 
+      {% if ismarkdown %}mkdn{% endif %}" id="maincontent">
+        {% block header %}
+  <header class="p-5
+  flex w-full flex-col justify-center overflow-y-hidden lg:items-start ">
+    <h1 class="my-4  font-bold leading-tight text-blue-500 md:text-white
+    text-center text-5xl md:text-left md:text-7xl">
+      {{ title }}
+    </h1>
+    <p class="mb-6 text-center text-base leading-normal 
+      md:text-left md:text-2xl md:text-white">
+      {{ headline }}
+    </p>
+  </header>
+        {% endblock %}
+
+        {% block content %}
+          {{ content | safe }}
+        {% endblock %}
+          <div
+            class="text-sm text-gray-100 text-center absolute bottom-18 right-2">photo: <a href="https://unsplash.com/photos/green-grass-field-during-daytime-J_CutWQnT78">Vera Davidova</a></div>
+      </main>
+    {% endblock %}
+
+  </body>
+</html>
