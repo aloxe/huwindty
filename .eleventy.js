@@ -186,19 +186,6 @@ module.exports = async function(eleventyConfig) {
     return metadata.webp[0].url
   })
 
-  // Collections 
-  eleventyConfig.addCollection("documentation", function (collection) {
-    return collection.getFilteredByGlob("./src/pages/documentation/**/*.md");
-  });
-
-  eleventyConfig.addCollection("pages", function (collection) {
-    return collection.getFilteredByGlob("./src/pages/examples/pages/**/*.md");
-  });
-
-  eleventyConfig.addCollection("images", function (collection) {
-    return collection.getFilteredByGlob("./src/pages/examples/images/**/*.md");
-  });
-
   return {
     dir: {
       input: "src/pages",

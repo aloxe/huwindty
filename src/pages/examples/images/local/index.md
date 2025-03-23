@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: index
 title: Local images
 headline: Pages with images locally
 ismarkdown: true

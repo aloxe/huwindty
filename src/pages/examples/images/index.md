@@ -1,13 +1,8 @@
 ---
-layout: base
+layout: index
 title: Pages with Images
-headline: Example pages with several ways to include an image
+headline: Several ways to include an image
+ismarkdown: true
+thumbnail: /img/animals/heron.jpg
 ---
 
-{% for post in collections.images | reverse %}
-  {% if post.data.title != 'Pages with Images' %}
-
-- [{{post.data.title}}]({{post.url}})  
- _{{post.data.headline}}_
-  {% endif %}
-{% endfor %}
