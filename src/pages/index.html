@@ -9,29 +9,54 @@ author: aloxe
 date: 2021-09-01
 ---
 
-  <div class="m0 w-full max-w-5xl mx-auto">
+<div class="bg-no-repeat bg-cover bg-center
+bg-[url(/examples/pages/vera-davidova-852w.webp)] 
+md:bg-[url(/examples/pages/vera-davidova-1160w.webp)] 
+lg:bg-[url(/examples/pages/vera-davidova-1536w.webp)]
+"> <!-- backgrund image wrapper -->
 
-<div class="md:grid md:grid-cols-3 md:gap-x-6 p-6 text-md">
-  <div class="w-full bg-blue-100 p-4 text-black mb-3 font-extralight rounded-3xl">
-    <h1 class="text-4xl text-center mb-2">Easy</h1>
-    <p class="font-light">
-      Powered by eleventy: just install, build, and you're set! Deploy seamlessly to GitHub Pages or your own server. The navigation menu updates automatically, and any image you upload displays beautifully and responsively.
-    </p>
-  </div>
-  <div class="w-full bg-blue-100 p-4 text-black mb-3 font-extralight rounded-3xl">
-    <h1 class="text-4xl text-center mb-2">Flexible</h1>
-    <p class="font-light">
-      Customize design with Tailwind CSS. Create pages, posts, and update content seamlessly using a CMS with real-time preview. All features are thoroughly documented, allowing you to adapt or remove them as needed.
-    </p>
-  </div>
-  <div class="w-full bg-blue-100 p-4 text-black mb-3 font-extralight rounded-3xl">
-    <h1 class="text-4xl text-center mb-2">Effective</h1>
-    <p class="font-light">
-      This starter got the perfect quadruple 💯 score on Lighthouse and PageSpeed Insights. Maintain top-notch performance and accessibility with automatic Lighthouse and Axe checks on every pull request.
-    </p>
-  </div>
-</div>
 
+  <header class="m0 w-full max-w-5xl mx-auto
+    p-16 flex flex-col justify-center overflow-y-hidden">
+    <h1 class="my-4 font-bold leading-relaxed text-white
+    text-center text-5xl [text-shadow:_0_0_2px_rgb(0_0_0)] md:text-8xl">
+      {{ title }}
+    </h1>
+    <p class="mb-6 text-center text-white [text-shadow:_0_0_2px_rgb(0_0_0_/_50%)] text-lg sm:text-2xl md:text-3xl">
+      {{ headline }}
+    </p>
+  </header>
+
+    <!-- <div class="m0 w-full max-w-5xl mx-auto bg-amber-400"> -->
+
+  <section class="m0 w-full max-w-5xl mx-auto
+    md:grid md:grid-cols-3 md:gap-x-6 p-6 text-md">
+    <div class="w-full bg-blue-100 p-4 text-black mb-3 font-extralight rounded-3xl">
+      <h1 class="text-4xl text-center mb-2">Easy</h1>
+      <p class="font-light">
+        Powered by eleventy: just install, build, and you're set! Deploy seamlessly to GitHub Pages or your own server. The navigation menu updates automatically, and any image you upload displays beautifully and responsively.
+      </p>
+    </div>
+    <div class="w-full bg-blue-100 p-4 text-black mb-3 font-extralight rounded-3xl">
+      <h1 class="text-4xl text-center mb-2">Flexible</h1>
+      <p class="font-light">
+        Customize design with Tailwind CSS. Create pages, posts, and update content seamlessly using a CMS with real-time preview. All features are thoroughly documented, allowing you to adapt or remove them as needed.
+      </p>
+    </div>
+    <div class="w-full bg-blue-100 p-4 text-black mb-3 font-extralight rounded-3xl">
+      <h1 class="text-4xl text-center mb-2">Effective</h1>
+      <p class="font-light">
+        This starter got the perfect quadruple 💯 score on Lighthouse and PageSpeed Insights. Maintain top-notch performance and accessibility with automatic Lighthouse and Axe checks on every pull request.
+      </p>
+    </div>
+  </section>
+
+  <div class="text-sm text-gray-100 text-right p-4">
+    photo: <a href="https://unsplash.com/photos/green-grass-field-during-daytime-J_CutWQnT78">Vera Davidova</a>
+  </div>
+</div> <!-- end backgrund image wrapper -->
+
+<div class="m0 w-full max-w-5xl mx-auto p-6">
     <a href="https://github.com/aloxe/huwindty">
       <svg class="h-12 mx-auto" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <title>GitHub</title>
@@ -40,9 +65,9 @@ date: 2021-09-01
         />
       </svg>
     </a>
+</div>
 
 
-  </div>
 
 
 
