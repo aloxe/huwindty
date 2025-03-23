@@ -1,0 +1,26 @@
+{% extends './base.njk' %}
+
+{% block content %}
+  {{ content | safe }}
+
+  <div class="mkdn"><!-- use default mkdn class for styling -->
+  {% if toc %}
+    <h2>{{ toc}}</h2>
+  {% endif %}
+
+  {% for post in collections.all %}
+    {% if post.url.startsWith(page.url) %}
+      {% if post.url !== page.url %}
+        {% if post.url.split("/").length === page.url.split("/").length + 1 %}
+        <p>
+          <a href="{{ post.url }}">{{ post.data.title }}</a><br>
+          <em>{{post.data.headline}}</em>
+        </p>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  </div>
+
+{% endblock %}
+
