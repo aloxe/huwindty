@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Navigation
-headline: Documentation about navigation.
+headline: Navigation menu generation and index pages
 description: How huwindty manages the navigation menu without dependency
 thumbnail: /img/vera.jpg
 ismarkdown: true
@@ -24,11 +24,11 @@ Huwindty doesn't use this plugin.
 
 ### Collections
 
-In eleventy, [collections](https://www.11ty.dev/docs/collections/) allow you to group pages according to tags added in the front matter. By naming different tags, you can groupcontent in an interesting manner. There is also a `collections.all` that lists all pages even pages without tags.
+In Eleventy, [collections](https://www.11ty.dev/docs/collections/) allow you to group pages according to tags added in the front matter. By naming different tags, you can group content in an interesting manner. There is also a `collections.all` that lists all pages, even those without tags.
 
-`collections.all` lists all pages in a folder that is identified by an index file with a frontmatter. Empty folders or folders without index.md or empty index.md will not be taken into account.
+`collections.all` lists all pages in a folder that is identified by an index file with front matter. Empty folders or folders without an index.md or with an empty index.md will not be taken into account.
 
-If you want to exclude a page from the navigation (typically the 404 page and similar), you can just exclude it from the `collections.all` by adding the following line in the page's Front Matter:
+If you want to exclude a page from the navigation (typically the 404 page and similar), you can exclude it from `collections.all` by adding the following line in the page's front matter:
 
 ```
 eleventyExcludeFromCollections: true
@@ -36,15 +36,15 @@ eleventyExcludeFromCollections: true
 
 Huwindity navigation menu is build automatically from `collections.all`.
 
-### The navigation menu structure
+### Navigation Menu Structure
 
-This navigation will instead look in `collections.all` and list all pages. It will show all first level pages in the main menu and all nested pages under each sub menu and so on. The hierarchy of the menu entries will reflect the exact file structure of the pages in the collection.
+The navigation utilizes `collections.all` to list all pages. It displays all first-level pages in the main menu, with nested pages organized under their respective submenus. The menu hierarchy mirrors the exact file structure of the collection's pages.
 
-The file hierarchy is based on the value of `page.url` which may be rewitten with adding a permalink in the front matter. In that case the menu will not reflect the file system but the permalink.{.note}
+The hierarchy is determined by the `page.url` value, which can be altered by adding a permalink in the front matter. In such cases, the menu will align with the permalink rather than the file system.{.note}
 
-### Index pages
+### Index Pages
 
-The section index pages are listed in the menu with clickable links. Because some of these pages may not have content, it is possible to automatically list the pages in the section by using the `index` layout. You can also add a title to this list with the `toc` key in front matter.
+Sections appear in the menu as clickable links. Since some of these pages might lack content, you can automatically list the pages within a section by using the `index` layout. Additionally, you can include a title for this list using the `toc` key in the front matter.
 
 ```
 layout: index
@@ -62,11 +62,11 @@ The navigation menu can be added to the nunjucks template of your choice by just
 
 ### First loop on collections
 
-`menu.njk` will loop on `collections.all` and parse the url of each entry. 
+`menu.njk` will loop on `collections.all` and parse the URL of each entry. 
 
-The first level entries are the ones wih 3 chuncks (more if you has a long path). From this point we will use the nunjucks macro `renderNavItem(entry)` to display the entry in the menu. 
+The first-level entries are the ones with 3 chunks (more if you have a long path). From this point we will use the nunjucks macro `renderNavItem(entry)` to display the entry in the menu. 
 
-If the entry contains nested pages, the macro will handle it by loading itself again (see bellow).
+If the entry contains nested pages, the macro will handle it by loading itself again (see below).
 
 ```js
   {% set allEntries = collections.all %}
@@ -79,7 +79,7 @@ If the entry contains nested pages, the macro will handle it by loading itself a
   </ul>
 ```
 
-The link to the home page which has fewer chucks of url is hard coded at the beginning of the navigation. This allows you to shape the link to home the way you want, with the word home, another name or even directly by adding your website's logo.
+The link to the home page, which has fewer chunks of URL, is hard-coded at the beginning of the navigation. This allows you to shape the link to home the way you want, with the word "home", another word, or even directly by adding your website's logo.
 
 ```html
     <li class="relative group">
@@ -89,9 +89,9 @@ The link to the home page which has fewer chucks of url is hard coded at the beg
     </li>
 ```
 
-### Next loops on collections for nested pages
+### Next loop on collections for nested pages
 
-For each entry `renderNavItem(entry)` will first look if the entry contains nested pages. If it does, it will set them as children.
+For each entry, `renderNavItem(entry)` will first look if the entry contains nested pages. If it does, it will set them as children.
 
 ```js
   {% for menuEntry in Allentries %}
@@ -125,9 +125,9 @@ Entries without children will be displayed normally.
       <a href="{{ entry.url }}">{{ entry.data.title }}</a> 
     </li>
   {% endif %}
+```
 
 ### Styling the navigation menu items as needed
-```
 
 Since the navigation menu is a list with possible sublists, it is rendered on the page the way lists are styled. The styled are applied using tailwind according to their level. They are added to the list loop using smaller macros `aClass` and `ulClass`.
 
@@ -149,7 +149,7 @@ and their sub-blocks display on `hover`
 {% endmacro %}
 ```
 
-Second level entries are displayed under their parent entry in a drop-down menu.
+Second level entries are displayed under their parent entry, in a drop-down menu.
 
 ```js
   {% if entry.url.split("/").length === 4 %}
@@ -158,6 +158,7 @@ Second level entries are displayed under their parent entry in a drop-down menu.
 ```
 
 We also add a negative margin in case this section has children. These children will show closer to their parent so that the user can identify clearly each section.
+
 ```js
   block p-4 text-nowrap hover:underline {% if children.length %}-mb-4{% endif %}
 ```
@@ -170,7 +171,7 @@ The following entries will display in the same drop-down block with only smaller
   {% endif %}
 ```
 
-## Responsivness
+## Responsiveness
 
 On smaller screens the menu is hidden behind a hamburger icon that will toggle on and off the navigation menu without using javascript.
 
@@ -201,7 +202,8 @@ Additionaly, there is an aria attribute on the menu entry of the current page.
 ```
 Finally we want each menu entry to be focussable even when it doesn't display on the screen. For this we need to do two things: first display the submenus also when the entry menu is focussed, and second to make sure the submenu remains on display when any item is focused. This is the same logic as the `:hover` pseudo class but with `:focus`.
 
-To style an element depending on the pseudo class of the parent, tailwindcss allows the use of the [class `group`](https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-the-descendants-of-a-group) that allows many conditions. For example the css code for
+To style an element depending on the pseudo class of the parent, tailwindcss allows the use of the [class `group`](https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-the-descendants-of-a-group) that allows many conditions. For example, the following css code:
+
 ```css
   li:hover ul { display: block; }
 ```
@@ -218,7 +220,7 @@ can be generated with the following tailwindcss classes:
 </li>
 
 ```
-The same `group` class is used for the focus, but because focus only applies on a anchor without looking at the parent elements, we need to use the pseudo class `:focus-within`.
+The same `group` class is used for the focus. However, because focus only applies to an anchor without considering the parent elements, we need to use the pseudo-class `:focus-within`.
 
 ```html
 <li class="group">
@@ -255,6 +257,6 @@ The list of sub pages on `index.md` and `index.html` pages is displayed thanks t
 
 ## What next?
 
-You may want to update the styles directly in both `menu.njk` and `renderNavItem.njk` as well as `index.njk` so that it fits your needs. 
+You may want to update the styles directly in both `menu.njk` and `renderNavItem.njk` as well as `index.njk` so that they fit your needs. 
 
-If you don't need such menu in your website, just remove these files and carry on.
+If you do not need such a menu in your website, just remove these files and carry on.
