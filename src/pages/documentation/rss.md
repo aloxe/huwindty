@@ -9,16 +9,16 @@ templateEngineOverride: md
 ---
 ## RSS
 
-Making the content available from one website available to other sites is called syndication. There are several standard formats for this and one of the most common is RSS that means Really Simple Syndication but there are other formats like Atom which is as wildly used.
+Making the content from one website available to others is called syndication. There are several standard formats for this, and one of the most common is RSS, which stands for Really Simple Syndication. There are also other formats like Atom, which is widely used.
 
 ## 11ty RSS Plugin
-The [11ty RSS Plugin](https://www.11ty.dev/docs/plugins/rss/) is a plugin that provides a bunch of utilities that are handy for generating an RSS or Atom feed using the Nunjucks templating syntax.
+The [11ty RSS Plugin](https://www.11ty.dev/docs/plugins/rss/) is a plugin that provides a range of utilities that are useful for generating an RSS or Atom feed using the Nunjucks templating syntax.
 
-Huwindty comes with the RSS plugin and a feed layout that generates an Atom feed at the root of your site. On this demo site it is available at [aloxe.github.io/huwindty/feed.xml](aloxe.github.io/huwindty/feed.xml).
+Huwindty comes with the RSS plugin and a feed layout that generates an Atom feed at the root of your site. On this demo site, it is available at [aloxe.github.io/huwindty/feed.xml](aloxe.github.io/huwindty/feed.xml).
 
-## How does it work ?
+## How does it work?
 
-The installation of this feed follows the 11ty documentation and is using the Nunjucks layout `feed.njk` to shape the feed how you want: 
+The installation of this feed follows the 11ty documentation and uses the Nunjucks layout `feed.njk` to shape the feed as desired:
 
 ```js
 <?xml version="1.0" encoding="utf-8"?>
