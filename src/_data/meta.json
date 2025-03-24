@@ -1,7 +1,7 @@
 {
   "title": "Huwindty 🌬️",
   "url": "https://aloxe.github.io/huwindty",
-  "description": "Huwindty enhanced template using 11ty.",
+  "description": "A basic 11ty starter with tailwind and a CMS.",
   "language": "en",
   "author": {
     "name": "Alix Guillard",
