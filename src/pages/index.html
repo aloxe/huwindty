@@ -8,12 +8,21 @@ image: /static/img/vera.jpg
 author: aloxe
 date: 2021-09-01
 ---
+<link
+  rel="preload"
+  href="./img/vera-davidova-1536w.webp"
+  imagesrcset="./img/vera-davidova-1000w.webp 1024w, 
+  ./img/vera-davidova-600w.webp 768w"
+  as="image"
+  fetchpriority="high"
+/>
 
+<!-- backgrund image wrapper loads image from /css/ hense the ../ -->
 <div class="bg-no-repeat bg-cover bg-center
-bg-[url(/examples/pages/vera-davidova-852w.webp)] 
-md:bg-[url(/examples/pages/vera-davidova-1160w.webp)] 
-lg:bg-[url(/examples/pages/vera-davidova-1536w.webp)]
-"> <!-- backgrund image wrapper -->
+bg-[url(../img/vera-davidova-600w.webp)] 
+md:bg-[url(../img/vera-davidova-1000w.webp)] 
+lg:bg-[url(../img/vera-davidova-1536w.webp)]
+"> 
 
 
   <header class="m0 w-full max-w-5xl mx-auto
