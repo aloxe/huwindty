@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 const htmlmin = require("html-minifier-terser");
 const tailwind = require('tailwindcss');
 const postCss = require('postcss');
@@ -26,6 +27,9 @@ module.exports = async function(eleventyConfig) {
   if (process.env.ELEVENTY_PRODUCTION) {
     eleventyConfig.addTransform("htmlmin", htmlminTransform);
   }
+
+  // rss plugin
+  eleventyConfig.addPlugin(pluginRss);
 
   // markdown 
   const mditOptions = {
@@ -185,6 +189,11 @@ module.exports = async function(eleventyConfig) {
     
     return metadata.webp[0].url
   })
+
+  // Collections 
+  eleventyConfig.addCollection("documentation", function (collection) {
+    return collection.getFilteredByGlob("./src/pages/documentation/**/*.md");
+  });
 
   return {
     dir: {
