@@ -9,11 +9,24 @@ templateEngineOverride: md
 ---
 ## Navigation principles
 
-The main navigation menu is not done using the [11ty Navigation Plugin](https://www.11ty.dev/docs/plugins/navigation/) This allows to display a navigation menu that directly reflects the organisation of pages without having to add a `key` or any information in the [Front Matter](https://www.11ty.dev/docs/data-frontmatter/).
+### 11ty Navigation Plugin
+The [11ty Navigation Plugin](https://www.11ty.dev/docs/plugins/navigation/) is a plugin that allows to define and display a navigation menu form pages. It relies on a series of codes added to the [Front Matter](https://www.11ty.dev/docs/data-frontmatter/) of pages, giving eanch page at least a key.
 
-This navigation will instead look in `and list all pages. It will show all first level pages in the main menu and all nested pages under each sub menu and so on. 
+```
+eleventyNavigation:
+  key: Bats
+  parent: Mammals
+  title: The bats
+  order: 2
+```
 
-`collections.all` lists all pages in a folder that is identified by an index.md with a trontmatter. Empty folders or folders without index.md or empty index.md will not be taken into account.
+Huwindty doesn't use this plugin.
+
+### Collections
+
+In eleventy, [collections](https://www.11ty.dev/docs/collections/) allow you to group pages according to tags added in the front matter. By naming different tags, you can groupcontent in an interesting manner. There is also a `collections.all` that lists all pages even pages without tags.
+
+`collections.all` lists all pages in a folder that is identified by an index file with a frontmatter. Empty folders or folders without index.md or empty index.md will not be taken into account.
 
 If you want to exclude a page from the navigation (typically the 404 page and similar), you can just exclude it from the `collections.all` by adding the following line in the page's Front Matter:
 
@@ -21,9 +34,27 @@ If you want to exclude a page from the navigation (typically the 404 page and si
 eleventyExcludeFromCollections: true
 ```
 
+Huwindity navigation menu is build automatically from `collections.all`.
+
+### The navigation menu structure
+
+This navigation will instead look in `collections.all` and list all pages. It will show all first level pages in the main menu and all nested pages under each sub menu and so on. The hierarchy of the menu entries will reflect the exact file structure of the pages in the collection.
+
+The file hierarchy is based on the value of `page.url` which may be rewitten with adding a permalink in the front matter. In that case the menu will not reflect the file system but the permalink.{.note}
+
+### Index pages
+
+The section index pages are listed in the menu with clickable links. Because some of these pages may not have content, it is possible to automatically list the pages in the section by using the `index` layout. You can also add a title to this list with the `toc` key in front matter.
+
+```
+layout: index
+title: Documentation
+toc: Table of content
+```
+
 ## How does it work?
 
-The navigation menu can be added to the nunjunk template of your choice by just including `menu.njk`.
+The navigation menu can be added to the nunjucks template of your choice by just including `menu.njk`.
 
 ```js
 {% include "menu.njk" %}
@@ -33,7 +64,7 @@ The navigation menu can be added to the nunjunk template of your choice by just 
 
 `menu.njk` will loop on `collections.all` and parse the url of each entry. 
 
-The first level entries are the ones wih 3 chuncks (more if you has a long path). From this point we will use the macro `renderNavItem(entry)` to display the entry in the menu. 
+The first level entries are the ones wih 3 chuncks (more if you has a long path). From this point we will use the nunjucks macro `renderNavItem(entry)` to display the entry in the menu. 
 
 If the entry contains nested pages, the macro will handle it by loading itself again (see bellow).
 
@@ -203,8 +234,27 @@ The same `group` class is used for the focus, but because focus only applies on 
 
 Thanks to this we have a nice menu that can be browsed naturaly using tabindex. No entry can be mised even when using a touchscreen or a screen reader. 
 
+## The index pages
+
+The list of sub pages on `index.md` and `index.html` pages is displayed thanks to the `index.njk` layout. It lists all pages with title and headline. It uses the default style for markdown pages but can be customised the way you want.
+
+```js
+  {% for post in collections.all %}
+    {% if post.url.startsWith(page.url) %}
+      {% if post.url !== page.url %}
+        {% if post.url.split("/").length === page.url.split("/").length + 1 %}
+        <p>
+          <a href="{{ post.url }}">{{ post.data.title }}</a><br>
+          <em>{{post.data.headline}}</em>
+        </p>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+```
+
 ## What next?
 
-You may want to update the styles directly in both `menu.njk` and `renderNavItem.njk` so that it fits your needs. 
+You may want to update the styles directly in both `menu.njk` and `renderNavItem.njk` as well as `index.njk` so that it fits your needs. 
 
-If you don't need such menu in your website, just remove these two files and carry on.
+If you don't need such menu in your website, just remove these files and carry on.
