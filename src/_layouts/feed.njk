@@ -2,21 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ meta.url }}">
   <title>{{ meta.title }}</title>
   <description>{{ meta.description }}</description>
-  <link href="{{ permalink | absoluteUrl(meta.url) }}" rel="self"/>
+  <link href="{{ meta.url }}{{ permalink }}" rel="self"/>
   <link href="{{ meta.url }}"/>
-  <updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <updated>{{ collections.documentation | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
   <id>{{ meta.url }}</id>
   <author>
     <name>{{ meta.author.name }}</name>
   </author>
-  {%- for post in collections.article | reverse %}
-    {%- set absolutePostUrl = post.url | absoluteUrl(meta.url) %}
-    <entry>
-      <title>{{ post.data.title }}</title>
-      <link href="{{ absolutePostUrl }}"/>
-      <updated>{{ post.date | dateToRfc3339 }}</updated>
-      <id>{{ absolutePostUrl }}</id>
-        <content xml:lang="{{ meta.language }}" type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
-    </entry>
-  {%- endfor %}
+
+{%- for post in collections.documentation | reverse %}
+  {%- set absolutePostUrl =  meta.url+post.url %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absolutePostUrl }}"/>
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+      <content xml:lang="{{ meta.language }}" type="html">{{ post.templateContent | renderTransforms(post.data.page, meta.url) }}</content>
+  </entry>
+{%- endfor %}
+
 </feed>
