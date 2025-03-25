@@ -8,6 +8,7 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
+
 @layer base {
   *,
   ::after,
@@ -16,6 +17,10 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+}
+
+.container { /* override default container rules */
+  @apply w-full lg:max-w-4xl mx-auto
 }
 
 @utility mkdn {

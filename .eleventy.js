@@ -1,10 +1,9 @@
-const fs = require("fs");
 const path = require("path");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const htmlmin = require("html-minifier-terser");
-const tailwind = require('tailwindcss');
 const postCss = require('postcss');
-const autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer')
+const tailwind = require('@tailwindcss/postcss');
 const cssnano = require('cssnano');
 const mdit = require('markdown-it');
 const mditAttrs = require('markdown-it-attrs');
@@ -96,14 +95,14 @@ module.exports = async function(eleventyConfig) {
   }
   eleventyConfig.setLibrary('md', mdLib)
 
+  // Watch targets
+  eleventyConfig.addWatchTarget('src/_layouts/css/*.css'); // TOD: make sure Postcss generates again
+
   // Passthrough
   eleventyConfig.addPassthroughCopy({ "src/assets": "." });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/public': '/' });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/img': '/img' });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/fonts': '/fonts' });
-  
-  // Watch targets
-  eleventyConfig.addWatchTarget("./src/_assets/css/");
 
   // process css
   eleventyConfig.addNunjucksAsyncFilter('postcss', postcssFilter);
@@ -223,11 +222,12 @@ function htmlminTransform(content, outputPath) {
 
 const postcssFilter = (cssCode, done) => {
   postCss([
-    require('@tailwindcss/postcss'), // process tailwind with postcss
+    tailwind(), // process tailwind with postcss
+    autoprefixer,
     cssnano({ preset: 'default' }) // minify css
   ])
     .process(cssCode, {
-      from: './src/_assets/css/styles.css'
+      from: './src/_layouts/css/styles.css'
     })
     .then(
       (r) => done(null, r.css),
