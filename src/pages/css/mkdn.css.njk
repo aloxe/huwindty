@@ -4,6 +4,6 @@ permalink: /css/mkdn.css
 ---
 
 {% set css %}
-  {% include "../../_assets/css/mkdn.css" %}
+  {% include "../../_layouts/css/mkdn.css" %}
 {% endset %}
 {{css | postcss | safe}}

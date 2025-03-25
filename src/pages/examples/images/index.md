@@ -5,4 +5,3 @@ headline: Several ways to include an image
 ismarkdown: true
 thumbnail: /img/animals/heron.jpg
 ---
-

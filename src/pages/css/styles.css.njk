@@ -4,6 +4,6 @@ permalink: /css/styles.css
 ---
 
 {% set css %}
-  {% include "../../_assets/css/styles.css" %}
+  {% include "../../_layouts/css/styles.css" %}
 {% endset %}
 {{css | postcss | safe}}
