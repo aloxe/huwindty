@@ -16,162 +16,6 @@
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
 
     <script>
-console.log("script");
-
-CMS.registerEditorComponent({
-      id: "test1",
-      label: "Test Component 1",
-      fields: [
-        {
-          name: 'param1', 
-          label: 'Param One', 
-          widget: 'string',
-        },
-        {
-          name: 'param2', 
-          label: 'Param Two', 
-          widget: 'string',
-        },
-        {
-          name: 'body',
-          label: 'Section Content',
-          widget: 'markdown'
-        }
-      ],
-      pattern: /{{%[\s]*component_one[\s]*param1="(.*)"[\s]*param2="(.*)"[\s]*%}}([\S\s]*?){{%\/[\s]*component_one[\s]*%}}/,
-      fromBlock: function(match) {
-        return {
-          param1: match[1],
-          param2: match[2],
-          body: match[3]
-        };
-      },
-      toBlock: function(obj) {
-        return '\n\n{{% component_one param1="' + obj.param1 + '" param2="' + obj.param2 + '" %}}\n\n' + 
-          obj.body + '\n\n' +
-        '{{%/ component_one %}}' + '\n\n';
-      },
-      toPreview: function(obj) {
-        return obj.body;
-      }
-    });
-
-    CMS.registerEditorComponent({
-      id: "test2",
-      label: "Test Component 2",
-      fields: [
-        {
-          name: 'param1', 
-          label: 'Param One', 
-          widget: 'string',
-        },
-        {
-          name: 'param2', 
-          label: 'Param Two', 
-          widget: 'string',
-        },
-        {
-          name: 'body',
-          label: 'Section Content',
-          widget: 'markdown'
-        }
-      ],
-      pattern: /{{%[\s]*component_two[\s]*param1="(.*)"[\s]*param2="(.*)"[\s]*%}}([\S\s]*?){{%\/[\s]*component_two[\s]*%}}/,
-      fromBlock: function(match) {
-        return {
-          param1: match[1],
-          param2: match[2],
-          body: match[3]
-        };
-      },
-      toBlock: function(obj) {
-        return '\n\n{{% component_two param1="' + obj.param1 + '" param2="' + obj.param2 + '" %}}\n\n' + 
-          obj.body + '\n\n' +
-        '{{%/ component_two %}}' + '\n\n';
-      },
-      toPreview: function(obj) {
-        return obj.body;
-      }
-    });
-
-      </script>
-
-    <!-- <script>
-      // Taken from demo https://github.com/decaporg/decap-cms/blob/main/dev-test/index.html
-      const previewStyles = `
-        html,
-        body {
-          color: #333;
-          font-size: 14px;
-          font-family: serif;
-        }
-
-        body {
-          padding: 20px;
-          background-color: #f9f9f9;
-        }
-
-        h1 {
-          margin-top: 20px;
-          color: #666;
-          font-weight: bold;
-          font-size: 32px;
-        }
-
-        img {
-          max-width: 100%;
-        }
-      `;
-      CMS.registerPreviewStyle(previewStyles, { raw: true });
-
-      // from https://github.com/sveltia/sveltia-cms/issues/298
-      const image = {
-        image: {
-          id: 'image',
-          icon: 'image',
-          label: get(_)('editor_components.image'),
-          fields: [
-        {
-          name: 'src',
-          label: get(_)('editor_components.src'),
-          widget: 'image',
-        },
-        {
-          name: 'alt',
-          label: get(_)('editor_components.alt'),
-          widget: 'string',
-        },
-        {
-          name: 'title',
-          label: get(_)('editor_components.title'),
-          widget: 'string',
-        },
-        {
-          name: 'className',
-          label: get(_)('editor_components.className'),
-          widget: 'string',
-        },
-      ],
-      pattern: /!\[(.*?)\]\((.*?)(?: "(.*?)")?\)/,
-      // eslint-disable-next-line jsdoc/require-jsdoc
-      fromBlock: ([, alt, src, title, className]) => ({ src, alt, title, className }),
-      // eslint-disable-next-line jsdoc/require-jsdoc
-      toBlock: (props) => {
-        const { src, alt, title, className } = escapeAllChars(props);
-
-        return src ? `![${alt}](${src}${title ? ` "${title}"` : ''})${className ? `{.${className}}` : ''}` : '';
-      },
-      // eslint-disable-next-line jsdoc/require-jsdoc
-      toPreview: (props) => {
-        const { src, alt, title, className } = escapeAllChars(props);
-
-        // Return `<img>` even if `src` is empty to make sure the `tagName` below works
-        return `<img src="${src}" alt="${alt}" title="${title}" class="${className}">`;
-      },
-    },
-      }
-      CMS.registerEditorComponent(image);
-
       // from https://github.com/decaporg/decap-cms/blob/main/dev-test/index.html
       CMS.registerEditorComponent({
       id: "youtube",
@@ -192,6 +36,10 @@ CMS.registerEditorComponent({
         );
       }
     });
-    </script> -->
+    </script>
+
+
+
+
   </body>
 </html>
