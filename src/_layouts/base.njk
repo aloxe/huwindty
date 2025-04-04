@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ meta.language }}" class="h-full">
+<html lang="{{ meta.language }}" class="h-full" data-theme="dark">
   <head>
     {% block head %}
       {% include "head.njk" %}
@@ -12,8 +12,7 @@
     {% endblock %}
 
     {% block main %}
-      <main class="container mx-auto px-6 py-4 flex-1
-      {% if ismarkdown %}mkdn{% endif %}" id="maincontent">
+      <main class="container w-full lg:max-w-4xl mx-auto px-6 py-4 flex-1 {%if isMarkdown %} mkdn{% endif %}" id="maincontent">
         {% block header %}
           {% include "header.njk" %}
         {% endblock %}
