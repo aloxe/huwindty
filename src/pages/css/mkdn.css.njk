@@ -1,9 +1,0 @@
----
-eleventyExcludeFromCollections: true
-permalink: /css/mkdn.css
----
-
-{% set css %}
-  {% include "../../_layouts/css/mkdn.css" %}
-{% endset %}
-{{css | postcss | safe}}

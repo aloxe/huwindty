@@ -1,6 +1,6 @@
 {% macro aClass(entry, children) %}
   {% if entry.url.split("/").length === 3 %}
-    block p-4 text-nowrap hover:text-blue-200
+    block p-4 text-nowrap hover:text-bg-hover
   {% endif %}
   {% if entry.url.split("/").length === 4 %}
     block p-4 text-nowrap hover:underline {% if children.length %}-mb-4{% endif %}
@@ -12,7 +12,7 @@
 
 {% macro ulClass(entry) %}
   {% if entry.url.split("/").length === 3 %}
-    md:absolute left-0 block md:hidden min-w-[200px] shadow-lg bg-white text-black group-hover:block group-focus-within:block 
+    md:absolute left-0 block md:hidden min-w-[200px] shadow-lg bg-bg text-black group-hover:block group-focus-within:block 
   {% endif %}
   {% if entry.url.split("/").length >= 4 %}
     ml-2
@@ -36,7 +36,7 @@
   {% endfor %}
 
   {% if children.length %}
-    <li class="relative group {% if entry.url.split("/").length === 4 %}hover:bg-gray-100 pb-2{% endif %}">
+    <li class="relative group {% if entry.url.split("/").length === 4 %}hover:bg-bg-hover pb-2{% endif %}">
       <div>
         <a href="{{ entry.url }}" class="{{aClass(entry, children)}}" {% if entry.url == page.url %} aria-current="page"{% endif %}>
             {{ entry.data.title }}
@@ -49,7 +49,7 @@
       </div>
     </li>
   {% else %}
-    <li class="relative group {% if entry.url.split('/').length === 4 %}hover:bg-gray-100{% endif %}">
+    <li class="relative group {% if entry.url.split('/').length === 4 %}hover:bg-bg-hover{% endif %}">
       <a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page" {% endif %}
       class="{{aClass(entry)}}"
       >{{ entry.data.title }}</a> 
