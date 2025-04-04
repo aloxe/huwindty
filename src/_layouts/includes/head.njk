@@ -33,12 +33,7 @@
 {% endif %}
 
 <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "feed.xml" }}" />
-
-{% if ismarkdown %}
-  <link rel="stylesheet" href="{{ '/css/mkdn.css' }}" preload>
-{% else %}
-  <link rel="stylesheet" href="{{ '/css/styles.css' }}" preload>
-{% endif %}
+<link rel="stylesheet" href="{{ '/css/styles.css' }}" preload>
 
 {% if ismarkdown %}
   {# the markdown styles are included online to avoid render-blocking styles

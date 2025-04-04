@@ -1,15 +1,26 @@
 @import 'tailwindcss';
 
-/*
+@theme {
+  --color-primary: #155dfc; /* blue-600 */
+  --color-secondary: #372aac; /* indigo-800 */
+  --color-tertiary: #162456; /* blue-950 */
+  --color-bg: #ffffff; /* white */
+  --color-bg-hover: #dbeafe; /* blue-100 */
+  --color-text: #0f172b; /* slate-900 */
+  --color-link: #1c398e; /* blue-900 */
+  --color-visited: #312c85; /* indigo-900 */
+  --color-note: #104e64; /* cyan-800 */
+}
+
+@layer base {
+  /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
 
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
-*/
-
-@layer base {
+  */
   *,
   ::after,
   ::before,
@@ -25,19 +36,19 @@
 
 @utility mkdn {
   & h2 {
-    @apply mt-8 mb-6 text-left text-2xl font-bold leading-tight text-indigo-800;
+    @apply mt-8 mb-6 text-left text-2xl font-bold leading-tight text-secondary;
   }
   & h3 {
-    @apply my-4 text-left text-xl font-bold leading-normal text-blue-950;
+    @apply my-4 text-left text-xl font-bold leading-normal text-tertiary;
   }
   & p {
-    @apply my-4 text-xl font-light leading-6 text-slate-900;
+    @apply my-4 text-xl font-light leading-6 text-text;
   }
   & ul {
-    @apply my-4 text-xl font-light leading-6 text-slate-900;
+    @apply my-4 text-xl font-light leading-6 text-text;
   }
   & ol {
-    @apply my-4 text-xl font-light leading-6 text-slate-900;
+    @apply my-4 text-xl font-light leading-6 text-text;
   }
   & ul {
     @apply list-disc;
@@ -52,10 +63,10 @@
     @apply text-xl;
   }
   & a {
-    @apply text-blue-900 underline underline-offset-2 hover:no-underline;
+    @apply text-link underline underline-offset-2 hover:text-visited hover:no-underline;
   }
   & .note {
-    @apply text-cyan-900 bg-sky-200 border p-4 border-cyan-900 border-l-8
+    @apply text-note bg-sky-200 border p-4 border-note border-l-8
     before:content-['ⓘ_Note:_'] before:font-bold;
   }
 }

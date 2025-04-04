@@ -96,7 +96,7 @@ module.exports = async function(eleventyConfig) {
   eleventyConfig.setLibrary('md', mdLib)
 
   // Watch targets
-  eleventyConfig.addWatchTarget('src/_layouts/css/*.css'); // TOD: make sure Postcss generates again
+  eleventyConfig.addWatchTarget('src/_layouts/css/tailwind.css');
 
   // Passthrough
   eleventyConfig.addPassthroughCopy({ "src/assets": "." });
@@ -227,7 +227,7 @@ const postcssFilter = (cssCode, done) => {
     cssnano({ preset: 'default' }) // minify css
   ])
     .process(cssCode, {
-      from: './src/_layouts/css/styles.css'
+      from: './src/_layouts/css/tailwind.css'
     })
     .then(
       (r) => done(null, r.css),
