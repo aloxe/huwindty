@@ -6,7 +6,7 @@
   <a href="#maincontent"
     class="transition right-0 bg-primary text-bg absolute p-3 m-2 -translate-y-16 focus:translate-y-0">Skip to main content</a>
 </div>
-<nav class="w-full bg-primary text-bg dark:bg-amber-600 dark:text-primary text-xl md:flex-shrink-0" id="navigation">
+<nav class="w-full bg-primary text-bg text-xl md:flex-shrink-0" id="navigation">
   {% set allEntries = collections.all %}
   <div class="float-left">
     <a href="/" {% if entry.url == "/" %} aria-current="page" {% endif %}
@@ -17,7 +17,7 @@
     class="md:hidden sr-only peer" 
     unchecked aria-label="menu" 
     onkeypress="event.key === 'Enter' && getElementById('hamburger').click()" />
-  <label for="hamburger" class="after:float-right after:p-4 after:content-['≡'] peer-checked:after:content-['✕'] md:hidden cursor-pointer after:border-2 after:border-primary after:border-dotted peer-[:focus]:after:border-white">
+  <label for="hamburger" class="after:float-right after:p-4 after:content-['≡'] peer-checked:after:content-['✕'] md:hidden cursor-pointer after:border-2 after:border-primary after:border-dotted peer-[:focus]:after:border-bg">
     <span class="sr-only">Menu</span>
   </label>
   <ul role="list" class="mt-12 md:mt-0 md:flex hidden peer-checked:block">

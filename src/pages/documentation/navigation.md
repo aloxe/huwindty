@@ -144,7 +144,7 @@ and their sub-blocks display on `hover`
 ```js
 {% macro ulClass(entry) %}
   {% if entry.url.split("/").length === 3 %}
-    absolute left-0 hidden bg-white text-black shadow-lg group-hover:block
+    absolute left-0 hidden bg-bg text-text shadow-lg group-hover:block
   {% endif %}
 {% endmacro %}
 ```
