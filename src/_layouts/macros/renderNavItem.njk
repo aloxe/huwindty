@@ -12,7 +12,7 @@
 
 {% macro ulClass(entry) %}
   {% if entry.url.split("/").length === 3 %}
-    md:absolute left-0 block md:hidden min-w-[200px] shadow-lg bg-bg text-black group-hover:block group-focus-within:block 
+    md:absolute left-0 block md:hidden min-w-[200px] shadow-lg bg-bg text-black group-hover:block group-focus-within:block dark:bg-bg-menu-dark dark:text-bg
   {% endif %}
   {% if entry.url.split("/").length >= 4 %}
     ml-2
@@ -36,7 +36,7 @@
   {% endfor %}
 
   {% if children.length %}
-    <li class="relative group {% if entry.url.split("/").length === 4 %}hover:bg-bg-hover pb-2{% endif %}">
+    <li class="relative group {% if entry.url.split("/").length === 4 %}hover:bg-bg-hover dark:hover:bg-bg-hover-dark pb-2{% endif %}">
       <div>
         <a href="{{ entry.url }}" class="{{aClass(entry, children)}}" {% if entry.url == page.url %} aria-current="page"{% endif %}>
             {{ entry.data.title }}
@@ -49,7 +49,7 @@
       </div>
     </li>
   {% else %}
-    <li class="relative group {% if entry.url.split('/').length === 4 %}hover:bg-bg-hover{% endif %}">
+    <li class="relative group {% if entry.url.split('/').length === 4 %}hover:bg-bg-hover dark:hover:bg-bg-hover-dark {% endif %}">
       <a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page" {% endif %}
       class="{{aClass(entry)}}"
       >{{ entry.data.title }}</a> 
