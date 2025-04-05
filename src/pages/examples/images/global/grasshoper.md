@@ -18,6 +18,6 @@ This is an example page with the image of a grasshopper (made of steel) that was
 ![drooderfiets and grasshopper](/img/grasshopper.jpg)
 ```
 
-![drooderfiets and grasshopper](/img/grasshopper.jpg)
+![drooderfiets and grasshopper](/img/vera-davidova-dark.jpg)
 
 Images from global folders can be used on all pages.

@@ -2,11 +2,11 @@
 
 <div>
   <a href="#navigation"
-    class="transition right-0 bg-primary text-bg absolute p-3 m-2 -translate-y-16 focus:translate-y-0">Skip to navigation</a>
+    class="transition right-0 bg-primary text-bg dark:bg-bg-menu-dark absolute p-3 m-2 -translate-y-16 focus:translate-y-0">Skip to navigation</a>
   <a href="#maincontent"
-    class="transition right-0 bg-primary text-bg absolute p-3 m-2 -translate-y-16 focus:translate-y-0">Skip to main content</a>
+    class="transition right-0 bg-primary text-bg dark:bg-bg-menu-dark absolute p-3 m-2 -translate-y-16 focus:translate-y-0">Skip to main content</a>
 </div>
-<nav class="w-full bg-primary text-bg text-xl md:flex-shrink-0" id="navigation">
+<nav class="w-full bg-primary text-bg dark:bg-bg-menu-dark text-xl md:flex-shrink-0" id="navigation">
   {% set allEntries = collections.all %}
   <div class="float-left">
     <a href="/" {% if entry.url == "/" %} aria-current="page" {% endif %}

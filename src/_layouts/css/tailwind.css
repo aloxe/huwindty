@@ -14,16 +14,17 @@
   --color-note: #104e64; /* cyan-800 */
   --color-note-bg: #b8e6fe; /* sky-200 */
 
-  --color-primary-dark: oklch(0.707 0.165 254.624) /* blue-400 */
-  --color-secondary-dark: oklch(0.809 0.105 251.813); /* blue-300 */
-  --color-tertiary-dark: oklch(0.809 0.105 251.813); /* blue-300 */
-  --color-bg-dark: #364153; /* white */
-  --color-bg-hover-dark: #555; /* blue-100 */
+  --color-primary-dark: #4657CE; /* blue-400 */
+  --color-secondary-dark: #7591f3; /* blue-300 */
+  --color-tertiary-dark: #7591f3; /* blue-300 */
+  --color-bg-menu-dark: #162456; /* blue-950 */
+  --color-bg-dark: #101828; /* grey-900 */
+  --color-bg-hover-dark: #202838; /* blue-100 */
   --color-text-dark: #fff; /* slate-900 */
-  --color-link-dark: oklch(0.809 0.105 251.813); /* blue-300 */
-  --color-visited-dark: oklch(0.811 0.111 293.571); /* violet-300 */
-  --color-note: #a2f4fd; /* cyan-200 */
-  --color-note-bg: #104e64; /* cyan-900 */
+  --color-link-dark: #8ec5ff; /* blue-200 */
+  --color-visited-dark: #c4b4ff; /* violet-200 */
+  --color-note-dark: #a2f4fd; /* cyan-200 */
+  --color-note-bg-dark: #104e64; /* cyan-900 */
 }
 
 @layer base {
@@ -47,19 +48,19 @@
 /* default styles for markdown and html. Can be overwritten */
 @utility mkdn {
   & h2 {
-    @apply mt-8 mb-6 text-left text-2xl font-bold leading-tight text-secondary;
+    @apply mt-8 mb-6 text-left text-2xl font-bold leading-tight text-secondary dark:text-secondary-dark;
   }
   & h3 {
-    @apply my-4 text-left text-xl font-bold leading-normal text-tertiary;
+    @apply my-4 text-left text-xl font-bold leading-normal text-tertiary dark:text-tertiary-dark;
   }
   & p {
-    @apply my-4 text-xl font-light leading-6 text-text;
+    @apply my-4 text-xl font-light leading-6 text-text dark:text-text-dark;
   }
   & ul {
-    @apply my-4 text-xl font-light leading-6 text-text;
+    @apply my-4 text-xl font-light leading-6 text-text dark:text-text-dark;
   }
   & ol {
-    @apply my-4 text-xl font-light leading-6 text-text;
+    @apply my-4 text-xl font-light leading-6 text-text dark:text-text-dark;
   }
   & ul {
     @apply list-disc;
@@ -74,10 +75,9 @@
     @apply text-xl;
   }
   & a {
-    @apply text-link underline underline-offset-2 hover:no-underline visited:text-visited;
+    @apply text-link underline underline-offset-2 hover:no-underline visited:text-visited dark:text-link-dark dark:visited:text-visited-dark;
   }
   & .note {
-    @apply text-note bg-sky-200 border p-4 border-note border-l-8
-    before:content-['ⓘ_Note:_'] before:font-bold;
+    @apply text-note bg-note-bg border p-4 border-note border-l-8 dark:text-note-dark dark:bg-note-bg-dark dark:border-note-dark before:content-['ⓘ_Note:_'] before:font-bold;
   }
 }

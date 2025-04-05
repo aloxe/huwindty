@@ -17,7 +17,7 @@ Tailwind CSS generates CSS code using a combination of configuration files, Java
 
 For this starter project, CSS generation is managed by eleventy.js.
 
-In the origin starter [windty](https://github.com/distantcam/windty), css was generated with a separate run script in packages.json. The default `npm start` was triggering both 11ty and tailwind generation. The Postcss configuration was in a separate file.
+In the origin starter [windty](https://github.com/distantcam/windtysdsd), css was generated with a separate run script in packages.json. The default `npm start` was triggering both 11ty and tailwind generation. The Postcss configuration was in a separate file.
 
 Now the css is generated from a specific css template that is processed by eleventy.
 ```js
