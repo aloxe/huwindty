@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Markdown
-headline: Using Markdown in 11ty
+headline: Using Markdown to shape your content in 11ty
 description: How do use Markdown in your 11ty website and how does it work
 thumbnail: /img/vera.jpg
 ismarkdown: true
@@ -50,6 +50,8 @@ The following plugins are included in the default configuration:
 This plugin allows you to use attributes in markdown syntax. For example, `![image](image.png){.logo}` will output `image.png`, `alt="image"` and `class="logo"` in the html.
 
 Some examples are available in [Add HTML classes to 11ty markdown content](https://giuliachiola.dev/posts/add-html-classes-to-11ty-markdown-content/).
+
+Extra styles in markdown are explained in detail in the [style section](/documentation/styles/) of this documentation.
 
 ### [highlight.js](https://www.npmjs.com/package/highlight.js)
 

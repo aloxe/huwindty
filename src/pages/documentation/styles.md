@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Styles
-headline: How to style your site with Tailwind css
+headline: How to style your eleventy site with Tailwind css
 description: Styles in huwindty with tailwind
 thumbnail: /img/vera.jpg
 ismarkdown: true
