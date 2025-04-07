@@ -104,6 +104,9 @@ module.exports = async function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ 'src/_assets/img': '/img' });
   eleventyConfig.addPassthroughCopy({ 'src/_assets/fonts': '/fonts' });
 
+  // Watch targets
+  eleventyConfig.addWatchTarget('src/_layouts/css/tailwind.css');
+  
   // process css
   eleventyConfig.addNunjucksAsyncFilter('postcss', postcssFilter);
 
