@@ -135,3 +135,39 @@ You can make the text colour overide the base utility with the `!` symbol that a
 ```
 
 Even if you have the capability to use as many styles as you want, use all tailwind utility classes and even `!` to orveride base utilities, it is recomanded to keep it simple and use it scarely. Markdown is great to help you focus on your content. You should not ruin it with distracting pieces of code.
+
+## Dark theme
+
+Users can set their system and browser to favour a dark or light theme. In this case you should deliver pages that correspond to this wish. In CSS, this can be defined with the media feature `@media (prefers-color-scheme: dark)`. But you on't be using it since tailwind will do it for you.
+
+### theme colours
+
+Themes are defined in `tailwind.css` under `@theme`. It consists of a collection of preset colours that are used throughout the layouts and templates. Some of these colour variables have a suffix `-dark` that defines the colour for the dark theme.
+
+```css
+@theme {
+  --color-primary: #155dfc; /* blue-600 */
+  --color-secondary: #372aac; /* indigo-800 */
+(…)
+
+  --color-primary-dark: #4657CE; /* blue-400 */
+  --color-secondary-dark: #7591f3; /* blue-300 */
+(…)
+}
+```
+
+### Using theme colours
+
+Tailwind allows to use these colour variables as a normal tailwind utility class, replacing the `colour` with the name of the element you want to style. For example `bg-primary` will be the same as  `--bg-blue-600`.
+
+Every component that should change colour between light and dark theme will use both variables in two different classes. The light colour will be the default and the dark colour will be prefixed by `dark:`.
+
+For example the medu of the current site changes background colour from blue to dark indigo.  `bg-primary` and `dark:bg-bg-menu-dark` but the text remain white as `text-bg` is the only text colour class; there is no `dark:text-***`.
+
+```html
+<nav class="w-full bg-primary text-bg dark:bg-bg-menu-dark text-xl md:flex-shrink-0" id="navigation">
+```
+
+Tailwind documentation has (more details on dark mode)[https://tailwindcss.com/docs/dark-mode].
+
+
