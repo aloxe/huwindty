@@ -1,3 +1,45 @@
 <footer class="bg-black text-white text-center p-4 w-full shrink-0">
+
+  <div class="relative z-0 inline-grid grid-cols-3 gap-1 rounded-full bg-gray-950/5 p-0.75 text-gray-950 dark:bg-white/10 dark:text-white">
+
+  <span class="rounded-full p-1.5 px-3 *:size-7 data-checked:bg-white data-checked:ring data-checked:inset-ring data-checked:ring-gray-950/10 data-checked:inset-ring-white/10 sm:p-0 sm:px-1.5 dark:data-checked:bg-gray-700 dark:data-checked:text-white dark:data-checked:ring-transparent" aria-label="Light theme" id="toggle-dark" role="radio" aria-checked="true" tabindex="0" >
+      ☀
+  </span>
+
+  <span class="rounded-full p-1.5 px-3 *:size-7 data-checked:bg-white data-checked:ring data-checked:inset-ring data-checked:ring-gray-950/10 data-checked:inset-ring-white/10 sm:p-0 dark:data-checked:bg-gray-700 dark:data-checked:text-white dark:data-checked:ring-transparent" aria-label="Dark theme" id="toggle-light" role="radio" aria-checked="false" tabindex="0">
+      ☾
+    </span>
+
+  </div>
+  
   made with ♥
 </footer>
+   <script>
+// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+document.documentElement.classList.toggle(
+  "dark",
+  localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+);
+const toggleDark = document.getElementById("toggle-dark")
+const toggleLight = document.getElementById("toggle-light")
+
+if (document.documentElement.classList.contains("dark")) {
+  toggleDark.setAttribute("data-checked", "true")
+  toggleDark.setAttribute("aria-checked", "true")
+  toggleLight.removeAttribute("data-checked")
+  toggleLight.setAttribute("aria-checked", "false")
+} else {
+  toggleLight.setAttribute("data-checked", "true")
+  toggleLight.setAttribute("aria-checked", "true")
+  toggleDark.removeAttribute("data-checked")
+  toggleDark.setAttribute("aria-checked", "false")
+}
+
+{# // Whenever the user explicitly chooses light mode
+localStorage.theme = "light";
+// Whenever the user explicitly chooses dark mode
+localStorage.theme = "dark";
+// Whenever the user explicitly chooses to respect the OS preference
+localStorage.removeItem("theme"); #}
+
+   </script>
