@@ -1,53 +1,33 @@
+<script>
+{# this includes the light / dark theme switch logic #}
+{% set js %}
+  {% include "src/_assets/js/themeswitch.js" %}
+{% endset %}
+{{js | safe}}
+</script>
+
 <footer class="bg-black text-white text-center p-4 w-full shrink-0">
 
-  <div class="float-left z-0 inline-grid grid-cols-3 gap-1 rounded-full bg-gray-950/5 p-0.75 text-gray-950 dark:bg-white/10 dark:text-white">
+  <div>
+    made with ♥
+  </div>
 
-      <label class="rounded-full block p-1.5 px-3 cursor-pointer has-checked:cursor-default has-checked:bg-white dark:has-checked:bg-gray-700 dark:has-checked:text-white" aria-label="Light theme" for="toggle-light" tabindex="0">
+    <!-- light / dark theme switch -->
+  <div class="float-left mt-[-30px] z-0 inline-grid grid-cols-3 gap-1 rounded-full p-0.25 bg-bg-hover/90 text-gray-950 dark:bg-white/10 dark:text-white">
+      <label class="rounded-full block p-1 px-2.25 cursor-pointer has-checked:cursor-default has-checked:bg-white dark:has-checked:bg-gray-700 dark:has-checked:text-white" aria-label="Light theme" title="Light theme" for="toggle-light" tabindex="0">
           ☀
           <input type="radio" id="toggle-light" name="theme" value="toggle-light" class="hidden"onchange="toggleTheme()">
       </label>
 
-      <label class="rounded-full block p-1.5 px-3 cursor-pointer has-checked:cursor-default has-checked:bg-white dark:has-checked:bg-gray-700 dark:has-checked:text-white" aria-label="Dark theme" for="toggle-none" tabindex="0">
+      <label class="rounded-full block p-1 px-2.25 cursor-pointer has-checked:cursor-default has-checked:bg-white dark:has-checked:bg-gray-700 dark:has-checked:text-white" aria-label="Browser default theme" title="Browser default theme" for="toggle-none" tabindex="0">
         ◑
         <input type="radio" id="toggle-none" name="theme" value="toggle-none" class="hidden"onchange="toggleTheme()">
       </label>
 
-      <label class="rounded-full block p-1.5 px-3 cursor-pointer has-checked:cursor-default has-checked:bg-white dark:has-checked:bg-gray-700 dark:has-checked:text-white" aria-label="Dark theme" for="toggle-dark" tabindex="0">
+      <label class="rounded-full block p-1 px-2.25 cursor-pointer has-checked:cursor-default has-checked:bg-white dark:has-checked:bg-gray-700 dark:has-checked:text-white" aria-label="Dark theme" title="Dark theme" for="toggle-dark" tabindex="0">
         ☾
         <input type="radio" id="toggle-dark" name="theme" value="toggle-dark" class="hidden" onchange="toggleTheme()">
       </label>
-      
   </div>
-  made with ♥
+
 </footer>
-   <script>
-// On page load or when changing themes, best to add inline in `head` to avoid FOUC
-document.documentElement.classList.toggle(
-  "dark",
-  localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
-);
-
-// add theme name in the document class list
-const toggleTheme = () => {
-  console.log(document.querySelector('input[name=theme]:checked').value)
-  document.documentElement.classList.remove("dark", "light")
-  if (document.querySelector('input[name=theme]:checked').value.substring(7) === "none") {
-    document.documentElement.classList.toggle("dark" ,
-    localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
-    )
-  }
-  if (document.querySelector('input[name=theme]:checked').value.substring(7) !== "none") {
-
-  document.documentElement
-    document.documentElement.classList.add(document.querySelector('input[name=theme]:checked').value.substring(7))
-  }
-}
-// TODO:  use localstorage?
-{# // Whenever the user explicitly chooses light mode
-localStorage.theme = "light";
-// Whenever the user explicitly chooses dark mode
-localStorage.theme = "dark";
-// Whenever the user explicitly chooses to respect the OS preference
-localStorage.removeItem("theme"); #}
-
-   </script>
