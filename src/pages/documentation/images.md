@@ -61,11 +61,11 @@ The atributes are the following:
 
 - **page** will provide the current path to generate the right output path. Just leave `page` after the `Picture` and this will be fine
 - **file name**: On this example there is no path to the current image file since they are in the same folder.
-- \*\*alt text'' is made compulsory for various reason, I also encourage you to write nice descriptive text that really help blind people understand your page.
+- **alt text** is made compulsory for various reason, I also encourage you to write nice descriptive text that really help blind people to understand your page.
 - **class** will add a css class to the image so you can change its position and dimension. The specific class `lazy` will also make the image lazy load.
 - **widths** will override the default widths in with the output images will be generated. this is particularly useful if you change the size of the image using a css class, you will want to generate images with the same size.
 - **formats** will override the default formats
-- **sizes** will override the default sizes that are the size that you tell the browser the image will take ahead of downloading and rendering The default is 100vw but if you know your image will display on half of the page you may want to change this to 50vw.
+- **sizes** will override the default sizes that are the size that you tell the browser the image will take ahead of downloading and rendering The default is 100vw  but if you know your image will display on half of the page you may want to change this to 50vw.
 
 ## Responsive Images in Markdown
 
@@ -108,3 +108,14 @@ This starter comes with the simple [Svetlia CMS](../cms/) that allows you to add
  _(Images are not reusable in other pages)_
  
 Because the CMS uses Markdown and that images in Markdown are automaticaly converted in responsive pictures, there is nothing else to do other than choose well your images, organise them, and never forget the alt text.
+
+## Thumbnail
+
+The thumbnail of a page is defined in the front matter. For example the current page has:
+
+```
+thumbnail: boat.jpg
+```
+
+This is the image that is shown in the list of pages in the CMS interface. It is also used as the metadata image of the page. This is the image that is used in the snipet that is generated when you copy the url of the page in social medias.
+

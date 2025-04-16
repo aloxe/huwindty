@@ -120,7 +120,7 @@ collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
     label: "Documentation" # Used in the UI
     folder: "src/pages/documentation" # The path to the folder where the documents are stored
-    thumbnail: thumbnail
+    thumbnail: /img/vera.jpg
     columns: [title, date]
 ```
 
