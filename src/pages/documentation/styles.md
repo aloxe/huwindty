@@ -168,6 +168,44 @@ For example the medu of the current site changes background colour from blue to 
 <nav class="w-full bg-primary text-bg dark:bg-bg-menu-dark text-xl md:flex-shrink-0" id="navigation">
 ```
 
-Tailwind documentation has (more details on dark mode)[https://tailwindcss.com/docs/dark-mode].
+Tailwind documentation has [more details on dark mode](https://tailwindcss.com/docs/dark-mode).
 
 
+### Manual theme switcher
+
+Most of the time the light or dark theme can be set in your browser under Web site appearence and the site that handles it can deliver the right theme for it. Some web sites offer users to manually switch from one theme to another (often with a terrible UX).
+
+If you want to use such toggler, You can follow the instructions in [Toggling dark mode manually](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually) from the Tailwind documentation ans add a custom variant in the main `tailwind.css`.
+
+```css
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+The toggler that comes with Huwindty follows these instructions, it will add a class `dark` or `light` on the main document element `<html>` and all tailwind classes under `dark:` will be generated with the `.dark` prefix.
+
+This switch has three positions: light, browser default and dark.
+
+The widget is placed in the footer `footer.njk` and used hidden radio buttons. The script `src/_assets/js/themeswitch.js` handles the theme changes by doing two things: 
+
+1. Add or remove the `dark` or `light` class to the main document element `<html>`.
+```js
+document.documentElement.classList.add(theme)
+```
+2. Save the theme choice in the browser local storage
+```js
+localStorage.theme = theme;
+```
+When the user choses browser defaults and the theme value is "none", the html element class is cleared as well as the local storage. But the "dark" class may be added back if the user his browser set in dark mode.
+```js
+document.documentElement.classList.toggle("dark", window.matchMedia("(prefers-color-scheme: dark)").matches)
+```
+
+Also, `themeswitch.js` primarly checks the local storage or the browser preferences on every page load to add or not the `dark` class to the main document element.
+
+```js
+document.documentElement.classList.toggle(
+  "dark",
+  localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+);
+```
+You may not want to use this manual switcher. In that case, just get rid of it in the footer, delete `themeswitch.js` and don't forget to also remove the `@custom-variant` in `tailwind.css` without which the natural dark mode will not work.
