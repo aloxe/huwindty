@@ -45,12 +45,12 @@ On pure HTML pages, you will need to use a specific shortcode defined in `eleven
 
 ## Responsive Images in HTML pages
 
-To get a step by step understanding of what the eleventy-img plugin is used to create a shortcode that generates the images and provides the right code You can read [How to optimize images on eleventy (11ty)](https://dev.to/22mahmoud/how-to-optimize-and-lazyload-images-on-eleventy-11ty-206h) which was freely adapted to Huwindty. You may want to add the lazy-loading and the blurry effect yourself if needed.
+To get a step by step understanding of what the eleventy-img plugin is used to create a shortcode that generates the images and provides the right code You can read [How to optimize images on eleventy (11ty)](https://dev.to/22mahmoud/how-to-optimize-and-lazyload-images-on-eleventy-11ty-206h) which was freely adapted to Huwindty. You may want to add the lazy-loading and the blurry effect if you want.
 
 An example is available on the Huwindty home page
 
 ```html
-    {% Picture page, "vera-davidova.jpg", "Wind is playing with the grass and they are dancing and enjoying the magical moment in their lives. Tinos, Greece", undefined, undefined, undefined, undefined %}
+    {% Picture page, "vera-davidova.jpg", "Photos of high grass dancing in the wind at the golden hour", undefined, undefined, undefined, undefined %}
     <!-- 
     Picture attributes: 
     page, file name, alt text, class, widths, formats, sizes 
@@ -61,11 +61,11 @@ The atributes are the following:
 
 - **page** will provide the current path to generate the right output path. Just leave `page` after the `Picture` and this will be fine
 - **file name**: On this example there is no path to the current image file since they are in the same folder.
-- **alt text** is made compulsory for various reason, I also encourage you to write nice descriptive text that really help blind people to understand your page.
+- **alt text** is made compulsory for various reason, I also encourage you to write nice descriptive text that really help blind people to understand your image.
 - **class** will add a css class to the image so you can change its position and dimension. The specific class `lazy` will also make the image lazy load.
 - **widths** will override the default widths in with the output images will be generated. this is particularly useful if you change the size of the image using a css class, you will want to generate images with the same size.
 - **formats** will override the default formats
-- **sizes** will override the default sizes that are the size that you tell the browser the image will take ahead of downloading and rendering The default is 100vw  but if you know your image will display on half of the page you may want to change this to 50vw.
+- **sizes** will override the default sizes to tell the browser how large the image will be  ahead of its complete download. The default is 100vw but if you know your image will display on half of the page you may want to change this to 50vw.
 
 ## Responsive Images in Markdown
 
@@ -117,5 +117,5 @@ The thumbnail of a page is defined in the front matter. For example the current 
 thumbnail: boat.jpg
 ```
 
-This is the image that is shown in the list of pages in the CMS interface. It is also used as the metadata image of the page. This is the image that is used in the snipet that is generated when you copy the url of the page in social medias.
+This is the image that is shown in the list of pages in the CMS interface. It is also used as the metadata image of the page. This is the image that is used in the generated snipet that you see when you copy the url of the page in social medias.
 
