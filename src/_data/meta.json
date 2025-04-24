@@ -3,6 +3,7 @@
   "url": "https://aloxe.github.io/huwindty",
   "description": "A basic 11ty starter with tailwind and a CMS.",
   "language": "en",
+  "image": "/img/logo192.png",
   "author": {
     "name": "Alix Guillard",
     "fediverse": "@aloxe@mast.eu.org"

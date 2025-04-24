@@ -25,6 +25,11 @@ The installation of this feed follows the 11ty documentation and uses the Nunjuc
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ meta.url }}">
   <title>{{ meta.title }}</title>
   <description>{{ meta.description }}</description>
+  <image>
+    <url>{{ meta.url }}{{ meta.image }}</url>
+    <title>{{ meta.title }}</title>
+    <link>{{ meta.url }}</link>
+  </image>
   <link href="{{ meta.url }}{{ permalink }}" rel="self"/>
   <link href="{{ meta.url }}"/>
   <updated>{{ collections.documentation | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
@@ -57,6 +62,7 @@ You see that the code above used metadata that defines your site. It is set in t
   "url": "https://aloxe.github.io/huwindty",
   "description": "Huwindty enhanced template using 11ty.",
   "language": "en",
+  "image": "/img/logo192.png",
   "author": {
     "name": "Alix Guillard",
     "fediverse": "@aloxe@mast.eu.org"
@@ -77,6 +83,7 @@ As the [11ty collection page](https://www.11ty.dev/docs/collections/) states, yo
 ```
 tags: post
 ```
+
 #### Create collection with the API
 
 You can also create the collection programatically by using the [collection API](https://www.11ty.dev/docs/collections-api/) and setting it in your eleventyConfig. As an explample, the default Huwindty feed gathers documentation pages that are defined in `eleventy.js` from the path to the documentation folder.
@@ -96,4 +103,4 @@ The feed is loading pages in reverse order with the most recent page on top. You
 
 You can use [different date format](https://www.11ty.dev/docs/dates/) but I recommand using a simple `YYYY-MM-DD` everywhere. The date is then converted to a format accepted by RSS readers thanks to the `dateToRfc3339` nunjuncks filter.
 
-If you update the a post and change the `date` in the front matter, the feed will be updated accordingly and the post will rise up on top of your feed.{.note}
+If you update a post and change the `date` in the front matter, the feed will be updated accordingly and the post will rise up in your feed.{.note}

@@ -53,6 +53,9 @@
   & h3 {
     @apply my-4 text-left text-xl font-bold leading-normal text-tertiary dark:text-tertiary-dark;
   }
+  & h4 {
+    @apply my-4 text-left text-l font-bold leading-normal text-secondary dark:text-secondary-dark;
+  }
   & p {
     @apply my-4 text-xl font-light leading-6 text-text dark:text-text-dark;
   }
