@@ -2,6 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ meta.url }}">
   <title>{{ meta.title }}</title>
   <description>{{ meta.description }}</description>
+  <image>
+    <url>{{ meta.url }}{{ meta.image }}</url>
+    <title>{{ meta.title }}</title>
+    <link>{{ meta.url }}</link>
+  </image>
   <link href="{{ meta.url }}{{ permalink }}" rel="self"/>
   <link href="{{ meta.url }}"/>
   <updated>{{ collections.documentation | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
