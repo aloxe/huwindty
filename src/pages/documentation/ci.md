@@ -44,8 +44,14 @@ To do so, you will need to create an ssh key and copy the public key to `.ssh/au
 ### Lighthouse pipeline
 
 **pipeline:** lighthouse.yml
-**prerequisites**: You need to [create a personal access token](https://github.com/settings/tokens/new) with the `repo:status` scope. Then you need to save this token as LHCI_GITHUB_APP_TOKEN in your app repository secrets. Finally you need to authorise the [lighthouse-ci](https://github.com/GoogleChrome/lighthouse-ci) App in the repository setting of your project.
+**prerequisites**: none
 
+<!-- You need to [create a personal access token](https://github.com/settings/tokens/new) with the `repo:status` scope. Then you need to save this token as LHCI_GITHUB_APP_TOKEN in your app repository secrets. Finally you need to authorise the [lighthouse-ci](https://github.com/GoogleChrome/lighthouse-ci) App in the repository setting of your project.
+ ↑ it looks like it is not necessary ↑
+         env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+also removed
+ -->
 The lighthouse pipeline is triggered on every pull request, it will display the lighthouse score of the index page within your pull request checks. If you don't get all 💯. the test will display the an error and a link to the lighthouse page that tells you what to do to fix it. If it is all green, you can merge your changes in.
 
 The settings of lighthouse are done in `lighthouserc.js` at the root of the project. It is possible to add assertions to focus on certain aspects of lighthouse measurements or allow more flexibility.
