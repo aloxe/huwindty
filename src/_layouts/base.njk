@@ -12,7 +12,12 @@
     {% endblock %}
 
     {% block main %}
-      <main class="container w-full lg:max-w-4xl mx-auto px-6 py-4 flex-1 {%if ismarkdown %} mkdn{% endif %}" id="maincontent">
+      <main class="container w-full lg:max-w-4xl mx-auto px-6 py-4 flex-1 {%if ismarkdown %} mkdn{% endif %}" id="maincontent" data-pagefind-body>
+
+        <link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
+        <div id="searchdiv" class="search"></div>
+        <script src="/_pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#searchdiv', showImages: true });"></script>
+
         {% block header %}
           {% include "header.njk" %}
         {% endblock %}
