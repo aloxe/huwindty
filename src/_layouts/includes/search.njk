@@ -1,0 +1,13 @@
+<div id="searchdiv" class="search"></div>
+
+<script src="/_pagefind/pagefind-ui.js" onload="
+  new PagefindUI({ element: '#searchdiv', showImages: false });
+  const searchInput = document.getElementById('search');
+  const pageFindForm = document.getElementsByClassName('pagefind-ui__form')[0];
+  pageFindForm.classList.add('group/search');
+  const pageFindInput = document.getElementsByClassName('pagefind-ui__search-input')[0];
+  pageFindInput.classList = searchInput.classList;
+  pageFindInput.classList.add('absolute', 'top-2', 'right-2');
+  document.getElementById('duckduckgo').classList = 'hidden';
+  document.getElementsByClassName('pagefind-ui__search-clear ')[0].classList = 'hidden';
+"></script>
