@@ -1,3 +1,18 @@
+<style>
+  .pagefind-ui__message {
+    font-weight: bold;
+  }
+  .pagefind-ui__results {
+    list-style-type: none;
+  }
+  .pagefind-ui__result-title {
+    margin: 20px 0 10px;
+  }
+  .pagefind-ui__result-excerpt {
+    margin: 5px 0 20px;
+  }
+</style>
+
 <div id="searchdiv" class="search"></div>
 
 <script src="/_pagefind/pagefind-ui.js" onload="
@@ -11,6 +26,23 @@
   pageFindInput.classList.add('absolute', 'top-2', 'right-10');
   document.getElementById('duckduckgo').classList = 'hidden';
   document.getElementsByClassName('pagefind-ui__search-clear ')[0].classList = 'hidden';
+
+
+
+
+  pageFindInput.onkeyup = () => {
+    const header = document.getElementsByTagName('header')[0];
+    const article = document.getElementsByTagName('article')[0];
+
+    if (pageFindInput.value.length > 0) {
+      header.classList.add('hidden');
+      article.classList.add('hidden');
+    } else {
+      header.classList.remove('hidden');
+      article.classList.remove('hidden');
+    }
+  }
+
 
   const label = document.createElement('LABEL');
   const labelText = document.createTextNode(' 🔎 ');

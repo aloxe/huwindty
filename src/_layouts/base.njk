@@ -23,7 +23,9 @@
         {% endblock %}
 
         {% block content %}
-          {{ content | safe }}
+          <article>
+            {{ content | safe }}
+          </article>
         {% endblock %}
       </main>
     {% endblock %}
