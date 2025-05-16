@@ -1,14 +1,24 @@
 <div id="searchdiv" class="search"></div>
 
 <script src="/_pagefind/pagefind-ui.js" onload="
-  console.log('plop');
   new PagefindUI({ element: '#searchdiv', showImages: false });
   const searchInput = document.getElementById('search');
   const pageFindForm = document.getElementsByClassName('pagefind-ui__form')[0];
   pageFindForm.classList.add('group/search');
   const pageFindInput = document.getElementsByClassName('pagefind-ui__search-input')[0];
   pageFindInput.classList = searchInput.classList;
-  pageFindInput.classList.add('absolute', 'top-2', 'right-2');
+  pageFindInput.setAttribute('id', 'searchinput');
+  pageFindInput.classList.add('absolute', 'top-2', 'right-10');
   document.getElementById('duckduckgo').classList = 'hidden';
   document.getElementsByClassName('pagefind-ui__search-clear ')[0].classList = 'hidden';
+
+  const label = document.createElement('LABEL');
+  const labelText = document.createTextNode(' 🔎 ');
+  label.appendChild(labelText);
+  label.classList.add('md:invisible', 'group-focus-within/search:invisible', 'p-4', 'align-bottom', 'cursor-pointer', 'absolute', 'top-2', 'right-15');
+  label.setAttribute('for', 'searchinput');
+  pageFindInput.insertAdjacentElement('beforebegin', label);
+
+  const resultList = document.getElementsByClassName('pagefind-ui__drawer')[0];
+  resultList.classList.add('group-focus-within/search:mt-16');
 "></script>
