@@ -81,7 +81,7 @@
     @apply bg-amber-200;
   }
   & button {
-    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl;
+    @apply bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-2xl;
   }
   & a {
     @apply text-link underline underline-offset-2 hover:no-underline visited:text-visited dark:text-link-dark dark:visited:text-visited-dark;
