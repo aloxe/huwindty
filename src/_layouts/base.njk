@@ -15,7 +15,9 @@
       <main class="container w-full lg:max-w-4xl mx-auto px-6 py-4 flex-1 {%if ismarkdown %} mkdn{% endif %}" id="maincontent">
 
         {% block search %}
-          {% include "search.njk" %}
+          <div class="w-full lg:max-w-4xl mx-auto px-6 flex-1 mkdn">
+            {% include "search.njk" %}
+          </div>
         {% endblock %}
 
         {% block header %}
