@@ -29,6 +29,7 @@
   pageFindInput.classList.add('absolute', 'top-2', 'right-10');
   document.getElementsByClassName('pagefind-ui__search-clear ')[0].classList = 'hidden';
 
+  // create label that shows on small screens
   const label = document.createElement('LABEL');
   const labelText = document.createTextNode(' 🔎 ');
   label.appendChild(labelText);
@@ -36,6 +37,7 @@
   label.setAttribute('for', 'searchinput');
   pageFindInput.insertAdjacentElement('beforebegin', label);
 
+  // hide page content if there is a search term
   pageFindInput.onkeyup = () => {
     const header = document.getElementsByTagName('header')[0];
     const article = document.getElementsByTagName('article')[0];
@@ -49,6 +51,25 @@
     }
   }
 
+  // observe the result list mutations to add a top margin 
+  // when visible and when search field is on the content
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        if (resultList.classList.contains('pagefind-ui__hidden')) {
+          resultList.classList.contains('group-focus-within/search:mt-20') && resultList.classList.remove('group-focus-within/search:mt-20');
+        } 
+        else {
+          !resultList.classList.contains('group-focus-within/search:mt-20') && resultList.classList.add('group-focus-within/search:mt-20');
+        }
+      }
+    });
+  });
+
   const resultList = document.getElementsByClassName('pagefind-ui__drawer')[0];
-  resultList.classList.add('group-focus-within/search:mt-16');
+  observer.observe(resultList, {
+    attributes: true,
+    attributeFilter: ['class']
+  });
+  
 "></script>
