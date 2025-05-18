@@ -40,14 +40,13 @@
   // hide page content if there is a search term
   pageFindInput.onkeyup = () => {
     const header = document.getElementsByTagName('header')[0];
-    const article = document.getElementsByTagName('article')[0];
-
+    const articles = [...document.getElementsByTagName('article')];
     if (pageFindInput.value.length > 0) {
       header.classList.add('hidden');
-      article.classList.add('hidden');
+      articles.forEach((article) => { article.classList.add('hidden'); });
     } else {
       header.classList.remove('hidden');
-      article.classList.remove('hidden');
+      articles.forEach((article) => { article.classList.remove('hidden'); });
     }
   }
 
