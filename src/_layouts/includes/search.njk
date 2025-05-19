@@ -41,13 +41,16 @@
   // hide page content if there is a search term
   pageFindInput.onkeyup = () => {
     const header = document.getElementsByTagName('header')[0];
-    const articles = [...document.getElementsByTagName('article')];
+    const article = document.getElementsByTagName('article')[0];
+    const sections = [...document.getElementsByTagName('section')];
     if (pageFindInput.value.length > 0) {
       header.classList.add('hidden');
-      articles.forEach((article) => { article.classList.add('hidden'); });
+      article.classList.add('hidden');
+      sections.forEach((sections) => { sections.classList.add('hidden'); });
     } else {
       header.classList.remove('hidden');
-      articles.forEach((article) => { article.classList.remove('hidden'); });
+      article.classList.remove('hidden');
+      sections.forEach((sections) => { sections.classList.remove('hidden'); });
     }
   }
 
