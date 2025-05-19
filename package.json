@@ -35,13 +35,13 @@
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.0",
     "rimraf": "^6.0.1",
-    "tailwindcss": "^4.1.6"
+    "tailwindcss": "^4.1.7"
   },
   "dependencies": {
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
     "@fullhuman/postcss-purgecss": "^7.0.2",
-    "@tailwindcss/postcss": "^4.1.6",
+    "@tailwindcss/postcss": "^4.1.7",
     "@toycode/markdown-it-class": "^1.2.4",
     "highlight.js": "^11.11.1",
     "markdown-it-attrs": "^4.3.1"
