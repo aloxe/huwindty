@@ -1,7 +1,7 @@
 {% extends './base.njk' %}
 
 {% block main %}
-  <main class="m0 p0 flex-1" id="maincontent">
+  <main class="m0 p0 flex-1">
     {% block search %}
       <div class="w-full lg:max-w-4xl mx-auto px-6 flex-1 mkdn">
         {% include "search.njk" %}
@@ -9,7 +9,7 @@
     {% endblock %}
 
     {% block content %}
-      <article data-pagefind-body>
+      <article id="maincontent" data-pagefind-body>
         {{ content | safe }}
       </article>
     {% endblock %}
