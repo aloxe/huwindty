@@ -26,6 +26,7 @@
   const pageFindInput = document.getElementsByClassName('pagefind-ui__search-input')[0];
   pageFindInput.classList = searchInput.classList;
   pageFindInput.setAttribute('id', 'searchinput');
+  pageFindInput.setAttribute('tabindex', '1'); // set search as one of the 3 first items of the tabindex (focussable on tab)
   pageFindInput.classList.add('absolute', 'top-2', 'right-10');
   document.getElementsByClassName('pagefind-ui__search-clear ')[0].classList = 'hidden';
 
