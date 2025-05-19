@@ -26,11 +26,20 @@
   const pageFindInput = document.getElementsByClassName('pagefind-ui__search-input')[0];
   pageFindInput.classList = searchInput.classList;
   pageFindInput.setAttribute('id', 'searchinput');
-  pageFindInput.setAttribute('tabindex', '1'); // set search as one of the 3 first items of the tabindex (focussable on tab)
+  // pageFindInput.setAttribute('tabindex', '1'); // set search as one of the 3 first items of the tabindex (focussable on tab)
   pageFindInput.classList.add('absolute', 'top-2', 'right-10');
   document.getElementsByClassName('pagefind-ui__search-clear ')[0].classList = 'hidden';
-
-  // create label that shows on small screens
+ 
+  // create a 'Search this site' link on top of the tabindex page
+  const searchThisSite = document.createElement('A');
+  const searchThisSiteText = document.createTextNode('Search this site');
+  searchThisSite.appendChild(searchThisSiteText);
+  searchThisSite.setAttribute('href', '#searchinput');
+  searchThisSite.classList.add('transition', 'right-0', 'bg-primary', 'text-bg', 'dark:bg-bg-menu-dark', 'absolute', 'p-3', 'm-2', '-translate-y-16', 'focus:translate-y-12');
+  const tabindexNav = document.getElementById('tabindexnav');
+  tabindexNav.appendChild(searchThisSite);
+  
+    // create label that shows on small screens
   const label = document.createElement('LABEL');
   const labelText = document.createTextNode(' 🔎 ');
   label.appendChild(labelText);

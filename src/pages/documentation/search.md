@@ -175,9 +175,19 @@ For the result page, since we don't use the default pagefind styles, the default
 
 Both fallback and pagefind search should be fully accessible. To make it more accessible, search was maintained on top of the [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/tabindex).
 
-The Duckduckgo search is placed on top of the page so it is focussed naturally after the "Skip to navigation", "Skip to content" links.
+The Duckduckgo search is placed on top of the page so it is focussed naturally after the "Skip to navigation", "Skip to content" anchor links.
 
-However, the Pagefind search is much lower in the content of the page, so it needs to be brought on top od the tabindex. Adding a tabindex weight of `"1"` is enough to stick it back to the top of the tabindex, along with "Skip to navigation" and "Skip to content".
+However, the Pagefind search is much lower in the content of the page, so it needs to be brought on top od the tabindex. This is done by adding, within the same script, a "Search this site" link to search content right after the "Skip to content" anchor link.
+
+```js
+  const searchThisSite = document.createElement('A');
+  const searchThisSiteText = document.createTextNode('Search this site');
+  searchThisSite.appendChild(searchThisSiteText);
+  searchThisSite.setAttribute('href', '#searchinput');
+  searchThisSite.classList.add('transition', 'right-0', 'bg-primary', 'text-bg', 'dark:bg-bg-menu-dark', 'absolute', 'p-3', 'm-2', '-translate-y-16', 'focus:translate-y-12');
+  const tabindexNav = document.getElementById('tabindexnav');
+  tabindexNav.appendChild(searchThisSite);
+```
 
 ### Shortcut
 
