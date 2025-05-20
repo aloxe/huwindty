@@ -42,7 +42,7 @@ You'll also note the label and submit button with `"sr-only"` class that make th
 
 ### Pagefind block
 
-After the fallback, the main Pagefind search needs to be added. This is done bay adding a simple piece of code as explained on [Pagefind documentation](https://pagefind.app/docs/ui-usage/). Pagefind comes with a css file, but this was not added as we want to use our own styles.
+After the fallback, the main Pagefind search needs to be added. This is done by adding a simple piece of code as explained on [Pagefind documentation](https://pagefind.app/docs/ui-usage/). Pagefind comes with a css file, but this was not added as we want to use our own styles.
 
 ```html
   <div id="searchdiv" class="search"></div>
