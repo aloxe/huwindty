@@ -47,7 +47,7 @@ After the fallback, the main Pagefind search needs to be added. This is done by 
 ```html
   <div id="searchdiv" class="search"></div>
 
-  <script src="/_pagefind/pagefind-ui.js" onload="
+  <script src="/pagefind/pagefind-ui.js" onload="
     new PagefindUI({ element: '#searchdiv', showImages: false });
     // (…)
   "></script>
@@ -86,7 +86,7 @@ On Huwindty, the attribute `data-pagefind-body` was added to the article part of
 
 ### How pagefind search works
 
-Once you've done all this and you generate the eleventy site, it will also generate the `_pagefind` folder that contains all search scripts and indexed data.
+Once you've done all this and you generate the eleventy site, it will also generate the `pagefind` folder that contains all search scripts and indexed data.
 
 <!-- demo on video https://www.youtube.com/watch?v=74lsEXqRQys -->
 
@@ -115,7 +115,7 @@ The css styling for pagefind elements is added right before the searchdiv block.
 But you will notice that there are not many css selectors, this is because most of the styles are managed in javascript that is loaded while the main pagefind library is loaded (see `search.njk` for details).
 
 ```html
-<script src="/_pagefind/pagefind-ui.js" onload="
+<script src="/pagefind/pagefind-ui.js" onload="
 ```
 
 First, this script hides the fallback form with javascript as this is meant to display on html only browsers where pagefind will not render.
