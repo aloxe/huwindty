@@ -178,7 +178,7 @@ module.exports = async function(eleventyConfig) {
 
   // image path for page thumbnail (used in meta tags)
   eleventyConfig.addNunjucksAsyncShortcode("getOGImageUri", async (meta, page, src) => {
-    if (!src) return "/vera-600w.webp"; // use an existing image as fallback
+    if (!src) return "/vera-500w.webp"; // use an existing image as fallback
     
     const isGlobal = src.slice(0, meta.public_folder.length) === meta.public_folder
 
@@ -186,7 +186,7 @@ module.exports = async function(eleventyConfig) {
     ? "./" + meta.media_folder + src.slice(meta.public_folder.length)
     : page.inputPath.substring(0, page.inputPath.lastIndexOf('/')+1) + src
 
-    const ImgOptions = getImgOptions(page, src, "", "", [600], ["webp"], undefined);
+    const ImgOptions = getImgOptions(page, src, "", "", [500], ["webp"], undefined);
     const metadata = await Image(imgSrc, ImgOptions)
     console.log("RETURN image " + metadata.webp[0].url);
     
