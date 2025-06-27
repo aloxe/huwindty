@@ -33,7 +33,7 @@ On the next step, you will have to create your Client Secret (CLIENT_SECRET) and
 
 In Netify, you can set up all you need to deploy and host your site. Netifly will manage your authentication and will let you maintain your site with Sveltia CMS.
 
-If you want todeploy your site elsewhere you will need an external OAuth client. Decap documentation has [referenced a list](https://decapcms.org/docs/external-oauth-clients/) of external apps you can install on your own server.
+If you want to deploy your site elsewhere you will need an external OAuth client. Decap documentation has [referenced a list](https://decapcms.org/docs/external-oauth-clients/) of external apps you can install on your own server. This is the tickiest part of Huwindty as it will stand as a stand alone app that your CMS with connect to for authentification purose.
 
 I chose the [PHP Netlify CMS GitHub Oauth](https://github.com/mcdeck/netlify-cms-oauth-provider-php) that comes with [a blogpost](https://www.van-porten.de/blog/2021/01/netlify-auth-provider/) explaining in detail how to set it up.
 
@@ -62,6 +62,15 @@ The line with `ORIGIN` is the host url of your site. Do not include any path or 
 You will then have to upload everything from `netlify-cms-oauth-provider-php` onto your server. Your server must handle https and php. The root index should point to the `public` folder but all other folders should remain there.
 
 When correctly installed, the index page of your Auth site should say ''Hello'' and offer a link to ''Log in with Github''. The current starter kit has a link to "[My login with Github](https://auth.xn--4lj4bfp6d.eu.org/auth)".
+
+### User managment
+
+When you use github as authentication provider, users of your CMS will need an account on github and will use it to identify themselves. In order to access the repo, and be able to edit, they need to be given access to your website repository through *settings* > *collaborators*. 
+
+All users will be visible from there so users can be managed on [github](https://github.com/aloxe/huwindty/settings/access).
+
+Users can check that they keep access to the repository by editing files. They can also check that the authorisation can access their account. On their profile > *settings* > *[applications](https://github.com/settings/applications)*.
+
 
 ## The back office configuration
 
