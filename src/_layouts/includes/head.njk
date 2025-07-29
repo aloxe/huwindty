@@ -2,8 +2,8 @@
 {% if meta.author.name %}<meta name="author" content="{{ meta.author.name }}" />{% endif %}
 <meta name="HandheldFriendly" content="True" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/png" href="{{ '/favicon.ico' }}" />
-<link rel="manifest" href="{{ '/manifest.json' }}" />
+<link rel="icon" type="image/png" href="/favicon.ico" />
+{% if meta.manifest %}<<link rel="manifest" href="{{ meta.manifest }}" />{% endif %}
 
 {% if page.fileSlug === "404" %}{% else %}
   <link rel="canonical" href="{{ meta.url }}{{ page.data.permalink or page.url | url }}" />
