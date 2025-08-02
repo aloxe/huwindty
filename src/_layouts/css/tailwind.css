@@ -14,10 +14,10 @@
   --color-note: #104e64; /* cyan-800 */
   --color-note-bg: #b8e6fe; /* sky-200 */
 
-  --color-primary-dark: #4657CE; /* blue-400 */
-  --color-secondary-dark: #7591f3; /* blue-300 */
-  --color-tertiary-dark: #7591f3; /* blue-300 */
-  --color-bg-menu-dark: #162456; /* blue-950 */
+  --color-primary-dark: #5e6cd4; 
+  --color-secondary-dark: #93c5fd; 
+  --color-tertiary-dark: #93c5fd; 
+  --color-bg-menu-dark: #162456; /* blue-950 */ 
   --color-bg-dark: #101828; /* grey-900 */
   --color-bg-hover-dark: #202838; /* blue-100 */
   --color-text-dark: #fff; /* slate-900 */
@@ -58,6 +58,7 @@
   }
   & p {
     @apply my-4 text-xl font-light leading-6 text-text dark:text-text-dark;
+    color: #4657CE;
   }
   & ul {
     @apply my-4 text-xl font-light leading-6 text-text dark:text-text-dark;
