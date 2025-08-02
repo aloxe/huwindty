@@ -25,6 +25,7 @@
   {% if thumbnail %}<meta property="og:image" content="{{ meta.url }}{% getOGImageUri meta, page, thumbnail %}">{% endif %}
 
   {% if meta.author.fediverse %}<meta name="fediverse:creator" content="{{ meta.author.fediverse }}" />{% endif %}
+  <meta name="generator" content="Eleventy"> {# if you want to enter https://www.11ty.dev/docs/leaderboards-add/ #}
   <meta name="twitter:title" content="{{ title }}">
   {% if description %}<meta name="twitter:description" content="{{ description }}">{% endif %}
   {% if thumbnail %}<meta name="twitter:image:src" content="{{ meta.url }}{% getOGImageUri meta, page, thumbnail %}">{% endif %}
