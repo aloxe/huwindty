@@ -26,10 +26,7 @@
   <ul role="list" class="mt-12 md:mt-0 md:flex hidden peer-checked:block">
     {%- for entry in allEntries %}
       {% if entry.url.split("/").length === 3 %}
-        {# 
-        length may be different if the site is not directly under the domain 
-        → TODO: set length limit based on site base URL
-        #}
+        {# only first level entries here ( "/page/" has split("/").length of 3) #}
         {{ renderNavItem(entry) }}
       {% endif %}
     {% endfor %}
