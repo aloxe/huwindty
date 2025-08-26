@@ -1,6 +1,9 @@
 name: '🗼 Lighthouse'
-on: pull_request
-
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - test
 jobs:
   lighthouseci:
     runs-on: ubuntu-latest
