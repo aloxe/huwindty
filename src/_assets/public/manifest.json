@@ -3,17 +3,17 @@
     "name": "Huwindty starter for 11ty",
     "icons": [
       {
-        "src": "/favicon.ico",
+        "src": "https://aloxe.github.io/huwindty/favicon.ico",
         "sizes": "32x32 16x16",
         "type": "image/x-icon"
       },
       {
-        "src": "/img/logo192.png",
+        "src": "https://aloxe.github.io/huwindty/img/logo192.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "/img/logo512.png",
+        "src": "https://aloxe.github.io/huwindty/img/logo512.png",
         "sizes": "512x512",
         "type": "image/png"
       }
