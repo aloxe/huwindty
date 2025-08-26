@@ -42,25 +42,6 @@ To do so, you will need to create an ssh key pair and copy the public key to `.s
 
 You can use duplicate the `test.yml` file and set as many pipelines as you want for exemple if you have multiple environement on various servers (staging and production for example). Then you can change the `workflow_dispatch:` section, the secrets as well as the path of your html root document after `target:`.{.note}
 
-### Lighthouse pipeline
-
-**pipeline:** lighthouse.yml
-**prerequisites**: none
-
-<!-- You need to [create a personal access token](https://github.com/settings/tokens/new) with the `repo:status` scope. Then you need to save this token as LHCI_GITHUB_APP_TOKEN in your app repository secrets. Finally you need to authorise the [lighthouse-ci](https://github.com/GoogleChrome/lighthouse-ci) App in the repository setting of your project.
- ↑ it looks like it is not necessary ↑
-         env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-also removed
- -->
-The lighthouse pipeline is triggered on every pull request, it will display the lighthouse score of the index page within your pull request checks. If you don't get all 💯. the test will display the an error and a link to the lighthouse page that tells you what to do to fix it. If it is all green, you can merge your changes in.
-
-The settings of lighthouse are done in `lighthouserc.js` at the root of the project. It is possible to add assertions to focus on certain aspects of lighthouse measurements or allow more flexibility.
-
-The current project tests three pages. It is possible to add more, but be aware that adding too many pages may cause the PR checks to time out.
-
-More on lighthouse-ci: https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/getting-started.md
-
 ### Accessibility pipeline
 
 **pipeline:** axe.yml
@@ -71,3 +52,20 @@ The Accessibility pipeline is triggered on every pull request, it will run **Axe
 The current pipeline only tests the homepage accessibility.
 
 Please note that only 20% to 50% of all accessibility issues can automatically be detected. Manual testing is always required.
+
+### Lighthouse pipeline
+
+**pipeline:** lighthouse.yml
+**prerequisites**: none
+
+Currently the lighthouse pipeline can only be launched manually. It returns errors that may not be fixable but may still provide useful information.
+
+The pipeline will display the error for each test and a link to the lighthouse page that tells you what to do to fix it. If it is all green, you can merge your changes in.
+
+The settings of lighthouse are done in `lighthouserc.js` at the root of the project. It is possible to add assertions to focus on certain aspects of lighthouse measurements or allow more flexibility.
+
+The current project tests three pages. It is possible to add more, but be aware that adding too many pages may cause the action to time out.
+
+More on lighthouse-ci: https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/getting-started.md
+
+You can also chech your live site on Lighthouse [directly on pagespeed.web.dev](https://pagespeed.web.dev/)
