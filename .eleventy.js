@@ -74,7 +74,6 @@ module.exports = async function(eleventyConfig) {
       : imgPath.slice(0,1) === "/" 
         ? env.eleventy.directories.input.slice(0, -1) + imgPath
         : env.page.inputPath.substring(0, env.page.inputPath.lastIndexOf('/')+1) + imgPath
-      // TODO: is imgPath.slice(0,1) === "/" ? really necessary?
 
     const imgAlt = token.content
     const imgTitle = token.attrGet('title') ?? ''
@@ -111,7 +110,7 @@ module.exports = async function(eleventyConfig) {
   // process css
   eleventyConfig.addNunjucksAsyncFilter('postcss', postcssFilter);
 
-  // Image shortcode with <picture>
+  // Image shortcode with <picture> where widths and sizes can be overwritten
   eleventyConfig.addShortcode("Picture", async (
     page,
     src,
@@ -131,10 +130,9 @@ module.exports = async function(eleventyConfig) {
     // Map each format to the source HTML markup
     .map((images) => {
       // The first entry is representative of all the others
-      // since they each have the same shape
+      // since they each have the same proportions
       const { sourceType } = images[0];
 
-      // Use our util from earlier to make our lives easier
       const sourceAttributes = stringifyAttributes({
         type: sourceType,
         // srcset needs to be a comma-separated attribute

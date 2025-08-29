@@ -47,7 +47,7 @@ After the fallback, the main Pagefind search needs to be added. This is done by 
 ```html
   <div id="searchdiv" class="search"></div>
 
-  <script src="/pagefind/pagefind-ui.js" onload="
+  <script src="/pagefind/pagefind-ui.js" defer onload="
     new PagefindUI({ element: '#searchdiv', showImages: false });
     // (…)
   "></script>
@@ -115,7 +115,7 @@ The css styling for pagefind elements is added right before the searchdiv block.
 But you will notice that there are not many css selectors, this is because most of the styles are managed in javascript that is loaded while the main pagefind library is loaded (see `search.njk` for details).
 
 ```html
-<script src="/pagefind/pagefind-ui.js" onload="
+<script src="/pagefind/pagefind-ui.js" defer onload="
 ```
 
 First, this script hides the fallback form with javascript as this is meant to display on html only browsers where pagefind will not render.
