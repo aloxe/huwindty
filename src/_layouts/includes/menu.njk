@@ -5,9 +5,9 @@
     class="transition right-0 bg-primary text-bg dark:bg-bg-menu-dark absolute p-3 m-2 -translate-y-16 focus:translate-y-12">Skip to navigation</a>
   <a href="#maincontent"
     class="transition right-0 bg-primary text-bg dark:bg-bg-menu-dark absolute p-3 m-2 -translate-y-16 focus:translate-y-12">Skip to main content</a>
-</div>
+  <a href="#searchinput" id="searchthissite" class="fixed transition left-4 top-12 bg-secondary text-bg p-3 m-5 -translate-x-72 focus:translate-x-12 z-2">Search this site</a>
 
-{% include "search-fallback.njk" %}
+</div>
 
 <nav class="w-full bg-primary text-bg dark:bg-bg-menu-dark text-xl md:flex-shrink-0" id="navigation">
   {% set allEntries = collections.all %}
