@@ -21,36 +21,130 @@ The first thing was to build a fallback search form for users without javascript
 In this case search requests are sent to DuckDuckGo but you can use any other search engine of your choice.
 
 ```html
-<div class="transition absolute right-0 p-2 translate-y-0 mr-10"> 
-	<form action="https://duckduckgo.com/" id="duckduckgo" method="post" class="group/search min-h-2.5"><!-- min-height to reduce CLS -->
+<div class="transition fixed -right-5 top-0 p-2 translate-y-0 mr-5" id="duckduckgo" > 
+  <!-- default form is the fallback when nojs -->
+	<form action="https://duckduckgo.com/" method="post" class="group/search min-h-2.5"><!-- min-height to reduce CLS -->
 		<label>
-			<span class="md:invisible group-focus-within/search:invisible align-bottom"><span class="sr-only">Search for:</span> 🔎 </span>
-			<input placeholder="Search" type="search" id="search" name="q" autocomplete="off" class="
-      w-0 !p-0 md:w-20 md:!p-2 group-focus-within/search:!p-2 duration-300 ease-in-out bg-note-bg rounded-xl mr-1 group-focus-within/search:max-w-[calc(80vw-50px)] group-focus-within/search:w-150 group-focus-within/search:mt-20"
+			<span class="md:invisible group-focus-within/search:invisible align-bottom cursor-pointer fixed top-6 right-18"><span class="sr-only">Rechercher :</span> 🔎 </span>
+			<input placeholder="Recherche" type="search" id="searchinput" name="q" autocomplete="off" class="
+      w-0 md:w-35 !p-0 md:!p-2 -mr-6 border-0 border-black md:border-1 bg-white rounded-xl
+      fixed top-2 right-10
+      delay-100 duration-300 ease-in-out 
+      group-focus-within/search:!p-2 group-focus-within/search:max-w-[calc(80vw-50px)] group-focus-within/search:w-150 group-focus-within/search:mt-18" onfocus="loadPagefindUI()"
       />
 		</label>
 		<input type="hidden" name="sites" value="{{meta.url}}" />
-		<button type="submit" class="duration-300 ease-in-out rounded-3xl p-2 invisible group-focus-within/search:mt-20 group-focus-within/search:inline-block w-0 group-focus-within/search:visible group-focus-within/search:w-10 group-focus-within/search:bg-note-bg
-    ">
-    <span class="sr-only">Search</span> 🔎 </button>
 	</form>
 </div>
 ```
+
 In that form, the input that helps the search engine only for your site is the hidden "sites" input. The value of your public site's URL is coming from the `meta.json` data file so that the search result page will only show links to that domain. Make sure this url is the right one.
 
 You'll also note the label and submit button with `"sr-only"` class that make them available on screen readers only when on the screen users will see the magnifying glass.
 
 ### Pagefind block
 
-After the fallback, the main Pagefind search needs to be added. This is done by adding a simple piece of code as explained on [Pagefind documentation](https://pagefind.app/docs/ui-usage/). Pagefind comes with a css file, but this was not added as we want to use our own styles.
+After that, [Pagefind documentation](https://pagefind.app/docs/ui-usage/) suggests to load the pagefind css and javascript files and then to perform some changes after all the page content is loaded.
 
 ```html
-  <div id="searchdiv" class="search"></div>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
 
-  <script src="/pagefind/pagefind-ui.js" defer onload="
-    new PagefindUI({ element: '#searchdiv', showImages: false });
-    // (…)
-  "></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+
+```
+
+To maintain the high performence of page load, I decided on another approach. Css will be added inline just before the html block for search.
+
+```html
+<style>
+  .pagefind-ui__message {
+    font-weight: bold;
+  }
+  .pagefind-ui__results {
+    list-style-type: none;
+  }
+  .pagefind-ui__result-title {
+    margin: 20px 0 10px;
+  }
+  .pagefind-ui__result-excerpt {
+    margin: 5px 0 20px;
+  }
+  .pagefind-ui__drawer {
+    delay-100 duration-300 ease-in-out 
+  }
+</style>
+
+<div id="searchdiv" class="search"></div>
+```
+
+Then, the javascript file is loaded only when it is likely to be used, when the user focusses on the search input (by click of by tabulation). This is done with the `onfocus="loadPagefindUI()` that you can see above.
+
+```js
+  const loadPagefindUI = () => {
+    if (typeof PagefindUI === "undefined") {
+      var script = document.createElement('script');
+      script.setAttribute('type', 'text/javascript');
+      script.setAttribute('src', "/pagefind/pagefind-ui.js");
+      script.addEventListener('load', function() {
+        initPagefindUI()
+      });
+      document.body.appendChild(script);
+    }
+  }
+```
+When loading the script, you notice an event listener that is loaded once the script is loaded. `initPagefindUI()` is the function that hides the fallback input and copies over its styles to the new pagefind input. 
+
+```js
+    document.getElementById('duckduckgo').classList = 'hidden';
+
+    const searchInput = document.getElementById('searchinput');
+    searchInput.removeAttribute('id');
+    const pageFindForm = document.getElementsByClassName('pagefind-ui__form')[0];
+    pageFindForm.classList.add('group/search');
+    const pageFindInput = document.getElementsByClassName('pagefind-ui__search-input')[0];
+    pageFindInput.classList = searchInput.classList;
+    pageFindInput.setAttribute('id', 'searchinput');
+    pageFindInput.focus();
+    document.getElementsByClassName('pagefind-ui__search-clear ')[0].classList = 'hidden';
+```
+
+Pagefind input doesn't come with a label, so it is added with javascript:
+
+```js
+  const label = document.createElement('LABEL');
+  const labelText = document.createTextNode(' 🔎 ');
+  label.appendChild(labelText);
+  label.classList.add('md:invisible', 'group-focus-within/search:invisible', 'p-4', 'align-bottom', 'cursor-pointer', 'absolute', 'top-2', 'right-15');
+  label.setAttribute('for', 'searchinput');
+  pageFindInput.insertAdjacentElement('beforebegin', label);
+```
+
+It also performes a few other style modifications depending on the context. For exemple, the main content of the page is hidden to leave space to search results.
+
+```js
+    // hide page content if there is a search term
+    pageFindInput.onkeyup = () => {
+      const hamburger = document.getElementById('hamburger');
+      const header = document.getElementsByTagName('header')[0];
+      const article = document.getElementsByTagName('article')[0];
+      const sections = [...document.getElementsByTagName('section')];
+      if (pageFindInput.value.length > 0) {
+        hamburger.checked = false;
+        header.classList.add('hidden');
+        article.classList.add('hidden');
+        sections.forEach((sections) => { sections.classList.add('hidden'); });
+      } else {
+        header.classList.remove('hidden');
+        article.classList.remove('hidden');
+        sections.forEach((sections) => { sections.classList.remove('hidden'); });
+      }
+    }
 ```
 
 ### Pagefind index generation
@@ -96,69 +190,7 @@ When search result display, it shows in the current page and the page content hi
 
 ### Pagefind styling
 
-The css styling for pagefind elements is added right before the searchdiv block.
-
-```css
-  .pagefind-ui__message {
-    font-weight: bold;
-  }
-  .pagefind-ui__results {
-    list-style-type: none;
-  }
-  .pagefind-ui__result-title {
-    margin: 20px 0 10px;
-  }
-  .pagefind-ui__result-excerpt {
-    margin: 5px 0 20px;
-  }
-```
-But you will notice that there are not many css selectors, this is because most of the styles are managed in javascript that is loaded while the main pagefind library is loaded (see `search.njk` for details).
-
-```html
-<script src="/pagefind/pagefind-ui.js" defer onload="
-```
-
-First, this script hides the fallback form with javascript as this is meant to display on html only browsers where pagefind will not render.
-
-```js
-  document.getElementById('duckduckgo').classList = 'hidden';
-```
-Then the styles of the "duckduckgo" static form is more or less transferred to the "pagefind" form. This allows to display the fields the same way, on the top right corner of the page.
-
-```js
-  const pageFindInput = document.getElementsByClassName('pagefind-ui__search-input')[0];
-  pageFindInput.classList = searchInput.classList;
-```
-
-Pagefind input doesn't come with a label, so it is added with javascript:
-
-```js
-  const label = document.createElement('LABEL');
-  const labelText = document.createTextNode(' 🔎 ');
-  label.appendChild(labelText);
-  label.classList.add('md:invisible', 'group-focus-within/search:invisible', 'p-4', 'align-bottom', 'cursor-pointer', 'absolute', 'top-2', 'right-15');
-  label.setAttribute('for', 'searchinput');
-  pageFindInput.insertAdjacentElement('beforebegin', label);
-```
-
-Also, we make sure that the content of the page is removed to leave space to the search results as soon as the user types in the search request.
-
-```js
-  pageFindInput.onkeyup = () => {
-    const header = document.getElementsByTagName('header')[0];
-    const article = document.getElementsByTagName('article')[0];
-    const sections = [...document.getElementsByTagName('section')];
-    if (pageFindInput.value.length > 0) {
-      header.classList.add('hidden');
-      article.classList.add('hidden');
-      sections.forEach((sections) => { sections.classList.add('hidden'); });
-    } else {
-      header.classList.remove('hidden');
-      article.classList.remove('hidden');
-      sections.forEach((sections) => { sections.classList.remove('hidden'); });
-    }
-  }
-```
+The search form style is handled with the init script.
 
 For the result page, since we don't use the default pagefind styles, the default styles apply. We made sure that the term highlighting and the button were defined in the default (tailwind.css) theme.
 
@@ -173,22 +205,14 @@ For the result page, since we don't use the default pagefind styles, the default
 
 ## Accessibility
 
-Both fallback and pagefind search should be fully accessible. To make it more accessible, search was maintained on top of the [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/tabindex).
+Both fallback and pagefind search should be fully accessible. To make it more accessible, search should be accessible early on the [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/tabindex).
 
-The Duckduckgo search is placed on top of the page so it is focussed naturally after the "Skip to navigation", "Skip to content" anchor links.
+Because there may be a long menu before the search form, a shortcut link labeled "Search this site" has been added on the very top of the page.
 
-However, the Pagefind search is much lower in the content of the page, so it needs to be brought on top od the tabindex. This is done by adding, within the same script, a "Search this site" link to search content right after the "Skip to content" anchor link.
-
-```js
-  const searchThisSite = document.createElement('A');
-  const searchThisSiteText = document.createTextNode('Search this site');
-  searchThisSite.appendChild(searchThisSiteText);
-  searchThisSite.setAttribute('href', '#searchinput');
-  searchThisSite.classList.add('transition', 'right-0', 'bg-primary', 'text-bg', 'dark:bg-bg-menu-dark', 'absolute', 'p-3', 'm-2', '-translate-y-16', 'focus:translate-y-12');
-  const tabindexNav = document.getElementById('tabindexnav');
-  tabindexNav.appendChild(searchThisSite);
+```html
+  <a href="#searchinput" id="searchthissite" class="fixed transition left-4 top-12 bg-secondary text-bg p-3 m-5 -translate-x-72 focus:translate-x-12 z-2">Search this site</a>
 ```
 
-### Shortcut
+### Keyboard shortcut
 
 I had a discussion with Bob Monsour from [11tybundle](https://11tybundle.dev/) about adding a shortcut to perform this search. While this sounds practical, this [may interfere](https://bobmonsour.com/til/who-knew-that-does-search-in-page-on-firefox/) with some of the browser shortcut. If you want to implement this shortcut, Bob explains [how he did](https://bobmonsour.com/blog/a-keystroke-to-place-focus-in-the-search-box/).
