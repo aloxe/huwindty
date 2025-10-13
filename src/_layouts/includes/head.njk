@@ -2,11 +2,11 @@
 {% if meta.author.name %}<meta name="author" content="{{ meta.author.name }}" />{% endif %}
 <meta name="HandheldFriendly" content="True" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/png" href="{{ meta.url }}/favicon.ico" />
+<link rel="icon" type="image/png" href="/favicon.ico" />
 {% if meta.manifest %}<link rel="manifest" href="{{ meta.manifest }}" />{% endif %}
 
 {% if page.fileSlug === "404" %}{% else %}
-  <link rel="canonical" href="{{ meta.url }}{{ page.data.permalink or page.url | url }}" />
+  <link rel="canonical" href="{{ meta.url }}{{ page.data.permalink or page.url }}" />
 {% endif %}
 
 <title>{{ title or meta.title }}</title>
@@ -33,7 +33,7 @@
 {% endif %}
 
 <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ meta.url }}/{{ "feed.xml" }}" />
-<link rel="stylesheet" href="{{ meta.url }}/css/styles.css" preload>
+<link rel="stylesheet" href="/css/styles.css" preload>
 
 {% if ismarkdown %}
   {# the markdown styles are included online to avoid render-blocking styles

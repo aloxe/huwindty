@@ -14,7 +14,7 @@ Making the content from one website available to others is called syndication. T
 ## 11ty RSS Plugin
 The [11ty RSS Plugin](https://www.11ty.dev/docs/plugins/rss/) is a plugin that provides a range of utilities that are useful for generating an RSS or Atom feed using the Nunjucks templating syntax.
 
-Huwindty comes with the RSS plugin and a feed layout that generates an Atom feed at the root of your site. On this demo site, it is available at [aloxe.github.io/huwindty/feed.xml](aloxe.github.io/huwindty/feed.xml).
+Huwindty comes with the RSS plugin and a feed layout that generates an Atom feed at the root of your site. On this demo site, it is available at [aloxe.codeberg.page/huwindty/feed.xml](https://aloxe.codeberg.page/huwindty/feed.xml).
 
 ## How does it work?
 
@@ -59,7 +59,7 @@ You see that the code above used metadata that defines your site. It is set in t
 ```json
 {
   "title": "Huwindty 🌬️",
-  "url": "https://aloxe.github.io/huwindty",
+  "url": "https://aloxe.codeberg.page/huwindty",
   "description": "Huwindty enhanced template using 11ty.",
   "language": "en",
   "image": "/img/logo192.png",

@@ -213,7 +213,7 @@ module.exports = async function(eleventyConfig) {
       output: '_site',
     },
     templateFormats: ['md', 'njk', 'jpg', 'gif', 'png', 'html', 'jpeg', 'webp'],
-    pathPrefix: process.env.BASE_HREF ? `/${process.env.BASE_HREF}/` : "/" //  used with github pages
+    pathPrefix: process.env.BASE_HREF ? `/${process.env.BASE_HREF}/` : "/" //  used with github/codeberg pages
   }
 }; 
 // end config
@@ -224,7 +224,7 @@ const htmlminTransform = (content, outputPath) => {
     let minified = htmlmin.minify(content, {
       useShortDoctype: true,
       removeComments: true,
-      collapseWhitespace: true
+      // collapseWhitespace: true // not so necessary
     });
     return minified;
   }
