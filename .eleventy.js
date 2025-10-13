@@ -9,7 +9,7 @@ const mdit = require('markdown-it');
 const mditAttrs = require('markdown-it-attrs');
 const hljs = require('highlight.js/lib/core');
 const Image = require('@11ty/eleventy-img');
-const { execSync } = require('child_process')
+const { execSync } = require('child_process');
 
 // sizes and formats of resized images to make them responsive
 // it can be overwriten when using the "Picture" short code
@@ -38,7 +38,8 @@ module.exports = async function(eleventyConfig) {
     linkify: true,
     typographer: true,
   }
-  const mdLib = mdit(mditOptions).use(mditAttrs)
+
+  const mdLib = mdit(mditOptions).use(mditAttrs);
 
   // Load any languages you need to highlight
   hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
@@ -93,6 +94,7 @@ module.exports = async function(eleventyConfig) {
 
     return picture
   }
+
   eleventyConfig.setLibrary('md', mdLib)
 
   // Watch targets
@@ -213,9 +215,11 @@ module.exports = async function(eleventyConfig) {
     templateFormats: ['md', 'njk', 'jpg', 'gif', 'png', 'html', 'jpeg', 'webp'],
     pathPrefix: process.env.BASE_HREF ? `/${process.env.BASE_HREF}/` : "/" //  used with github pages
   }
-}; // end config
+}; 
+// end config
+////////////////////////////////
 
-function htmlminTransform(content, outputPath) {
+const htmlminTransform = (content, outputPath) => {
   if( outputPath.endsWith(".html") ) {
     let minified = htmlmin.minify(content, {
       useShortDoctype: true,
@@ -243,8 +247,7 @@ const postcssFilter = (cssCode, done) => {
 }
 
 /** Maps a config of attribute-value pairs to an HTML string
- * representing those same attribute-value pairs.
- */
+ * representing those same attribute-value pairs. */
 const stringifyAttributes = (attributeMap) => {
   return Object.entries(attributeMap)
     .map(([attribute, value]) => {
@@ -254,35 +257,33 @@ const stringifyAttributes = (attributeMap) => {
     .join(' ');
 };
 
+const getSrcImage = (page, src) => {
+  let inputFolder = page.inputPath.split("/")
+  inputFolder.pop()
+  inputFolder = inputFolder.join("/");
+  return inputFolder+"/"+src;
+}
 
-  const getSrcImage = (page, src) => {
-    let inputFolder = page.inputPath.split("/")
-    inputFolder.pop()
-    inputFolder = inputFolder.join("/");
-    
-    return inputFolder+"/"+src;
-  }
-
-  const getImgOptions = (page, src, alt, className, widths, formats, sizes) => {
-    let outputFolder = page.outputPath.slice(0, page.outputPath.lastIndexOf('/')+1) // remove index.html
-    
-    let urlPath = outputFolder.split("/")
-    urlPath.shift() // remove ./
-    urlPath.shift() // remove _site
-    urlPath = "/" + urlPath.join("/");
-    
-    const options = {
-      widths: widths
-        .concat(widths.map((w) => w * 2)) // generate 2x sizes
-        .filter((v, i, s) => s.indexOf(v) === i), // dedupe
-      formats: [...formats, null],
-      outputDir: outputFolder,
-      urlPath: urlPath,
-      filenameFormat: function (id, src, width, format, options) {
-        const extension = path.extname(src);
-        const name = path.basename(src, extension);
-        return `${name}-${width}w.${format}`;
-      }
+const getImgOptions = (page, src, alt, className, widths, formats, sizes) => {
+  let outputFolder = page.outputPath.slice(0, page.outputPath.lastIndexOf('/')+1) // remove index.html
+  
+  let urlPath = outputFolder.split("/")
+  urlPath.shift() // remove ./
+  urlPath.shift() // remove _site
+  urlPath = "/" + urlPath.join("/");
+  
+  const options = {
+    widths: widths
+      .concat(widths.map((w) => w * 2)) // generate 2x sizes
+      .filter((v, i, s) => s.indexOf(v) === i), // dedupe
+    formats: [...formats, null],
+    outputDir: outputFolder,
+    urlPath: urlPath,
+    filenameFormat: function (id, src, width, format, options) {
+      const extension = path.extname(src);
+      const name = path.basename(src, extension);
+      return `${name}-${width}w.${format}`;
     }
-    return options;
   }
+  return options;
+}
