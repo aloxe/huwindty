@@ -12,7 +12,7 @@
     margin: 5px 0 20px;
   }
   .pagefind-ui__drawer {
-    delay-100 duration-300 ease-in-out 
+    animation: delay-100 duration-300 ease-in-out;
   }
 </style>
 
@@ -40,7 +40,7 @@
     if (typeof PagefindUI === "undefined") {
       var script = document.createElement('script');
       script.setAttribute('type', 'text/javascript');
-      script.setAttribute('src', "/pagefind/pagefind-ui.js");
+      script.setAttribute('src', "{{ meta.url }}/pagefind/pagefind-ui.js");
       script.addEventListener('load', function() {
         initPagefindUI()
       });

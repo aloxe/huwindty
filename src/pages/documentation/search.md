@@ -5,6 +5,7 @@ headline: Makes your pages findable
 description: How to install and use Pagefind to search pages throughout your site
 thumbnail: /img/vera.jpg
 ismarkdown: true
+templateEngineOverride: md
 ---
 ## Pagefind
 
@@ -75,9 +76,6 @@ To maintain the high performence of page load, I decided on another approach. Cs
   .pagefind-ui__result-excerpt {
     margin: 5px 0 20px;
   }
-  .pagefind-ui__drawer {
-    delay-100 duration-300 ease-in-out 
-  }
 </style>
 
 <div id="searchdiv" class="search"></div>
@@ -90,7 +88,7 @@ Then, the javascript file is loaded only when it is likely to be used, when the 
     if (typeof PagefindUI === "undefined") {
       var script = document.createElement('script');
       script.setAttribute('type', 'text/javascript');
-      script.setAttribute('src', "/pagefind/pagefind-ui.js");
+      script.setAttribute('src', "{{ meta.url }}/pagefind/pagefind-ui.js");
       script.addEventListener('load', function() {
         initPagefindUI()
       });
@@ -99,6 +97,8 @@ Then, the javascript file is loaded only when it is likely to be used, when the 
   }
 ```
 When loading the script, you notice an event listener that is loaded once the script is loaded. `initPagefindUI()` is the function that hides the fallback input and copies over its styles to the new pagefind input. 
+
+The src attribute is an absolute URL with `{{ meta.url }}`. If the Huwindty site is right after the domain, `/pagefind/pagefind-ui.js` is sufficient.{.note}
 
 ```js
     document.getElementById('duckduckgo').classList = 'hidden';
