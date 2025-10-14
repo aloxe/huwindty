@@ -24,6 +24,30 @@ If you choose this solution to publish your site, remember that the `url` in the
 
 More on Github pages: https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
 
+### Deployment to codeberg pages
+
+**pipeline:** .woodpecker.yml
+**prerequisites**: Access to woodpecker, codeberg's CI platform, with set up to access your repository and saved secrets. Your repository should also have a `pages` branch.
+
+The pipeline is triggered on every push on the main branch. It will generate the 11ty static site and commit it to the branch `pages`. Fron there, codeberg will publish it to https://<your_account_name>.codeberg.org/<your_repository_name>
+
+If you choose this solution to publish your site, remember that the `url` in the meta.json needs to be updated with `your_repository_name`. Also make sure this name is saved in the env variables as BASE_HREF.
+
+#### Steps
+- [apply for codeberg CI access](https://codeberg.org/Codeberg-e.V./requests/issues/new?template=ISSUE_TEMPLATE%2fWoodpecker-CI.yaml)
+- [Generate an access token for your account](https://docs.codeberg.org/advanced/access-token/)
+- On [ci.codeberg.org](https://ci.codeberg.org/), add a repository, click the gear and add secrets.
+- [woodpecker secrets](https://woodpecker-ci.org/docs/usage/secrets)
+
+#### More on Codeberg CI:
+- [Forgejo](https://forgejo.org/docs/latest/user/)
+- [Codeberg Pages](https://docs.codeberg.org/codeberg-pages/)
+- [Woodpecker CI](https://woodpecker-ci.org/docs/intro)
+
+<!-- 
+also but outdate: https://web.archive.org/web/20241115042219/https://mathilde.eu.org/blog/11ty-codeberg-ci-pages/
+-->
+
 ### Deployment on a standalone server
 
 **pipeline:** test.yml
