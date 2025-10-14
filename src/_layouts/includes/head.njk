@@ -6,7 +6,7 @@
 {% if meta.manifest %}<link rel="manifest" href="{{ meta.manifest }}" />{% endif %}
 
 {% if page.fileSlug === "404" %}{% else %}
-  <link rel="canonical" href="{{ meta.url }}{{ page.data.permalink or page.url | url }}" />
+  <link rel="canonical" href="{{ meta.url }}{{ page.data.permalink or page.url }}" />
 {% endif %}
 
 <title>{{ title or meta.title }}</title>
@@ -32,8 +32,8 @@
   <meta name="twitter:card" content="summary_large_image">
 {% endif %}
 
-<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "feed.xml" }}" />
-<link rel="stylesheet" href="{{ '/css/styles.css' }}" preload>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ meta.url }}/{{ "feed.xml" }}" />
+<link rel="stylesheet" href="/css/styles.css" preload>
 
 {% if ismarkdown %}
   {# the markdown styles are included online to avoid render-blocking styles
