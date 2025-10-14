@@ -110,6 +110,7 @@ The src attribute is an absolute URL with `{{ meta.url }}`. If the Huwindty site
     const pageFindInput = document.getElementsByClassName('pagefind-ui__search-input')[0];
     pageFindInput.classList = searchInput.classList;
     pageFindInput.setAttribute('id', 'searchinput');
+    pageFindInput.setAttribute('aria-label', 'search');
     pageFindInput.focus();
     document.getElementsByClassName('pagefind-ui__search-clear ')[0].classList = 'hidden';
 ```
