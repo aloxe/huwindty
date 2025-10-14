@@ -12,6 +12,8 @@ steps:
         from_secret: USER
       REPO:
         from_secret: REPO
+      BASE_HREF:
+        from_secret: BASE_HREF
     commands:
       # Avoid permission denied errors
       - chmod -R a+w .
@@ -28,7 +30,7 @@ steps:
       - cd ..
       # Run 11ty build stage
       - npm install
-      - npm run build
+      - BASE_HREF="$BASE_HREF" npm run build
       # Set up custom custom domains
       # - cp .domains _site/
       # Push to target
