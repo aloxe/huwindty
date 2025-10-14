@@ -3,7 +3,15 @@ steps:
     when:
       event: push
     image: node
-    secrets: [ token, email, user, repo ]
+    environment:
+      TOKEN:
+        from_secret: TOKEN
+      EMAIL:
+        from_secret: EMAIL
+      USER:
+        from_secret: USER
+      REPO:
+        from_secret: REPO
     commands:
       # Avoid permission denied errors
       - chmod -R a+w .
