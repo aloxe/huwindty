@@ -58,7 +58,6 @@
   }
   & p {
     @apply my-4 text-xl font-light leading-6 text-text dark:text-text-dark;
-    color: #4657CE;
   }
   & ul {
     @apply my-4 text-xl font-light leading-6 text-text dark:text-text-dark;
