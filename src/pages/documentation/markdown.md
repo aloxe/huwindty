@@ -3,7 +3,10 @@ layout: base
 title: Markdown
 headline: Using Markdown to shape your content in 11ty
 description: How do use Markdown in your 11ty website and how does it work
-thumbnail: /img/vera.jpg
+tags: ''
+author: alix
+date: 2025-10-15
+thumbnail: boat.jpg
 ismarkdown: true
 ---
 ## Markdown
@@ -55,7 +58,7 @@ Extra styles in markdown are explained in detail in the [style section](/documen
 
 ### [highlight.js](https://www.npmjs.com/package/highlight.js)
 
-This plugin allows you to highlight the code in a code block according the language. For example, ` ```javascript` will output `<pre><code class="language-javascript"></code></pre>` in the html.
+This plugin allows you to highlight the code in a code block according the language. For example, `&#32;```javascript` will output `<pre><code class="language-javascript"></code></pre>` in the html.
 
 The highlights can be themed, using a stand alone css in `src/_assets/public/css/highlightjs.css`. It is a copy of  `atom-one-dark.min.css`. It is imported from `src/layout/includes/head.njk` and you can decide to import it [from a CDN](https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css) if you want. 
 
@@ -65,7 +68,7 @@ You can also define your own theme following [the guide](https://highlightjs.rea
 
 #### accessibility fix 
 
-Code blocks in markdown are styles with a `<code>` nested in a `<pre>`. highlight.js applies the theme with styles on the `<code>` which always recieves a `display:block;`. Because of this, when the code in the block overflows, the scrollable region is `<code>` instead of `<pre>` that could catch the focus.
+Code blocks in markdown are styles with a `<code>` nested in a `<pre>`. highlight.js applies the theme with styles on the `<code>` which always receives a `display:block;`. Because of this, when the code in the block overflows, the scrollable region is `<code>` instead of `<pre>` that could catch the focus.
 
 It is important that scrollable region can be focusable to allow users without a mouse to scroll with the keyboard.
 
@@ -95,4 +98,4 @@ Markdown is not known to be flexible with styling images, but you find a workaro
 
 ### Responsive images
 
-Markdown images are automatically redered as responsive. A specific chapter on responsive images explains how this 11ty starter manages [responsive images](/documentation/images/).
+Markdown images are automatically rendered as responsive. A specific chapter on responsive images explains how this 11ty starter manages [responsive images](/documentation/images/).
