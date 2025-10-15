@@ -1,20 +1,20 @@
 module.exports = {
   ci: {
     collect: {
-      "url": [
+      url: [
         "http://localhost/index.html",
         "http://localhost/documentation/images/",
         "http://localhost/examples/",
       ],
-      staticDistDir: './_site',
+      staticDistDir: "./_site",
       staticDirFileDiscoveryDepth: 1,
-      "numberOfRuns": 1,
+      numberOfRuns: 1,
     },
     upload: {
-      target: 'temporary-public-storage',
+      target: "temporary-public-storage",
     },
     assert: {
-    preset: 'lighthouse:recommended',
+      preset: "lighthouse:recommended",
     },
   },
 };
