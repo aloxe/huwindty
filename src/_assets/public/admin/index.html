@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://unpkg.com" />
     <title>CMS admin sveltia CMS</title>
   </head>
   <body>
@@ -13,120 +13,83 @@
     Huwindty uses sveltia CMS but you may prefer decap cms if you want certain features that are not yet implemented in sveltia (like workflow)
     -->
     <!-- <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script> -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+    <script
+      src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"
+      type="module"
+    ></script>
 
     <script>
-      // from https://github.com/decaporg/decap-cms/blob/main/dev-test/index.html
-      CMS.registerEditorComponent({
-      id: "youtube",
-      label: "Youtube",
-      fields: [{name: 'id', label: 'Youtube Video ID'}],
-      pattern: /^{{<\s?youtube (\S+)\s?>}}/,
-      fromBlock: function(match) {
-        return {
-          id: match[1]
-        };
-      },
-      toBlock: function(obj) {
-        return '{{< youtube ' + obj.id + ' >}}';
-      },
-      toPreview: function(obj) {
-        return (
-          '<img src="http://img.youtube.com/vi/' + obj.id + '/maxresdefault.jpg" alt="Youtube Video"/>'
-        );
-      }
-    });
+      window.onload = function () {
+        // from https://github.com/decaporg/decap-cms/blob/main/dev-test/index.html
+        // documentation: https://decapcms.org/docs/custom-widgets/#registereditorcomponent
+        CMS.registerEditorComponent({
+          id: "youtube",
+          label: "Youtube",
+          fields: [{ name: "id", label: "Youtube Video ID" }],
+          pattern: /^{{<\s?youtube (\S+)\s?>}}/,
+          fromBlock: function (match) {
+            return {
+              id: match[1],
+            };
+          },
+          toBlock: function (obj) {
+            return "{{< youtube " + obj.id + " >}}";
+          },
+          toPreview: function (obj) {
+            return (
+              '<img src="http://img.youtube.com/vi/' +
+              obj.id +
+              '/maxresdefault.jpg" alt="Youtube Video"/>'
+            );
+          },
+        });
 
+        CMS.registerEditorComponent({
+          id: "CustomImage",
+          label: "CustomImage",
+          fields: [
+            {
+              name: "src",
+              label: "image",
+              widget: "image",
+            },
+            {
+              name: "alt",
+              label: "Param Two",
+              widget: "string",
+            },
+            {
+              name: "title",
+              label: "Param 3",
+              widget: "string",
+            },
+            {
+              name: "cssClass",
+              label: "Param css",
+              widget: "string",
+            },
+          ],
+          pattern: /!\[([\w .]*?)\]\((.*?)(?: "([\w .]*?)")?\)/,
+          fromBlock: function (match) {
+            console.log(match);
 
-
-
-    CMS.registerEditorComponent({
-      id: "test1",
-      label: "Test 1",
-      fields: [
-        {
-          name: 'param1', 
-          label: 'Param One', 
-          widget: 'string',
-        },
-    {
-          name: 'param2', 
-          label: 'Param Two', 
-          widget: 'string',
-        },
-    {
-          name: 'body',
-          label: 'Section Content',
-          widget: 'markdown'
-        }
-      ],
-      pattern: /{{%[\s]*component_one[\s]*param1="(.*)"[\s]*param2="(.*)"[\s]*%}}([\S\s]*?){{%\/[\s]*component_one[\s]*%}}/,
-      fromBlock: function(match) {
-        return {
-          param1: match[1],
-          param2: match[2],
-          body: match[3]
-        };
-      },
-      toBlock: function(obj) {
-        return '\n\n{{% component_one param1="' + obj.param1 + '" param2="' + obj.param2 + '" %}}\n\n' + 
-          obj.body + '\n\n' +
-        '{{%/ component_one %}}' + '\n\n';
-      },
-      toPreview: function(obj) {
-        return obj.body;
-      }
-    });
-
-
-
-    CMS.registerEditorComponent({
-      id: "librimage",
-      label: "Image + class",
-      fields: [
-      {
-          name: 'src',
-          label: 'image',
-          widget: 'image',
-        },
-        {
-          name: 'alt',
-          label: 'alt text',
-          widget: 'string',
-        },
-        {
-          name: 'cssClass',
-          label: 'css class',
-          widget: 'string',
-        },
-        {
-          name: 'title',
-          label: 'title',
-          widget: 'string',
-        },
-      ],
-      pattern: /!\[(.*?)\]\((.*?)(?: "(.*?)")?\)/,
-      // eslint-disable-next-line jsdoc/require-jsdoc
-      fromBlock: ([, alt, src, cssClass, title]) => ({ src, alt, cssClass, title }),
-      // eslint-disable-next-line jsdoc/require-jsdoc
-      toBlock: (props) => {
-        const { src, alt, cssClass, title } = escapeAllChars(props);
-
-        return src ? `![${alt}](${src}${title ? ` "${title}"` : ''}{.${cssClass}})` : '';
-      },
-      // eslint-disable-next-line jsdoc/require-jsdoc
-      toPreview: (props) => {
-        const { src, alt, cssClass, title } = escapeAllChars(props);
-
-        // Return `<img>` even if `src` is empty to make sure the `tagName` below works
-        return `<img src="${src}" alt="${alt}" class="${cssClass}" title="${title}">`;
-      },
-    });
-
+            return {
+              src: decodeURI(match[1]),
+              alt: match[2],
+              title: match[3],
+              cssClass: match[4],
+            };
+          },
+          toBlock: function (obj) {
+            return `\n\n![${obj.alt}](${obj.src}${
+              obj.title ? ` "${obj.title}"` : ""
+            }){.${obj.cssClass}}\n\n`;
+          },
+          toPreview: function (obj) {
+            return `<img src="${obj.src}" alt="${obj.alt}" title="${obj.title}" class="${obj.cssClass}">`;
+          },
+        });
+      };
     </script>
-
-
-
-
   </body>
 </html>
