@@ -6,7 +6,7 @@ description: How do use Markdown in your 11ty website and how does it work
 tags: ''
 author: alix
 date: 2025-10-15
-thumbnail: boat.jpg
+thumbnail: /img/animals/heron.jpg
 ismarkdown: true
 ---
 ## Markdown
