@@ -6,7 +6,7 @@ description: How do install and use Sveltia CMS as a for your 11ty website
 tags: ''
 author: ''
 date: 2025-08-27
-thumbnail: /img/vera.jpg
+thumbnail: /img/grasshopper.jpg
 ismarkdown: true
 ---
 ## Sveltia CMS
@@ -27,7 +27,7 @@ Go to the [Github OAuth settings](https://github.com/settings/applications/new) 
 
 Fill _Homepage URL_ with the url of where you will install your external OAuth client. _Authorization callback URL_ will get the same url followed by 'callback' `https://example.com/callback`.
 
-Then hit on the button \\[Register application].
+Then hit on the button \[Register application].
 
 On the next step, you will have to create your Client Secret (CLIENT_SECRET) and save it in a secure file. Also save the Client ID (CLIENT_ID).
 
@@ -43,7 +43,7 @@ I chose two apps for this purpose, one is running on node and is served by nginx
 
 [netlify-cms-github-oauth-provider](https://github.com/vencax/netlify-cms-github-oauth-provider) is available on github and can run locally as well as on a server with nginx as a reverse proxy. The README is well details to run the installation.
 
-```
+```plain
 git clone https://github.com/vencax/netlify-cms-github-oauth-provider
 cd netlify-cms-github-oauth-provider
 npm install
@@ -51,19 +51,19 @@ npm install
 
 The configuration can be set in an .env file but can also be part of the launch command line.
 
-```
+```plain
 NODE_ENV=production
 ORIGINS=www.my_organisation.com,www.my_organisation_second.com
 OAUTH_CLIENT_ID=f432a9casdff1e4b79c57
 OAUTH_CLIENT_SECRET=pampadympapampadympapampadympa
 REDIRECT_URL=https://your.server.com/callback
 GIT_HOSTNAME=https://github.website.com
-PORT=3000
+PORT=3111
 ```
 
-Before you run the service, you need to set up the nginx for your oauth domain to act as a reverse proxy.
+Before you run the service, you need to set up the nginx for your OAuth domain to act as a reverse proxy.
 
-```
+```plain
 location / {
 	proxy_pass http://localhost:3111/;
 	proxy_http_version 1.1;
@@ -75,7 +75,7 @@ location / {
 
 The README also explains how tho set the redirections for `auth` and `callback` in the nginx configuration.
 
-```
+```plain
  location /auth {
     proxy_pass http://127.0.0.1:3111;
     proxy_pass_request_headers      on;
@@ -95,7 +95,7 @@ location /callback {
 
 After you run the service, you should be able to authenticate from your own server.
 
-```
+```plain
 npm start
 ```
 
@@ -115,7 +115,7 @@ composer install
 
 You will then have to copy the `.env` file into a new `.env.local` where you will add the CLIENT_ID and CLIENT_SECRET and callback url from the OAuth Application that you previously created on github:
 
-```
+```plain
 OAUTH_PROVIDER=github
 ...
 OAUTH_CLIENT_ID=CLIENT_ID
@@ -153,13 +153,13 @@ In the `backend:` section of the config, you will document all details for Svetl
 
 The name will be the forge system that you use. Currently, Svetlia supports github and gitlab, but the current starter uses github.
 
-```
+```plain
   name: github # current huwindty has been tested with github only
 ```
 
 The repo will be the path to the git repository of your huwidty site on the chosen forge.
 
-```
+```plain
   repo: aloxe/huwindty # Path to your GitHub repository
 ```
 
@@ -169,15 +169,15 @@ If you choose your main branch, all changes that you save in the CMS will be pus
 
 Since Svetlia doesn't yet handle content workflow, it is recommended to create a secondary branch for edition that can go through editorial workflow through a pull request.
 
-```
+```plain
   branch: edit # name of the branch where edits will be pushed
 ```
 
 The content shown in the back office will be the one from the edition branch. If this branch contains many changes that are not merged into your main branch, the back end might be very different from the public site.{.note}
 
-Finally, before you can start, you will need to update `base_url:` with the url of the CMS Oauth provider you published as explained earlier.
+Finally, before you can start, you will need to update `base_url:` with the url of the CMS OAuth provider you published as explained earlier.
 
-```
+```plain
 base_url: https://oauth.example.com # Path to ext auth provider
 ```
 
@@ -195,7 +195,7 @@ The editable content is defined in the `collections:`. It allows you to list whi
 
 For example, the documentation pages of Huwindty are defined like this:
 
-```
+```plain
 collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
     label: "Documentation" # Used in the UI
@@ -206,14 +206,14 @@ collections:
 
 With media and public folder following the [documentation of Decap CMS](https://decapcms.org/docs/collection-folder/#media-and-public-folder):
 
-```
+```plain
     media_folder: '' # start with a slash
     public_folder: /documentation
 ```
 
 Each page of this collection will have a `layout` called "base" and `isMarkdown` set to `true`. These will not appear in the CMS but will be set in the front matter. Then the `title` and `headline` can be modified as a string in the CMS.
 
-```
+```plain
     create: true # Allow users to create new documents in this collection
     fields: # All the fields for each document, usually in front matter + body
       - label: "Layout"
@@ -237,4 +237,4 @@ Each page of this collection will have a `layout` called "base" and `isMarkdown`
 
 ## User management with github
 
-In your repository settings on Github, go to settings > collaborators and click on the button \\[Add people]. You will be able to add any github user as collaborator. Only people that you added will be able to edit your pages and you can revoke them at any time by removing them from the list.
+In your repository settings on Github, go to settings > collaborators and click on the button \[Add people]. You will be able to add any github user as collaborator. Only people that you added will be able to edit your pages and you can revoke them at any time by removing them from the list.
