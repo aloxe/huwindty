@@ -34,7 +34,7 @@ If you want to exclude a page from the navigation (typically the 404 page and si
 eleventyExcludeFromCollections: true
 ```
 
-Huwindity navigation menu is build automatically from `collections.all`.
+Huwindty navigation menu is build automatically from `collections.all`.
 
 ### Navigation Menu Structure
 
