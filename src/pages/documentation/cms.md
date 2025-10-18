@@ -140,7 +140,7 @@ Users can check that they keep access to the repository by editing files. They c
 
 ## The back office configuration
 
-The back-office already installed with huwindity. You can find it under `_assets/public/admin`. This folder contains two files: index.html and config.yml.
+The back-office already installed with huwindty. You can find it under `_assets/public/admin`. This folder contains two files: index.html and config.yml.
 
 - The index.html is the page that will load the CMS application.
 - config.yml is the config file. You can update it to set the behaviour of your CMS. 
