@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - test
+      - test-lighthouse
 
 jobs:
   lighthouseci:
