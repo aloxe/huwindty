@@ -43,7 +43,7 @@ I chose two apps for this purpose, one is running on node and is served by nginx
 
 [netlify-cms-github-oauth-provider](https://github.com/vencax/netlify-cms-github-oauth-provider) is available on github and can run locally as well as on a server with nginx as a reverse proxy. The README is well details to run the installation.
 
-```plain
+```bash
 git clone https://github.com/vencax/netlify-cms-github-oauth-provider
 cd netlify-cms-github-oauth-provider
 npm install
@@ -51,7 +51,7 @@ npm install
 
 The configuration can be set in an .env file but can also be part of the launch command line.
 
-```plain
+```bash
 NODE_ENV=production
 ORIGINS=www.my_organisation.com,www.my_organisation_second.com
 OAUTH_CLIENT_ID=f432a9casdff1e4b79c57
@@ -63,7 +63,7 @@ PORT=3111
 
 Before you run the service, you need to set up the nginx for your OAuth domain to act as a reverse proxy.
 
-```plain
+```bash
 location / {
 	proxy_pass http://localhost:3111/;
 	proxy_http_version 1.1;
@@ -75,7 +75,7 @@ location / {
 
 The README also explains how tho set the redirections for `auth` and `callback` in the nginx configuration.
 
-```plain
+```bash
  location /auth {
     proxy_pass http://127.0.0.1:3111;
     proxy_pass_request_headers      on;
@@ -95,7 +95,7 @@ location /callback {
 
 After you run the service, you should be able to authenticate from your own server.
 
-```plain
+```bash
 npm start
 ```
 
@@ -115,7 +115,7 @@ composer install
 
 You will then have to copy the `.env` file into a new `.env.local` where you will add the CLIENT_ID and CLIENT_SECRET and callback url from the OAuth Application that you previously created on github:
 
-```plain
+```bash
 OAUTH_PROVIDER=github
 ...
 OAUTH_CLIENT_ID=CLIENT_ID
@@ -140,7 +140,7 @@ Users can check that they keep access to the repository by editing files. They c
 
 ## The back office configuration
 
-The back-office already installed with huwindity. You can find it under `_assets/public/admin`. This folder contains two files: index.html and config.yml.
+The back-office already installed with huwindty. You can find it under `_assets/public/admin`. This folder contains two files: index.html and config.yml.
 
 - The index.html is the page that will load the CMS application.
 - config.yml is the config file. You can update it to set the behaviour of your CMS. 
@@ -153,13 +153,13 @@ In the `backend:` section of the config, you will document all details for Svetl
 
 The name will be the forge system that you use. Currently, Svetlia supports github and gitlab, but the current starter uses github.
 
-```plain
+```bash
   name: github # current huwindty has been tested with github only
 ```
 
 The repo will be the path to the git repository of your huwidty site on the chosen forge.
 
-```plain
+```bash
   repo: aloxe/huwindty # Path to your GitHub repository
 ```
 
@@ -169,7 +169,7 @@ If you choose your main branch, all changes that you save in the CMS will be pus
 
 Since Svetlia doesn't yet handle content workflow, it is recommended to create a secondary branch for edition that can go through editorial workflow through a pull request.
 
-```plain
+```bash
   branch: edit # name of the branch where edits will be pushed
 ```
 
@@ -177,7 +177,7 @@ The content shown in the back office will be the one from the edition branch. If
 
 Finally, before you can start, you will need to update `base_url:` with the url of the CMS OAuth provider you published as explained earlier.
 
-```plain
+```bash
 base_url: https://oauth.example.com # Path to ext auth provider
 ```
 
@@ -195,7 +195,7 @@ The editable content is defined in the `collections:`. It allows you to list whi
 
 For example, the documentation pages of Huwindty are defined like this:
 
-```plain
+```bash
 collections:
   - name: "documentation" # Used in routes, e.g., /admin/collections/blog
     label: "Documentation" # Used in the UI
@@ -206,14 +206,14 @@ collections:
 
 With media and public folder following the [documentation of Decap CMS](https://decapcms.org/docs/collection-folder/#media-and-public-folder):
 
-```plain
+```bash
     media_folder: '' # start with a slash
     public_folder: /documentation
 ```
 
 Each page of this collection will have a `layout` called "base" and `isMarkdown` set to `true`. These will not appear in the CMS but will be set in the front matter. Then the `title` and `headline` can be modified as a string in the CMS.
 
-```plain
+```bash
     create: true # Allow users to create new documents in this collection
     fields: # All the fields for each document, usually in front matter + body
       - label: "Layout"

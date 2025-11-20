@@ -84,7 +84,7 @@ The feed is using a collection. You can use the `collection.all` to include all 
 
 As the [11ty collection page](https://www.11ty.dev/docs/collections/) states, you can create a collection of pages by adding a `tags` key in the front matter of the chosen pages. They will then be part of the collection with the same name as your tags.
 
-```plain
+```bash
 tags: post
 ```
 
