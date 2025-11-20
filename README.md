@@ -7,9 +7,9 @@
 
 ## What was added
 ### Continuous Integration
-- Publication to GitHub Pages (on merge)
+- Publication to GitHub or Codeberg Pages
 - Deployment to standalone server via SSH (manual action)
-- Make sure you keep the Lighthouse 💯 💯 💯 💯 (check on PR)
+<!-- - Make sure you keep the Lighthouse 💯 💯 💯 💯 (check on PR) -->
 ### Styles
 - Tailwind CSS is processed directly by 11ty
 ### Navigation
@@ -23,18 +23,27 @@
 - Possibility to use Decap CMS with the same config
 - Manage metadata and images on a per-page basis
 ### Documentation
-- [Documentation](https://aloxe.github.io/huwindty/documentation/) comes with the starter as an example
+- [Documentation](https://aloxe.codeberg.page/huwindty/documentation/) comes with the starter as an example
 - Explains how features are developed
 
-## What is still missing
-- dark mode
-- accessibility test
-
 ## Installation
+
+### with Codeberg
+
+1. Fork huwindty onto your account. Use links or type `git clone git@codeberg.org:aloxe/huwindty.git`
+2. Install dependencies: `npm install`
+3. Start development: `npm start`
+4. Check your website at http://localhost:8080/
+5. Build the release version with `npm run build` and check the result in `_site`.
+6. When ready, push your changes to your repo on Codeberg and the action will publish it to Codeberg pages.
+7. Sveltia CMS needs [specific configuration](https://aloxe.codeberg.page/huwindty/documentation/cms/) for editor authentication.
+
+### With github
+
 1. Create a new repository from [huwindty’s template](https://github.com/aloxe/huwindty/generate), or [clone huwindty](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) on your account. Use links or type `git clone git@github.com:aloxe/huwindty.git`
 2. Install dependencies: `npm install`
 3. Start development: `npm start`
 4. Check your website at http://localhost:8080/
 5. Build the release version with `npm run build` and check the result in `_site`.
-6. When ready, push your changes to GitHub and the action will build and publish your site to [GitHub Pages](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages) or the server of your choice via SSH ([needs configuration](https://aloxe.github.io/huwindty/documentation/ci/)).
-7. Sveltia CMS needs [specific configuration](https://aloxe.github.io/huwindty/documentation/cms/) for editor authentication.
+6. When ready, push your changes to GitHub and the action will build and publish your site to [GitHub Pages](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages) or the server of your choice via SSH ([needs configuration](https://aloxe.codeberg.page/huwindty/documentation/ci/)).
+7. Sveltia CMS needs [specific configuration](https://aloxe.codeberg.page/huwindty/documentation/cms/) for editor authentication.

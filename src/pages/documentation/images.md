@@ -113,7 +113,7 @@ Because the CMS uses Markdown and that images in Markdown are automaticaly conve
 
 The thumbnail of a page is defined in the front matter. For example the current page has:
 
-```
+```js
 thumbnail: boat.jpg
 ```
 

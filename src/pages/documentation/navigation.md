@@ -12,7 +12,7 @@ templateEngineOverride: md
 ### 11ty Navigation Plugin
 The [11ty Navigation Plugin](https://www.11ty.dev/docs/plugins/navigation/) is a plugin that allows to define and display a navigation menu form pages. It relies on a series of codes added to the [Front Matter](https://www.11ty.dev/docs/data-frontmatter/) of pages, giving eanch page at least a key.
 
-```
+```bash
 eleventyNavigation:
   key: Bats
   parent: Mammals
@@ -30,7 +30,7 @@ In Eleventy, [collections](https://www.11ty.dev/docs/collections/) allow you to 
 
 If you want to exclude a page from the navigation (typically the 404 page and similar), you can exclude it from `collections.all` by adding the following line in the page's front matter:
 
-```
+```js
 eleventyExcludeFromCollections: true
 ```
 
@@ -46,7 +46,7 @@ The hierarchy is determined by the `page.url` value, which can be altered by add
 
 Sections appear in the menu as clickable links. Since some of these pages might lack content, you can automatically list the pages within a section by using the `index` layout. Additionally, you can include a title for this list using the `toc` key in the front matter.
 
-```
+```bash
 layout: index
 title: Documentation
 toc: Table of content
@@ -255,8 +255,15 @@ The list of sub pages on `index.md` and `index.html` pages is displayed thanks t
   {% endfor %}
 ```
 
+## Collections and tags
+
+Huwindty doesn't come with examples of index that spreads on several pages. This is possible thanks to [eleventy build in pagination](https://www.11ty.dev/docs/pagination/nav/).
+
+Tags are not collections and need a little work before they can be paginated. An example of paginated indexes with categories and tags have been implemented using Huwindty and is [documented here](https://alix.guillard.fr/notes/dotclear-to-eleventy/page-navigation/).
+
 ## What next?
 
 You may want to update the styles directly in both `menu.njk` and `renderNavItem.njk` as well as `index.njk` so that they fit your needs. 
 
 If you do not need such a menu in your website, just remove these files and carry on.
+
