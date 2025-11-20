@@ -12,7 +12,7 @@ templateEngineOverride: md
 ### 11ty Navigation Plugin
 The [11ty Navigation Plugin](https://www.11ty.dev/docs/plugins/navigation/) is a plugin that allows to define and display a navigation menu form pages. It relies on a series of codes added to the [Front Matter](https://www.11ty.dev/docs/data-frontmatter/) of pages, giving eanch page at least a key.
 
-```
+```bash
 eleventyNavigation:
   key: Bats
   parent: Mammals
@@ -30,7 +30,7 @@ In Eleventy, [collections](https://www.11ty.dev/docs/collections/) allow you to 
 
 If you want to exclude a page from the navigation (typically the 404 page and similar), you can exclude it from `collections.all` by adding the following line in the page's front matter:
 
-```
+```js
 eleventyExcludeFromCollections: true
 ```
 
@@ -46,7 +46,7 @@ The hierarchy is determined by the `page.url` value, which can be altered by add
 
 Sections appear in the menu as clickable links. Since some of these pages might lack content, you can automatically list the pages within a section by using the `index` layout. Additionally, you can include a title for this list using the `toc` key in the front matter.
 
-```
+```bash
 layout: index
 title: Documentation
 toc: Table of content
