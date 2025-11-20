@@ -255,8 +255,15 @@ The list of sub pages on `index.md` and `index.html` pages is displayed thanks t
   {% endfor %}
 ```
 
+## Collections and tags
+
+Huwindty doesn't come with examples of index that spreads on several pages. This is possible thanks to [eleventy build in pagination](https://www.11ty.dev/docs/pagination/nav/).
+
+Tags are not collections and need a little work before they can be paginated. An example of paginated indexes with categories and tags have been implemented using Huwindty and is [documented here](https://alix.guillard.fr/notes/dotclear-to-eleventy/page-navigation/).
+
 ## What next?
 
 You may want to update the styles directly in both `menu.njk` and `renderNavItem.njk` as well as `index.njk` so that they fit your needs. 
 
 If you do not need such a menu in your website, just remove these files and carry on.
+

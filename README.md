@@ -43,6 +43,7 @@
 7. Sveltia CMS needs [specific configuration](https://aloxe.codeberg.page/huwindty/documentation/cms/) for editor authentication.
 
 ### With github
+
 1. Create a new repository from [huwindty’s template](https://github.com/aloxe/huwindty/generate), or [clone huwindty](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) on your account. Use links or type `git clone git@github.com:aloxe/huwindty.git`
 2. Install dependencies: `npm install`
 3. Start development: `npm start`
