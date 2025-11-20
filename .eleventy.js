@@ -48,9 +48,11 @@ module.exports = async function (eleventyConfig) {
     "markdown",
     require("highlight.js/lib/languages/markdown")
   );
-  hljs.registerLanguage("bash", require("highlight.js/lib/languages/bash"));
-  hljs.registerLanguage("xml", require("highlight.js/lib/languages/xml"));
-  hljs.registerLanguage("css", require("highlight.js/lib/languages/css"));
+  hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+  hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown'));
+  hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+  hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
+  hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
 
   // highlight codeblocksaccording to language
   mdLib.renderer.rules.fence = (tokens, idx) => {
