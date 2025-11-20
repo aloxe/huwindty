@@ -3,7 +3,10 @@ layout: base
 title: Styles
 headline: How to style your eleventy site with Tailwind css
 description: Styles in huwindty with tailwind
-thumbnail: /img/vera.jpg
+tags: ''
+author: ''
+date: 2025-10-15
+thumbnail: circus.jpg
 ismarkdown: true
 templateEngineOverride: md
 ---
@@ -50,7 +53,6 @@ The file `tailwind.css` is the css file that imoports tailwind, it loads it anc 
   }
   (…)
 }
-
 ```
 
 The style is processed with tailwind as part of the site generation with a postCSS filter that it added to the layouts in eleventy's config.
@@ -84,12 +86,11 @@ const postcssFilter = (cssCode, done) => {
 
 This configuration was inspired by the blog post [How to Integrate PostCSS and Tailwind CSS](https://zenzes.me/eleventy-integrate-postcss-and-tailwind-css/).
 
-
 ## Tailwind and Markdown
 
-Tailwind CSS is ideal to use in html files, but markdown doesn't support tailwind utilities. For this, there are two solutions: *Create custom Tailwind components* and *add classes to the Markdown output*. Both are explained in detail in the blogpost [Eleventy, Markdown, and Tailwind CSS](https://dev.to/matthewtole/eleventy-markdown-and-tailwind-css-14f8) 
+Tailwind CSS is ideal to use in html files, but markdown doesn't support tailwind utilities. For this, there are two solutions: _Create custom Tailwind components_ and _add classes to the Markdown output_. Both are explained in detail in the blogpost [Eleventy, Markdown, and Tailwind CSS](https://dev.to/matthewtole/eleventy-markdown-and-tailwind-css-14f8) 
 
-In order to keep markdown files to focus on content I chose to implement the first one (*Create custom Tailwind components*) in this starter. These are the rules listed in `tailwind.css` under `@utility mkdn`. 
+In order to keep markdown files to focus on content I chose to implement the first one (_Create custom Tailwind components_) in this starter. These are the rules listed in `tailwind.css` under `@utility mkdn`. 
 
 These default styles can also be rendered within an html file by adding a class `mkdn` to an html wrapper element. This is the case for example in the `index.njk` layout.
 
@@ -106,6 +107,7 @@ As an example the note above is generated with the following markdown text:
 ```txt
 This is capability can get css messy very quickly. It is recommanded to only use it for a few classes.{.note}
 ```
+
 and is styled thanks to the following css class that is also added under `@utility mkdn`:
 
 ```css
@@ -121,16 +123,17 @@ In this text all utility classes are used except the text colour.{.p-8 .bg-orang
 
 For example, the frame above is styled with the following:
 
-```
+```plain
 {.p-8 .bg-orange-800 .text-sky-300 .border .border-4 .border-sky-300}
 ```
+
 but you can see that the text is not in the expected colour because the `@utility mkdn` defines the colour of the text in every paragraphs and this takes precedence. 
 
 In this text all utility classes are used even the text colour.{.p-8 .bg-orange-800 .text-sky-300! .border .border-4 .border-sky-300}
 
 You can make the text colour overide the base utility with the `!` symbol that acts in tailwind as the usual `!important` css. The example above is styled with the following:
 
-```
+```plain
 {.p-8 .bg-orange-800 .text-sky-300! .border .border-4 .border-sky-300}
 ```
 
@@ -170,7 +173,6 @@ For example the medu of the current site changes background colour from blue to 
 
 Tailwind documentation has [more details on dark mode](https://tailwindcss.com/docs/dark-mode).
 
-
 ### Manual theme switcher
 
 Most of the time the light or dark theme can be set in your browser under Web site appearence and the site that handles it can deliver the right theme for it. Some web sites offer users to manually switch from one theme to another (often with a terrible UX).
@@ -188,14 +190,19 @@ This switch has three positions: light, browser default and dark.
 The widget is placed in the footer `footer.njk` and used hidden radio buttons. The script `src/_assets/js/themeswitch.js` handles the theme changes by doing two things: 
 
 1. Add or remove the `dark` or `light` class to the main document element `<html>`.
+
 ```js
 document.documentElement.classList.add(theme)
 ```
+
 2. Save the theme choice in the browser local storage
+
 ```js
 localStorage.theme = theme;
 ```
+
 When the user choses browser defaults and the theme value is "none", the html element class is cleared as well as the local storage. But the "dark" class may be added back if the user his browser set in dark mode.
+
 ```js
 document.documentElement.classList.toggle("dark", window.matchMedia("(prefers-color-scheme: dark)").matches)
 ```
@@ -208,4 +215,5 @@ document.documentElement.classList.toggle(
   localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
 );
 ```
+
 You may not want to use this manual switcher. In that case, just get rid of it in the footer, delete `themeswitch.js` and don't forget to also remove the `@custom-variant` in `tailwind.css` without which the natural dark mode will not work.
