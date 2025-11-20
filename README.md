@@ -7,9 +7,9 @@
 
 ## What was added
 ### Continuous Integration
-- Publication to GitHub Pages (on merge)
+- Publication to GitHub or Codeberg Pages
 - Deployment to standalone server via SSH (manual action)
-- Make sure you keep the Lighthouse 💯 💯 💯 💯 (check on PR)
+<!-- - Make sure you keep the Lighthouse 💯 💯 💯 💯 (check on PR) -->
 ### Styles
 - Tailwind CSS is processed directly by 11ty
 ### Navigation
@@ -23,18 +23,14 @@
 - Possibility to use Decap CMS with the same config
 - Manage metadata and images on a per-page basis
 ### Documentation
-- [Documentation](https://aloxe.github.io/huwindty/documentation/) comes with the starter as an example
+- [Documentation](https://aloxe.codeberg.page/huwindty/documentation/) comes with the starter as an example
 - Explains how features are developed
-
-## What is still missing
-- dark mode
-- accessibility test
 
 ## Installation
 
 ### with Codeberg
 
-1. Fork huwindty onto your account. Use links or type `git clone git@codeberg.org/aloxe/huwindty.git`
+1. Fork huwindty onto your account. Use links or type `git clone git@codeberg.org:aloxe/huwindty.git`
 2. Install dependencies: `npm install`
 3. Start development: `npm start`
 4. Check your website at http://localhost:8080/
