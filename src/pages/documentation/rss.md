@@ -3,7 +3,10 @@ layout: base
 title: RSS Feed
 headline: Syndicate your content
 description: Huwindty comes with a ready made RSS feed
-thumbnail: /img/vera.jpg
+tags: ''
+author: ''
+date: 2025-10-15
+thumbnail: /img/animals/heron.jpg
 ismarkdown: true
 templateEngineOverride: md
 ---
@@ -12,6 +15,7 @@ templateEngineOverride: md
 Making the content from one website available to others is called syndication. There are several standard formats for this, and one of the most common is RSS, which stands for Really Simple Syndication. There are also other formats like Atom, which is widely used.
 
 ## 11ty RSS Plugin
+
 The [11ty RSS Plugin](https://www.11ty.dev/docs/plugins/rss/) is a plugin that provides a range of utilities that are useful for generating an RSS or Atom feed using the Nunjucks templating syntax.
 
 Huwindty comes with the RSS plugin and a feed layout that generates an Atom feed at the root of your site. On this demo site, it is available at [aloxe.codeberg.page/huwindty/feed.xml](https://aloxe.codeberg.page/huwindty/feed.xml).

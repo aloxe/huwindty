@@ -6,7 +6,7 @@ description: How do install and use Sveltia CMS as a for your 11ty website
 tags: ''
 author: ''
 date: 2025-08-27
-thumbnail: /img/vera.jpg
+thumbnail: /img/grasshopper.jpg
 ismarkdown: true
 ---
 ## Sveltia CMS
@@ -27,7 +27,7 @@ Go to the [Github OAuth settings](https://github.com/settings/applications/new) 
 
 Fill _Homepage URL_ with the url of where you will install your external OAuth client. _Authorization callback URL_ will get the same url followed by 'callback' `https://example.com/callback`.
 
-Then hit on the button \\[Register application].
+Then hit on the button \[Register application].
 
 On the next step, you will have to create your Client Secret (CLIENT_SECRET) and save it in a secure file. Also save the Client ID (CLIENT_ID).
 
@@ -58,10 +58,10 @@ OAUTH_CLIENT_ID=f432a9casdff1e4b79c57
 OAUTH_CLIENT_SECRET=pampadympapampadympapampadympa
 REDIRECT_URL=https://your.server.com/callback
 GIT_HOSTNAME=https://github.website.com
-PORT=3000
+PORT=3111
 ```
 
-Before you run the service, you need to set up the nginx for your oauth domain to act as a reverse proxy.
+Before you run the service, you need to set up the nginx for your OAuth domain to act as a reverse proxy.
 
 ```bash
 location / {
@@ -175,7 +175,7 @@ Since Svetlia doesn't yet handle content workflow, it is recommended to create a
 
 The content shown in the back office will be the one from the edition branch. If this branch contains many changes that are not merged into your main branch, the back end might be very different from the public site.{.note}
 
-Finally, before you can start, you will need to update `base_url:` with the url of the CMS Oauth provider you published as explained earlier.
+Finally, before you can start, you will need to update `base_url:` with the url of the CMS OAuth provider you published as explained earlier.
 
 ```bash
 base_url: https://oauth.example.com # Path to ext auth provider
@@ -237,4 +237,4 @@ Each page of this collection will have a `layout` called "base" and `isMarkdown`
 
 ## User management with github
 
-In your repository settings on Github, go to settings > collaborators and click on the button \\[Add people]. You will be able to add any github user as collaborator. Only people that you added will be able to edit your pages and you can revoke them at any time by removing them from the list.
+In your repository settings on Github, go to settings > collaborators and click on the button \[Add people]. You will be able to add any github user as collaborator. Only people that you added will be able to edit your pages and you can revoke them at any time by removing them from the list.
