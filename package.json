@@ -40,7 +40,7 @@
   "dependencies": {
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-rss": "^2.0.4",
-    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "@fullhuman/postcss-purgecss": "^8.0.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@toycode/markdown-it-class": "^1.2.4",
     "highlight.js": "^11.11.1",
