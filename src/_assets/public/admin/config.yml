@@ -82,8 +82,10 @@ collections:
     label: "Examples" # Used in the UI
     folder: "src/pages/examples" # The path to the folder where the documents are stored
     # about media and public folder https://decapcms.org/docs/collection-folder/#media-and-public-folder
-    media_folder: '' 
-    public_folder: '/examples'
+    thumbnail: thumbnail
+    columns: [title, date]
+    media_folder: ''
+    public_folder: /examples
     create: true # Allow users to create new documents in this collection
     fields: # All the fields for each document, usually in front matter + body
       - label: "Layout"
