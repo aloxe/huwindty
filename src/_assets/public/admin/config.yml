@@ -75,7 +75,7 @@ collections:
       - label: "Featured Image"
         name: "thumbnail"
         widget: "image"
-        allow_multiple: false
+        multiple: false
         required: false
         preview: false
   - name: "examples" # Used in routes, e.g., /admin/collections/blog
@@ -131,6 +131,6 @@ collections:
       - label: "Featured Image"
         name: "thumbnail"
         widget: "image"
-        allow_multiple: false
+        multiple: false
         required: false
         preview: false
