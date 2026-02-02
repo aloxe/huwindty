@@ -17,14 +17,14 @@
     "tailwind"
   ],
   "author": "Alix Guillard",
-  "license": "Art Libre",
+  "license": "GPL-3.0",
   "homepage": "https://github.com/distantcam/huwindty#readme",
   "bugs": {
     "url": "https://github.com/distantcam/huwindty/issues"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
-    "autoprefixer": "^10.4.23",
+    "autoprefixer": "^10.4.24",
     "cross-env": "^10.1.0",
     "cssnano": "^7.1.2",
     "eleventy-plugin-page-assets": "^0.3.0",
