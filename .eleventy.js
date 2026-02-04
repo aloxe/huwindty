@@ -34,7 +34,7 @@ module.exports = async function (eleventyConfig) {
   const mditOptions = {
     html: true,
     breaks: true,
-    linkify: true,
+    linkify: false,
     typographer: true,
   };
   const mdLib = mdit(mditOptions).use(mditAttrs);
