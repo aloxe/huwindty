@@ -26,7 +26,7 @@ Huwindty doesn't use this plugin.
 
 In Eleventy, [collections](https://www.11ty.dev/docs/collections/) allow you to group pages according to tags added in the front matter. By naming different tags, you can group content in an interesting manner. There is also a `collections.all` that lists all pages, even those without tags.
 
-`collections.all` lists all pages in a folder that is identified by an index file with front matter. Empty folders or folders without an index.md or with an empty index.md will not be taken into account.
+`collections.all` lists all pages in a folder that is identified by an index file with front matter. Empty folders or folders without an index.md or with an empty <span>index.md</span> will not be taken into account.
 
 If you want to exclude a page from the navigation (typically the 404 page and similar), you can exclude it from `collections.all` by adding the following line in the page's front matter:
 
@@ -40,7 +40,10 @@ Huwindty navigation menu is build automatically from `collections.all`.
 
 The navigation utilizes `collections.all` to list all pages. It displays all first-level pages in the main menu, with nested pages organized under their respective submenus. The menu hierarchy mirrors the exact file structure of the collection's pages.
 
-The hierarchy is determined by the `page.url` value, which can be altered by adding a permalink in the front matter. In such cases, the menu will align with the permalink rather than the file system.{.note}
+Collections are sorted by file date. The hierarchy of the navigation follows this order, older first and most recent at the bottom. If you want to change the order of the navigation, just add a `date:` within the front matter of each page.
+\
+You can also reverse the order for the navigation by adding a filter to the collection value setting `{% set allEntries = collections.all | reverse %}`. Doing it in the menu.njk will revert the horizontal menu and doing it renderNavItem.njk will revert the vertical submenus.
+{.note}
 
 ### Index Pages
 

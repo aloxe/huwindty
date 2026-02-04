@@ -10,7 +10,7 @@
 </div>
 
 <nav class="w-full bg-primary text-bg dark:bg-bg-menu-dark text-xl md:flex-shrink-0" id="navigation">
-  {% set allEntries = collections.all %}
+  {% set allEntries = collections.all | reverse %}
   <div class="float-left">
     <a href="/" {% if entry.url == "/" %} aria-current="page" {% endif %}
     class="block p-4 text-nowrap hover:text-bg-hover"

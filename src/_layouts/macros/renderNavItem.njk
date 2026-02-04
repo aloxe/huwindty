@@ -22,7 +22,7 @@
 {% macro renderNavItem(entry) %}
   {% set children = [] %}
   {% set level = entry.url.split("/").length %}
-  {% set Allentries = collections.all %}
+  {% set Allentries = collections.all | reverse %}
 
   {% for menuEntry in Allentries %}
     {% if menuEntry.url.split("/").length === level + 1 %}
