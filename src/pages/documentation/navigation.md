@@ -42,7 +42,7 @@ The navigation utilizes `collections.all` to list all pages. It displays all fir
 
 Collections are sorted by file date. The hierarchy of the navigation follows this order, older first and most recent at the bottom. If you want to change the order of the navigation, just add a `date:` within the front matter of each page.
 \
-You can also reverse the order for the navigation by adding a filter to the collection value setting `{% set allEntries = collections.all | reverse %}`. Doing it in the menu.njk will revert the horizontal menu and doing it renderNavItem.njk will revert the vertical submenus.
+You can also reverse the order of the navigation items by adding a filter to the collection value setting `{% set allEntries = collections.all | reverse %}`. Doing it in the **menu.njk** will revert the order in the horizontal menu and doing it in **renderNavItem.njk** will revert the order in the vertical submenus.
 {.note}
 
 ### Index Pages
