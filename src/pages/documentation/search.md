@@ -26,8 +26,8 @@ In this case search requests are sent to DuckDuckGo but you can use any other se
   <!-- default form is the fallback when nojs -->
 	<form action="https://duckduckgo.com/" method="post" class="group/search min-h-2.5"><!-- min-height to reduce CLS -->
 		<label>
-			<span class="md:invisible group-focus-within/search:invisible align-bottom cursor-pointer fixed top-6 right-18"><span class="sr-only">Rechercher :</span> 🔎 </span>
-			<input placeholder="Recherche" type="search" id="searchinput" name="q" autocomplete="off" class="
+			<span class="md:invisible group-focus-within/search:invisible align-bottom cursor-pointer fixed top-6 right-18"><span class="sr-only">Search :</span> 🔎 </span>
+			<input placeholder="Search this site" type="search" id="searchinput" name="q" autocomplete="off" class="
       w-0 md:w-35 !p-0 md:!p-2 -mr-6 border-0 border-black md:border-1 bg-white rounded-xl
       fixed top-2 right-10
       delay-100 duration-300 ease-in-out 
