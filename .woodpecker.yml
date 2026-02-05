@@ -2,6 +2,7 @@ steps:
   build:
     when:
       event: push
+      branch: main
     image: node
     environment:
       TOKEN:
