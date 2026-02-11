@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://unpkg.com" />
     <title>CMS admin sveltia CMS</title>
   </head>
   <body>
@@ -13,34 +13,83 @@
     Huwindty uses sveltia CMS but you may prefer decap cms if you want certain features that are not yet implemented in sveltia (like workflow)
     -->
     <!-- <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script> -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+    <script
+      src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"
+      type="module"
+    ></script>
 
     <script>
-      // Taken from demo https://github.com/decaporg/decap-cms/blob/main/dev-test/index.html
-      const previewStyles = `
-        html,
-        body {
-          color: #444;
-          font-size: 14px;
-          font-family: sans-serif;
-        }
+      window.onload = function () {
+        // from https://github.com/decaporg/decap-cms/blob/main/dev-test/index.html
+        // documentation: https://decapcms.org/docs/custom-widgets/#registereditorcomponent
+        CMS.registerEditorComponent({
+          id: "youtube",
+          label: "Youtube",
+          fields: [{ name: "id", label: "Youtube Video ID" }],
+          pattern: /^{{<\s?youtube (\S+)\s?>}}/,
+          fromBlock: function (match) {
+            return {
+              id: match[1],
+            };
+          },
+          toBlock: function (obj) {
+            return "{{< youtube " + obj.id + " >}}";
+          },
+          toPreview: function (obj) {
+            return (
+              '<img src="http://img.youtube.com/vi/' +
+              obj.id +
+              '/maxresdefault.jpg" alt="Youtube Video"/>'
+            );
+          },
+        });
 
-        body {
-          padding: 20px;
-        }
+        CMS.registerEditorComponent({
+          id: "CustomImage",
+          label: "CustomImage",
+          fields: [
+            {
+              name: "src",
+              label: "image",
+              widget: "image",
+            },
+            {
+              name: "alt",
+              label: "Param Two",
+              widget: "string",
+            },
+            {
+              name: "title",
+              label: "Param 3",
+              widget: "string",
+            },
+            {
+              name: "cssClass",
+              label: "Param css",
+              widget: "string",
+            },
+          ],
+          pattern: /!\[([\w .]*?)\]\((.*?)(?: "([\w .]*?)")?\)/,
+          fromBlock: function (match) {
+            console.log(match);
 
-        h1 {
-          margin-top: 20px;
-          color: #666;
-          font-weight: bold;
-          font-size: 32px;
-        }
-
-        img {
-          max-width: 100%;
-        }
-      `;
-      CMS.registerPreviewStyle(previewStyles, { raw: true });
+            return {
+              src: decodeURI(match[1]),
+              alt: match[2],
+              title: match[3],
+              cssClass: match[4],
+            };
+          },
+          toBlock: function (obj) {
+            return `\n\n![${obj.alt}](${obj.src}${
+              obj.title ? ` "${obj.title}"` : ""
+            }){.${obj.cssClass}}\n\n`;
+          },
+          toPreview: function (obj) {
+            return `<img src="${obj.src}" alt="${obj.alt}" title="${obj.title}" class="${obj.cssClass}">`;
+          },
+        });
+      };
     </script>
   </body>
 </html>
