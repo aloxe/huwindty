@@ -75,15 +75,17 @@ collections:
       - label: "Featured Image"
         name: "thumbnail"
         widget: "image"
-        allow_multiple: false
+        multiple: false
         required: false
         preview: false
-  - name: "examples" # Used in routes, e.g., /admin/collections/blog
-    label: "Examples" # Used in the UI
-    folder: "src/pages/examples" # The path to the folder where the documents are stored
+  - name: "examples-images" # Used in routes, e.g., /admin/collections/blog
+    label: "Examples Images" # Used in the UI
+    folder: "src/pages/examples/images" # The path to the folder where the documents are stored
     # about media and public folder https://decapcms.org/docs/collection-folder/#media-and-public-folder
-    media_folder: '' 
-    public_folder: '/{{dirname}}/{{filename}}'
+    thumbnail: thumbnail
+    columns: [title, date]
+    media_folder: ''
+    public_folder: /examples/images
     create: true # Allow users to create new documents in this collection
     fields: # All the fields for each document, usually in front matter + body
       - label: "Layout"
@@ -131,6 +133,64 @@ collections:
       - label: "Featured Image"
         name: "thumbnail"
         widget: "image"
-        allow_multiple: false
+        multiple: false
+        required: false
+        preview: false
+  - name: "examples-pages" # Used in routes, e.g., /admin/collections/blog
+    label: "Examples Pages" # Used in the UI
+    folder: "src/pages/examples/pages" # The path to the folder where the documents are stored
+    # about media and public folder https://decapcms.org/docs/collection-folder/#media-and-public-folder
+    thumbnail: thumbnail
+    columns: [title, date]
+    media_folder: ''
+    public_folder: /examples/pages
+    create: true # Allow users to create new documents in this collection
+    fields: # All the fields for each document, usually in front matter + body
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "base"
+        preview: false
+      - label: "isMarkdown"
+        name: "isMarkdown"
+        widget: "hidden"
+        default: true
+        preview: false
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "headline"
+        name: "headline"
+        widget: "string"
+        required: false
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+      - label: "description"
+        name: "description"
+        widget: "string"
+        required: false
+        preview: false
+      - label: "tags"
+        name: "tags"
+        widget: "string"
+        required: false
+        preview: false
+      - label: "author"
+        name: "author"
+        widget: "string"
+        required: false
+        preview: false
+      - label: "date"
+        name: "date"
+        widget: "datetime"
+        default: "{{now}}"
+        format: "YYYY-MM-DD"
+        picker_utc: false
+        preview: false
+      - label: "Featured Image"
+        name: "thumbnail"
+        widget: "image"
+        multiple: false
         required: false
         preview: false
