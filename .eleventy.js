@@ -134,7 +134,6 @@ module.exports = async function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/_layouts/css/tailwind.css");
 
   // Passthrough
-  eleventyConfig.addPassthroughCopy({ "src/assets": "." });
   eleventyConfig.addPassthroughCopy({ "src/_assets/public": "/" });
   eleventyConfig.addPassthroughCopy({ "src/_assets/img": "/img" });
   eleventyConfig.addPassthroughCopy({ "src/_assets/fonts": "/fonts" });
