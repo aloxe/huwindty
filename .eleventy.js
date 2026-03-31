@@ -1,5 +1,4 @@
 const path = require("path");
-import pluginRss from "@11ty/eleventy-plugin-rss";
 const htmlmin = require("html-minifier-terser");
 const postCss = require("postcss");
 const autoprefixer = require("autoprefixer");
@@ -18,7 +17,7 @@ const Images = {
   FORMATS: ["webp", "jpeg"], // formats of generated images
   SIZES: "(max-width: 1200px) 70vw, 1200px", // size of image rendered
 };
-
+// export default async function(eleventyConfig) {
 module.exports = async function (eleventyConfig) {
   const { EleventyHtmlBasePlugin } = await import("@11ty/eleventy");
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
@@ -28,6 +27,7 @@ module.exports = async function (eleventyConfig) {
   }
 
   // rss plugin
+  const { default: pluginRss } = await import("@11ty/eleventy-plugin-rss");
   eleventyConfig.addPlugin(pluginRss);
 
   // markdown
