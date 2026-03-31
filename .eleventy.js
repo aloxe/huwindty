@@ -1,5 +1,5 @@
 const path = require("path");
-const pluginRss = require("@11ty/eleventy-plugin-rss");
+import pluginRss from "@11ty/eleventy-plugin-rss";
 const htmlmin = require("html-minifier-terser");
 const postCss = require("postcss");
 const autoprefixer = require("autoprefixer");
