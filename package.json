@@ -41,7 +41,7 @@
     "@11ty/eleventy-img": "^6.0.4",
     "@11ty/eleventy-plugin-rss": "^3.0.0",
     "@fullhuman/postcss-purgecss": "^8.0.0",
-    "@tailwindcss/postcss": "^4.2.4",
+    "@tailwindcss/postcss": "^4.3.0",
     "@toycode/markdown-it-class": "^1.2.4",
     "highlight.js": "^11.11.1",
     "markdown-it-attrs": "^4.3.1"
