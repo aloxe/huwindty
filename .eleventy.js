@@ -7,7 +7,6 @@ const cssnano = require("cssnano");
 const mdit = require("markdown-it");
 const mditAttrs = require("markdown-it-attrs");
 const hljs = require("highlight.js/lib/core");
-const Image = require("@11ty/eleventy-img");
 const { execSync } = require("child_process");
 
 // sizes and formats of resized images to make them responsive
@@ -29,6 +28,18 @@ module.exports = async function (eleventyConfig) {
   // rss plugin
   const { default: pluginRss } = await import("@11ty/eleventy-plugin-rss");
   eleventyConfig.addPlugin(pluginRss);
+
+  const { default: Image, eleventyImageTransformPlugin } = await import("@11ty/eleventy-img");
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+	  formats: Images.FORMATS,
+	  widths: Images.WIDTHS,
+	  htmlOptions: {
+	    imgAttributes: {
+	      decoding: "async",
+	      sizes: Images.SIZES,
+	    }
+	  }
+	});
 
   // markdown
   const mditOptions = {
@@ -122,11 +133,11 @@ module.exports = async function (eleventyConfig) {
       decoding: "async",
       title: imgTitle,
     };
-    Image(imgSrc, ImgOptions);
-    const metadata = Image.statsSync(imgSrc, ImgOptions);
-    const picture = Image.generateHTML(metadata, htmlOptions);
+    // Image(imgSrc, ImgOptions);
+    // const metadata = Image.statsSync(imgSrc, ImgOptions);
+    // const picture = Image.generateHTML(metadata, htmlOptions);
 
-    return picture;
+    // return picture;
   };
   eleventyConfig.setLibrary("md", mdLib);
 
