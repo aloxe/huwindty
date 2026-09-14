@@ -103,36 +103,36 @@ module.exports = async function (eleventyConfig) {
       env.meta.public_folder;
 
     const imgSrc = isGlobal
-      ? "./" +
-        env.meta.media_folder +
-        imgPath.slice(env.meta.public_folder.length)
-      : imgPath.slice(0, 1) === "/"
-      ? env.eleventy.directories.input.slice(0, -1) + imgPath
-      : env.page.inputPath.substring(
-          0,
-          env.page.inputPath.lastIndexOf("/") + 1
-        ) + imgPath;
+      ? "/" + path.relative(
+          env.eleventy.directories.input,
+          path.join(env.meta.media_folder, imgPath.slice(env.meta.public_folder.length))
+        )
+      : imgPath;
 
     const imgAlt = token.content;
     const imgTitle = token.attrGet("title") ?? "";
     const className = token.attrGet("class");
-    const ImgOptions = getImgOptions(
-      env.page,
-      imgSrc,
-      imgAlt,
-      className,
-      Images.WIDTHS,
-      Images.FORMATS,
-      Images.SIZES
-    );
-    const htmlOptions = {
+    const isLazy = className?.includes("lazy");
+
+    const attrs = stringifyAttributes({
+      src: imgSrc,
       alt: imgAlt,
       class: className,
-      sizes: Images.SIZES,
-      loading: className?.includes("lazy") ? "lazy" : undefined,
+      title: imgTitle || undefined,
+      loading: isLazy ? "lazy" : undefined,
       decoding: "async",
-      title: imgTitle,
-    };
+      sizes: Images.SIZES,
+    });
+
+    return `<img ${attrs}>`;
+    // const htmlOptions = {
+    //   alt: imgAlt,
+    //   class: className,
+    //   sizes: Images.SIZES,
+    //   loading: className?.includes("lazy") ? "lazy" : undefined,
+    //   decoding: "async",
+    //   title: imgTitle,
+    // };
     // Image(imgSrc, ImgOptions);
     // const metadata = Image.statsSync(imgSrc, ImgOptions);
     // const picture = Image.generateHTML(metadata, htmlOptions);
