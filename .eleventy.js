@@ -214,6 +214,7 @@ module.exports = async function (eleventyConfig) {
         alt,
         loading: className?.includes("lazy") ? "lazy" : undefined,
         decoding: "async",
+        'eleventy:ignore': '',
       });
 
       const imgHtmlString = `<img ${imgAttributes}>`;
@@ -221,7 +222,7 @@ module.exports = async function (eleventyConfig) {
       const pictureAttributes = stringifyAttributes({
         class: className,
       });
-      const picture = `<picture ${pictureAttributes}>
+    const picture = `<picture eleventy:ignore ${pictureAttributes}>
     ${sourceHtmlString}
     ${imgHtmlString}
   </picture>`;
