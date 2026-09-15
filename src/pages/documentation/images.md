@@ -1,5 +1,6 @@
 ---
 layout: base
+isMarkdown: true
 title: Images
 headline: Edit and manage images
 description: How do responsive images work in huwindty
@@ -10,6 +11,7 @@ thumbnail: boat.jpg
 ismarkdown: true
 templateEngineOverride: md
 ---
+
 ## Image location
 
 With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always be relative to the `pages` folder which is the root folder for the content.
@@ -38,6 +40,7 @@ const Images = {
 }
 ```
 
+Since `eleventy-img` 7.0.0 All images are handled by eleventy which generates the responsive image tag according to the plugin `eleventyImageTransformPlugin` defined in `eleventy.js`
 
 On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule.
 
@@ -106,7 +109,7 @@ This starter comes with the simple [Svetlia CMS](../cms/) that allows you to add
  _(All images are available for all pages)_
 - in the folder of the current page  
  _(Images are not reusable in other pages)_
- 
+
 Because the CMS uses Markdown and that images in Markdown are automaticaly converted in responsive pictures, there is nothing else to do other than choose well your images, organise them, and never forget the alt text.
 
 ## Thumbnail
@@ -118,4 +121,3 @@ thumbnail: boat.jpg
 ```
 
 This is the image that is shown in the list of pages in the CMS interface. It is also used as the metadata image of the page. This is the image that is used in the generated snipet that you see when you copy the url of the page in social medias.
-
