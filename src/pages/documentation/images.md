@@ -40,13 +40,19 @@ const Images = {
 }
 ```
 
-Since `eleventy-img` 7.0.0 All images are handled by eleventy which generates the responsive image tag according to the plugin `eleventyImageTransformPlugin` defined in `eleventy.js`
+Since `eleventy-img` 7.0.0 All images are handled by eleventy which generates the responsive image tag according to the plugin `eleventyImageTransformPlugin` defined in eleventy.js.
 
-On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule.
+Both markdown and HTML images are handled and generate an `img` tag including `srcset` attribute for all responsive sizes.
 
-On pure HTML pages, you will need to use a specific shortcode defined in `eleventyConfig.addShortcode("Picture"` and provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
+However, on HTML pages, it is possible to use the picture tag with the same image width. This is done using the specific shortcode defined in `eleventyConfig.addShortcode("Picture"` . This method allows to provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
 
-## Responsive Images in HTML pages
+### Avoiding responsiveness
+
+For any reason, if you want to avoid responsiveness, you will need to add the attribute `eleventy:ignore` inside the `img` tag.
+
+Since `eleventy-img` 7.0.0 All images are handled and this also includes used in layout files. If you want to use a single size image in the layout of your page, this is where the attribute `eleventy:ignore` is useful. Huwindty doesn't use such image.
+
+## Responsive pictures in HTML pages
 
 To get a step by step understanding of what the eleventy-img plugin is used to create a shortcode that generates the images and provides the right code You can read [How to optimize images on eleventy (11ty)](https://dev.to/22mahmoud/how-to-optimize-and-lazyload-images-on-eleventy-11ty-206h) which was freely adapted to Huwindty. You may want to add the lazy-loading and the blurry effect if you want.
 
@@ -72,7 +78,7 @@ The atributes are the following:
 
 ## Responsive Images in Markdown
 
-For Markdown, we implemented what is explained in [Responsive Images in Markdown with Eleventy Image](https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/), a nice step by step blog post explaining how to use mardown-it to parse normal image code in markdown to generate the responsive image HTML code thanks to eleventy-img.
+For Markdown, we implemented what is explained in [Responsive Images in Markdown with Eleventy Image](https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/), a nice step by step blog post explaining how to use mardown-it to parse normal image code in markdown to generate the responsive image HTML code thanks to eleventy-img. This solution was slightly amended since responsivness is handled by eleventy-img but option like image path or lazyness explained bellow remains.
 
 The image below is generated with the simple code
 
