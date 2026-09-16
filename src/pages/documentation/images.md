@@ -1,9 +1,9 @@
 ---
 layout: base
-ismarkdown: true
+isMarkdown: true
 title: Images
 headline: Edit and manage images
-description: How do responsive images work in huwindty
+description: How do responsive images work in Huwindty
 tags: ''
 author: ''
 date: 2025-01-04
@@ -12,23 +12,23 @@ templateEngineOverride: md
 ---
 ## Image location
 
-With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always be relative to the `pages` folder which is the root folder for the content.
+With the Huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their URL will always be relative to the `pages` folder, which is the root folder for content.
 
-### example image
+### Example image
 
 ![drooderfiets and yellow boat](/documentation/boat.jpg)
 
-For example, the image above (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The url used to show it on the page will be `/documentation/boat.jpg`. Always use an absolute url for the image source (starting with a `/`).
+For example, the image above (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The URL used to display it on the page will be `/documentation/boat.jpg`. Always use an absolute URL for the image source (starting with a `/`).
 
 ## Responsive images
 
-Web pages can display on any screen from a small phone or a large high definition expensive monitor. Displaying a HD 3000px wide image on a phone is a waste of resources that slows down page rendering. On the contrary, showing a 150px picture on a wide monitor might miss some details. Making images responsive is the way to provide the appropriate picture to each screen.
+Web pages can be displayed on any screen, from a small phone to a large high-definition, expensive monitor. Displaying a 3000px-wide HD image on a phone is a waste of resources that slows down page rendering. Conversely, showing a 150px picture on a wide monitor might miss some details. Making images responsive is how you provide the appropriate picture to each screen.
 
-The article [Responsive images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/) covers everything you need to know about this topic when managing a web site.
+The article [Responsive images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/) covers everything you need to know about this topic when managing a website.
 
 ## Default choice
 
-The eleventy config provides a way to generate responsive images and store them at the right place, as well as generating the right responsive code to use them (see .eleventy.js). In Huwindty, Image sizes and format are set with the following default and can be adjusted according to your layout and needs by changing the Images enum at the beginning of .eleventy.js:
+The eleventy config provides a way to generate responsive images and store them in the correct location, as well as generating the correct responsive code to use them (see `.eleventy.js`). In Huwindty, image sizes and formats are set using the following default settings and can be adjusted according to your layout and needs by changing the `Images` enum at the beginning of `.eleventy.js`:
 
 ```js
 const Images = {
@@ -38,15 +38,15 @@ const Images = {
 }
 ```
 
-Markdown pages are parsed with `mdLib` and images are handled with the `mdLib.renderer.rules.image` rule. Then the `eleventyImageTransformPlugin` plugin takes care of rendering the responsive code as defined unsing `eleventy-img`.
+Markdown pages are parsed with `mdLib` and images are handled with the `mdLib.renderer.rules.image` rule. Then the `eleventyImageTransformPlugin` plugin takes care of rendering the responsive code as defined using `eleventy-img`.
 
-It is even simplier in HTML pages, as the `eleventyImageTransformPlugin` plugin takes all images in the code to make them responsive. Even images in the layout files are handled.
+It is even simpler in HTML pages, as the `eleventyImageTransformPlugin` plugin takes all images in the code to make them responsive. Even images in the layout files are handled.
 
-It is also possible to use the shortcode defined in `eleventyConfig.addShortcode("Picture"` . This method allows you to define several options to display the image. Only the `alt` tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
+It is also possible to use the shortcode defined in `eleventyConfig.addShortcode("Picture"…`. This method allows you to define several options to display the image. Only the `alt` attribute is compulsory, but you can also override the default width and formats of your image to fit the specific design of your HTML page.
 
 ## Responsive picture shortcode
 
-To get a step by step understanding of what the eleventy-img plugin is used to create a shortcode that generates the images and provides the right code You can read [How to optimize images on eleventy (11ty)](https://dev.to/22mahmoud/how-to-optimize-and-lazyload-images-on-eleventy-11ty-206h) which was freely adapted to Huwindty. You may want to add the lazy-loading and the blurry effect if you want.
+To get a step-by-step understanding of how the eleventy-img plugin is used to create a shortcode that generates the images and provides the correct code, you can read [How to optimize images on eleventy (11ty)](https://dev.to/22mahmoud/how-to-optimize-and-lazyload-images-on-eleventy-11ty-206h), which has been freely adapted for Huwindty. You may want to add lazy loading and the blurry effect if you wish.
 
 An example is available on the Huwindty home page
 
