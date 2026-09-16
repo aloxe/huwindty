@@ -1,6 +1,6 @@
 ---
 layout: base
-isMarkdown: true
+ismarkdown: true
 title: Images
 headline: Edit and manage images
 description: How do responsive images work in huwindty
@@ -10,7 +10,6 @@ date: 2025-01-04
 thumbnail: boat.jpg
 templateEngineOverride: md
 ---
-
 ## Image location
 
 With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always be relative to the `pages` folder which is the root folder for the content.
@@ -29,7 +28,7 @@ The article [Responsive images 101](https://cloudfour.com/thinks/responsive-imag
 
 ## Default choice
 
-In this template, the eleventy config provides a way to generate responsive images and store them at the right place, as well as generating the right responsive code to use them (see .eleventy.js). Image sizes and format can be adjusted according to your layout and needs by changing the Images enum at the beginning of .eleventy.js:
+The eleventy config provides a way to generate responsive images and store them at the right place, as well as generating the right responsive code to use them (see .eleventy.js). In Huwindty, Image sizes and format are set with the following default and can be adjusted according to your layout and needs by changing the Images enum at the beginning of .eleventy.js:
 
 ```js
 const Images = {
@@ -39,13 +38,13 @@ const Images = {
 }
 ```
 
-On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule and the `eleventyImageTransformPlugin` plugin unsing `eleventy-img`.
+Markdown pages are parsed with `mdLib` and images are handled with the `mdLib.renderer.rules.image` rule. Then the `eleventyImageTransformPlugin` plugin takes care of rendering the responsive code as defined unsing `eleventy-img`.
 
-Eleventy also processes pure HTML pages, so the `eleventyImageTransformPlugin` plugin is also active and images in an `img` tag will be made responsive with the `srcset` attribute.
+It is even simplier in HTML pages, as the `eleventyImageTransformPlugin` plugin takes all images in the code to make them responsive. Even images in the layout files are handled.
 
-If you want to have responsive images with the picture tag, it is possible to use the shortcode defined in `eleventyConfig.addShortcode("Picture"` . This method allows you to provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
+It is also possible to use the shortcode defined in `eleventyConfig.addShortcode("Picture"` . This method allows you to define several options to display the image. Only the `alt` tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
 
-## Responsive pictures in HTML pages
+## Responsive picture shortcode
 
 To get a step by step understanding of what the eleventy-img plugin is used to create a shortcode that generates the images and provides the right code You can read [How to optimize images on eleventy (11ty)](https://dev.to/22mahmoud/how-to-optimize-and-lazyload-images-on-eleventy-11ty-206h) which was freely adapted to Huwindty. You may want to add the lazy-loading and the blurry effect if you want.
 
@@ -99,6 +98,12 @@ It is not recommanded to lazy load images that are visible on screen when the pa
 Because of that, all images can't be lazy loaded by default. Instead, content editors can intentionally request lazy loading by adding `"lazy"` as a css class. The responsive image script will add `loading="lazy"` in the output code.
 
 The makrdown example above shows you how to add this class to an image in markdown.
+
+## Non responsive images and Layout 
+
+As written earlier, images in layout such as `head.njk` are also handled and made responsive. Huwindty doesn't have images in layout but you can add images in them that will be displayed in all pages using the layout file. And these images will be automaticaly responsive.
+
+If you want an image that keeps its width and format whatever the screen size, you will have to add the atribute `eleventy:ignore`. Eleventy will then bypass this tag and `eleventyImageTransformPlugin` will not lake it responsive. This is quite useful for top left logos, profile avatars or small icons.
 
 ## Images in CMS
 
