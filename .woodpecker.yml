@@ -27,6 +27,7 @@ steps:
       - chmod -R a+w _site
       - cd _site
       # Prepare for push
+      - echo "TOKEN length is ${#TOKEN}"
       - git remote set-url origin https://$TOKEN@codeberg.org/$USER/$REPO.git
       - cd ..
       # Run 11ty build stage
