@@ -8,7 +8,6 @@ tags: ''
 author: ''
 date: 2025-01-04
 thumbnail: boat.jpg
-ismarkdown: true
 templateEngineOverride: md
 ---
 
