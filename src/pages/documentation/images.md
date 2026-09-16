@@ -24,7 +24,7 @@ For example, the image above (`boat.jpg`) is located in the `/src/pages/document
 
 ## Responsive images
 
-Web pages can display on a small phone screen or a large high definition monitor. Displaying a 3000px wide image on a phone is a waste of resources that slows down display and showing a 150px picture on a wide monitor might miss some details. Making images responsive is the way to provide the appropriate picture to each screen.
+Web pages can display on any screen from a small phone or a large high definition expensive monitor. Displaying a HD 3000px wide image on a phone is a waste of resources that slows down page rendering. On the contrary, showing a 150px picture on a wide monitor might miss some details. Making images responsive is the way to provide the appropriate picture to each screen.
 
 The article [Responsive images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/) covers everything you need to know about this topic when managing a web site.
 
@@ -40,17 +40,11 @@ const Images = {
 }
 ```
 
-Since `eleventy-img` 7.0.0 All images are handled by eleventy which generates the responsive image tag according to the plugin `eleventyImageTransformPlugin` defined in eleventy.js.
+On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule and the `eleventyImageTransformPlugin` plugin unsing `eleventy-img`.
 
-Both markdown and HTML images are handled and generate an `img` tag including `srcset` attribute for all responsive sizes.
+Eleventy also processes pure HTML pages, so the `eleventyImageTransformPlugin` plugin is also active and images in an `img` tag will be made responsive with the `srcset` attribute.
 
-However, on HTML pages, it is possible to use the picture tag with the same image width. This is done using the specific shortcode defined in `eleventyConfig.addShortcode("Picture"` . This method allows to provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
-
-### Avoiding responsiveness
-
-For any reason, if you want to avoid responsiveness, you will need to add the attribute `eleventy:ignore` inside the `img` tag.
-
-Since `eleventy-img` 7.0.0 All images are handled and this also includes used in layout files. If you want to use a single size image in the layout of your page, this is where the attribute `eleventy:ignore` is useful. Huwindty doesn't use such image.
+If you want to have responsive images with the picture tag, it is possible to use the shortcode defined in `eleventyConfig.addShortcode("Picture"` . This method allows you to provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
 
 ## Responsive pictures in HTML pages
 
@@ -78,7 +72,7 @@ The atributes are the following:
 
 ## Responsive Images in Markdown
 
-For Markdown, we implemented what is explained in [Responsive Images in Markdown with Eleventy Image](https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/), a nice step by step blog post explaining how to use mardown-it to parse normal image code in markdown to generate the responsive image HTML code thanks to eleventy-img. This solution was slightly amended since responsivness is handled by eleventy-img but option like image path or lazyness explained bellow remains.
+For Markdown, we implemented what is explained in [Responsive Images in Markdown with Eleventy Image](https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/), a nice step by step blog post explaining how to use mardown-it to parse normal image code in markdown to generate the responsive image HTML code thanks to eleventy-img.
 
 The image below is generated with the simple code
 
