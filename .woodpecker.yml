@@ -1,7 +1,7 @@
 steps:
   build:
     when:
-      event: push
+      event: [push, manual]
       branch: main
     image: node
     environment:
