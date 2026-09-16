@@ -1,5 +1,6 @@
 ---
 layout: base
+isMarkdown: true
 title: Images
 headline: Edit and manage images
 description: How do responsive images work in huwindty
@@ -10,6 +11,7 @@ thumbnail: boat.jpg
 ismarkdown: true
 templateEngineOverride: md
 ---
+
 ## Image location
 
 With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always be relative to the `pages` folder which is the root folder for the content.
@@ -22,7 +24,7 @@ For example, the image above (`boat.jpg`) is located in the `/src/pages/document
 
 ## Responsive images
 
-Web pages can display on a small phone screen or a large high definition monitor. Displaying a 3000px wide image on a phone is a waste of resources that slows down display and showing a 150px picture on a wide monitor might miss some details. Making images responsive is the way to provide the appropriate picture to each screen.
+Web pages can display on any screen from a small phone or a large high definition expensive monitor. Displaying a HD 3000px wide image on a phone is a waste of resources that slows down page rendering. On the contrary, showing a 150px picture on a wide monitor might miss some details. Making images responsive is the way to provide the appropriate picture to each screen.
 
 The article [Responsive images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/) covers everything you need to know about this topic when managing a web site.
 
@@ -38,12 +40,13 @@ const Images = {
 }
 ```
 
+On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule and the `eleventyImageTransformPlugin` plugin unsing `eleventy-img`.
 
-On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule.
+Eleventy also processes pure HTML pages, so the `eleventyImageTransformPlugin` plugin is also active and images in an `img` tag will be made responsive with the `srcset` attribute.
 
-On pure HTML pages, you will need to use a specific shortcode defined in `eleventyConfig.addShortcode("Picture"` and provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
+If you want to have responsive images with the picture tag, it is possible to use the shortcode defined in `eleventyConfig.addShortcode("Picture"` . This method allows you to provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
 
-## Responsive Images in HTML pages
+## Responsive pictures in HTML pages
 
 To get a step by step understanding of what the eleventy-img plugin is used to create a shortcode that generates the images and provides the right code You can read [How to optimize images on eleventy (11ty)](https://dev.to/22mahmoud/how-to-optimize-and-lazyload-images-on-eleventy-11ty-206h) which was freely adapted to Huwindty. You may want to add the lazy-loading and the blurry effect if you want.
 
@@ -106,7 +109,7 @@ This starter comes with the simple [Svetlia CMS](../cms/) that allows you to add
  _(All images are available for all pages)_
 - in the folder of the current page  
  _(Images are not reusable in other pages)_
- 
+
 Because the CMS uses Markdown and that images in Markdown are automaticaly converted in responsive pictures, there is nothing else to do other than choose well your images, organise them, and never forget the alt text.
 
 ## Thumbnail
@@ -118,4 +121,3 @@ thumbnail: boat.jpg
 ```
 
 This is the image that is shown in the list of pages in the CMS interface. It is also used as the metadata image of the page. This is the image that is used in the generated snipet that you see when you copy the url of the page in social medias.
-
