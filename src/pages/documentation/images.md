@@ -3,33 +3,32 @@ layout: base
 isMarkdown: true
 title: Images
 headline: Edit and manage images
-description: How do responsive images work in huwindty
+description: How do responsive images work in Huwindty
 tags: ''
 author: ''
 date: 2025-01-04
 thumbnail: boat.jpg
 templateEngineOverride: md
 ---
-
 ## Image location
 
-With the huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their url will always be relative to the `pages` folder which is the root folder for the content.
+With the Huwindty starter, images are stored within the content (after all, images are content too). They can be added in any folder and their URL will always be relative to the `pages` folder, which is the root folder for content.
 
-### example image
+### Example image
 
 ![drooderfiets and yellow boat](/documentation/boat.jpg)
 
-For example, the image above (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The url used to show it on the page will be `/documentation/boat.jpg`. Always use an absolute url for the image source (starting with a `/`).
+For example, the image above (`boat.jpg`) is located in the `/src/pages/documentation/` folder and is used by a page in the same folder. The URL used to display it on the page will be `/documentation/boat.jpg`. Always use an absolute URL for the image source (starting with a `/`).
 
 ## Responsive images
 
-Web pages can display on any screen from a small phone or a large high definition expensive monitor. Displaying a HD 3000px wide image on a phone is a waste of resources that slows down page rendering. On the contrary, showing a 150px picture on a wide monitor might miss some details. Making images responsive is the way to provide the appropriate picture to each screen.
+Web pages can be displayed on any screen, from a small phone to a large high-definition, expensive monitor. Displaying a 3000px-wide HD image on a phone is a waste of resources that slows down page rendering. Conversely, showing a 150px picture on a wide monitor might miss some details. Making images responsive is how you provide the appropriate picture to each screen.
 
-The article [Responsive images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/) covers everything you need to know about this topic when managing a web site.
+The article [Responsive images 101](https://cloudfour.com/thinks/responsive-images-101-definitions/) covers everything you need to know about this topic when managing a website.
 
 ## Default choice
 
-In this template, the eleventy config provides a way to generate responsive images and store them at the right place, as well as generating the right responsive code to use them (see .eleventy.js). Image sizes and format can be adjusted according to your layout and needs by changing the Images enum at the beginning of .eleventy.js:
+The eleventy config provides a way to generate responsive images and store them in the correct location, as well as generating the correct responsive code to use them (see `.eleventy.js`). In Huwindty, image sizes and formats are set using the following default settings and can be adjusted according to your layout and needs by changing the `Images` enum at the beginning of `.eleventy.js`:
 
 ```js
 const Images = {
@@ -39,15 +38,15 @@ const Images = {
 }
 ```
 
-On markdown pages it will be done directly while parsing the markdown code thanks to the `mdLib.renderer.rules.image` rule and the `eleventyImageTransformPlugin` plugin unsing `eleventy-img`.
+Markdown pages are parsed with `mdLib` and images are handled with the `mdLib.renderer.rules.image` rule. Then the `eleventyImageTransformPlugin` plugin takes care of rendering the responsive code as defined using `eleventy-img`.
 
-Eleventy also processes pure HTML pages, so the `eleventyImageTransformPlugin` plugin is also active and images in an `img` tag will be made responsive with the `srcset` attribute.
+It is even simpler in HTML pages, as the `eleventyImageTransformPlugin` plugin takes all images in the code to make them responsive. Even images in the layout files are handled.
 
-If you want to have responsive images with the picture tag, it is possible to use the shortcode defined in `eleventyConfig.addShortcode("Picture"` . This method allows you to provide several options. Only the alt tag is compulsory, but you can also override the default width and formats of your image to fit with the specific design of your HTML page.
+It is also possible to use the shortcode defined in `eleventyConfig.addShortcode("Picture"…`. This method allows you to define several options to display the image. Only the `alt` attribute is compulsory, but you can also override the default width and formats of your image to fit the specific design of your HTML page.
 
-## Responsive pictures in HTML pages
+## Responsive picture shortcode
 
-To get a step by step understanding of what the eleventy-img plugin is used to create a shortcode that generates the images and provides the right code You can read [How to optimize images on eleventy (11ty)](https://dev.to/22mahmoud/how-to-optimize-and-lazyload-images-on-eleventy-11ty-206h) which was freely adapted to Huwindty. You may want to add the lazy-loading and the blurry effect if you want.
+To get a step-by-step understanding of how the eleventy-img plugin is used to create a shortcode that generates the images and provides the correct code, you can read [How to optimize images on eleventy (11ty)](https://dev.to/22mahmoud/how-to-optimize-and-lazyload-images-on-eleventy-11ty-206h), which has been freely adapted for Huwindty. You may want to add lazy loading and the blurry effect if you wish.
 
 An example is available on the Huwindty home page
 
@@ -59,19 +58,19 @@ An example is available on the Huwindty home page
     -->
 ```
 
-The atributes are the following:
+The attributes are as follows:
 
-- **page** will provide the current path to generate the right output path. Just leave `page` after the `Picture` and this will be fine
-- **file name**: On this example there is no path to the current image file since they are in the same folder.
-- **alt text** is made compulsory for various reason, I also encourage you to write nice descriptive text that really help blind people to understand your image.
-- **class** will add a css class to the image so you can change its position and dimension. The specific class `lazy` will also make the image lazy load.
-- **widths** will override the default widths in with the output images will be generated. this is particularly useful if you change the size of the image using a css class, you will want to generate images with the same size.
-- **formats** will override the default formats
-- **sizes** will override the default sizes to tell the browser how large the image will be  ahead of its complete download. The default is 100vw but if you know your image will display on half of the page you may want to change this to 50vw.
+- **page** provides the current path to generate the correct output path. Simply use `page` after `Picture`, and it will be fine.
+- **file name**: In this example, there is no path to the image file since it is in the same folder.
+- **alt text** is compulsory for various reasons. I also encourage you to write nice descriptive text that really helps visually impaired users understand your image.
+- **class** adds a CSS class to the image so you can change its position and dimensions. The specific class `lazy` will also make the image lazy-load.
+- **widths** will override the default widths for which the output images will be generated. This is particularly useful if you change the image size using a CSS class; you will want to generate images of the same size.
+- **formats** will override the default formats.
+- **sizes** will override the default sizes to tell the browser how large the image will be before it is fully downloaded. The default is 100vw, but if you know your image will be displayed on half of the page, you may want to change this to 50vw.
 
 ## Responsive Images in Markdown
 
-For Markdown, we implemented what is explained in [Responsive Images in Markdown with Eleventy Image](https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/), a nice step by step blog post explaining how to use mardown-it to parse normal image code in markdown to generate the responsive image HTML code thanks to eleventy-img.
+For Markdown, we implemented what is explained in [Responsive Images in Markdown with Eleventy Image](https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/), a nice step-by-step blog post explaining how to use markdown-it to parse normal image code in Markdown to generate responsive image HTML code using eleventy-img.
 
 The image below is generated with the simple code
 
@@ -81,7 +80,7 @@ The image below is generated with the simple code
 
 ![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
 
-When you inspect the code, you see that the generated code is the following responsive HTML:
+When you inspect the generated code, you see following responsive HTML:
 
 ```html
 <picture>
@@ -92,19 +91,25 @@ When you inspect the code, you see that the generated code is the following resp
 
 ## Lazy loading
 
-Lazy loading images defers their loading on the page until they are actually needed, instead of loading these resources as soon as the page loads. This improves initial page load performance and enhances user experience.
+Lazy loading images defers their loading on the page until they are actually needed, instead of loading these resources as soon as the page loads. This improves initial page load performance and enhances the user experience.
 
-It is not recommanded to lazy load images that are visible on screen when the page loads (below the fold) but it is possible to differ images that are lower on the page. They will then be loaded as the user scrolls down.
+It is not recommended to lazy-load images that are visible on screen when the page loads (above the fold), but it is possible to defer images that are lower down the page. They will then be loaded as the user scrolls down.
 
-Because of that, all images can't be lazy loaded by default. Instead, content editors can intentionally request lazy loading by adding `"lazy"` as a css class. The responsive image script will add `loading="lazy"` in the output code.
+Because of this, not all images can be lazy-loaded by default. Instead, content editors can intentionally request lazy loading by adding `"lazy"` as a CSS class. The responsive image script will add `loading="lazy"` to the output code.
 
-The makrdown example above shows you how to add this class to an image in markdown.
+The markdown example above shows how to add this class to an image in Markdown.
+
+## Non-responsive images and layout
+
+As mentioned earlier, images in layout files such as `head.njk` are also handled and made responsive. Huwindty does not have images in its layout, but you can add images to them that will be displayed on all pages using the layout file. These images will also be automatically responsive.
+
+If you want an image that keeps its width and format regardless of screen size, you will have to add the attribute `eleventy:ignore`. Eleventy will then bypass this tag and `eleventyImageTransformPlugin` will not make it responsive. This is quite useful for top-left logos, profile avatars or small icons.
 
 ## Images in CMS
 
 This starter comes with the simple [Svetlia CMS](../cms/) that allows you to add, remove and update pages and media. Images in Svetlia CMS can be added in two ways:
 
-- in a dedicated media folder  
+- in a dedicated media folder
  _(All images are available for all pages)_
 - in the folder of the current page  
  _(Images are not reusable in other pages)_
@@ -119,4 +124,6 @@ The thumbnail of a page is defined in the front matter. For example the current 
 thumbnail: boat.jpg
 ```
 
-This is the image that is shown in the list of pages in the CMS interface. It is also used as the metadata image of the page. This is the image that is used in the generated snipet that you see when you copy the url of the page in social medias.
+This image is shown in the list of pages in the CMS interface, to help you netter spot the content you want to edit.
+
+It is also used as the metadata image of the page. This is for example, the image that will be visible in the snipet when you share the url of a page on social medias.
