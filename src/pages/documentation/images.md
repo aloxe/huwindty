@@ -58,19 +58,19 @@ An example is available on the Huwindty home page
     -->
 ```
 
-The atributes are the following:
+The attributes are as follows:
 
-- **page** will provide the current path to generate the right output path. Just leave `page` after the `Picture` and this will be fine
-- **file name**: On this example there is no path to the current image file since they are in the same folder.
-- **alt text** is made compulsory for various reason, I also encourage you to write nice descriptive text that really help blind people to understand your image.
-- **class** will add a css class to the image so you can change its position and dimension. The specific class `lazy` will also make the image lazy load.
-- **widths** will override the default widths in with the output images will be generated. this is particularly useful if you change the size of the image using a css class, you will want to generate images with the same size.
-- **formats** will override the default formats
-- **sizes** will override the default sizes to tell the browser how large the image will be  ahead of its complete download. The default is 100vw but if you know your image will display on half of the page you may want to change this to 50vw.
+- **page** provides the current path to generate the correct output path. Simply use `page` after `Picture`, and it will be fine.
+- **file name**: In this example, there is no path to the image file since it is in the same folder.
+- **alt text** is compulsory for various reasons. I also encourage you to write nice descriptive text that really helps visually impaired users understand your image.
+- **class** adds a CSS class to the image so you can change its position and dimensions. The specific class `lazy` will also make the image lazy-load.
+- **widths** will override the default widths for which the output images will be generated. This is particularly useful if you change the image size using a CSS class; you will want to generate images of the same size.
+- **formats** will override the default formats.
+- **sizes** will override the default sizes to tell the browser how large the image will be before it is fully downloaded. The default is 100vw, but if you know your image will be displayed on half of the page, you may want to change this to 50vw.
 
 ## Responsive Images in Markdown
 
-For Markdown, we implemented what is explained in [Responsive Images in Markdown with Eleventy Image](https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/), a nice step by step blog post explaining how to use mardown-it to parse normal image code in markdown to generate the responsive image HTML code thanks to eleventy-img.
+For Markdown, we implemented what is explained in [Responsive Images in Markdown with Eleventy Image](https://tomichen.com/blog/posts/20220416-responsive-images-in-markdown-with-eleventy-image/), a nice step-by-step blog post explaining how to use markdown-it to parse normal image code in Markdown to generate responsive image HTML code using eleventy-img.
 
 The image below is generated with the simple code
 
@@ -80,7 +80,7 @@ The image below is generated with the simple code
 
 ![drooderfiets and red circus](/documentation/circus.jpg){.lazy}
 
-When you inspect the code, you see that the generated code is the following responsive HTML:
+When you inspect the generated code, you see following responsive HTML:
 
 ```html
 <picture>
@@ -91,25 +91,25 @@ When you inspect the code, you see that the generated code is the following resp
 
 ## Lazy loading
 
-Lazy loading images defers their loading on the page until they are actually needed, instead of loading these resources as soon as the page loads. This improves initial page load performance and enhances user experience.
+Lazy loading images defers their loading on the page until they are actually needed, instead of loading these resources as soon as the page loads. This improves initial page load performance and enhances the user experience.
 
-It is not recommanded to lazy load images that are visible on screen when the page loads (below the fold) but it is possible to differ images that are lower on the page. They will then be loaded as the user scrolls down.
+It is not recommended to lazy-load images that are visible on screen when the page loads (above the fold), but it is possible to defer images that are lower down the page. They will then be loaded as the user scrolls down.
 
-Because of that, all images can't be lazy loaded by default. Instead, content editors can intentionally request lazy loading by adding `"lazy"` as a css class. The responsive image script will add `loading="lazy"` in the output code.
+Because of this, not all images can be lazy-loaded by default. Instead, content editors can intentionally request lazy loading by adding `"lazy"` as a CSS class. The responsive image script will add `loading="lazy"` to the output code.
 
-The makrdown example above shows you how to add this class to an image in markdown.
+The markdown example above shows how to add this class to an image in Markdown.
 
-## Non responsive images and Layout 
+## Non-responsive images and layout
 
-As written earlier, images in layout such as `head.njk` are also handled and made responsive. Huwindty doesn't have images in layout but you can add images in them that will be displayed in all pages using the layout file. And these images will be automaticaly responsive.
+As mentioned earlier, images in layout files such as `head.njk` are also handled and made responsive. Huwindty does not have images in its layout, but you can add images to them that will be displayed on all pages using the layout file. These images will also be automatically responsive.
 
-If you want an image that keeps its width and format whatever the screen size, you will have to add the atribute `eleventy:ignore`. Eleventy will then bypass this tag and `eleventyImageTransformPlugin` will not lake it responsive. This is quite useful for top left logos, profile avatars or small icons.
+If you want an image that keeps its width and format regardless of screen size, you will have to add the attribute `eleventy:ignore`. Eleventy will then bypass this tag and `eleventyImageTransformPlugin` will not make it responsive. This is quite useful for top-left logos, profile avatars or small icons.
 
 ## Images in CMS
 
 This starter comes with the simple [Svetlia CMS](../cms/) that allows you to add, remove and update pages and media. Images in Svetlia CMS can be added in two ways:
 
-- in a dedicated media folder  
+- in a dedicated media folder
  _(All images are available for all pages)_
 - in the folder of the current page  
  _(Images are not reusable in other pages)_
@@ -124,4 +124,6 @@ The thumbnail of a page is defined in the front matter. For example the current 
 thumbnail: boat.jpg
 ```
 
-This is the image that is shown in the list of pages in the CMS interface. It is also used as the metadata image of the page. This is the image that is used in the generated snipet that you see when you copy the url of the page in social medias.
+This image is shown in the list of pages in the CMS interface, to help you netter spot the content you want to edit.
+
+It is also used as the metadata image of the page. This is for example, the image that will be visible in the snipet when you share the url of a page on social medias.
