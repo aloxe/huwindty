@@ -1,6 +1,5 @@
 ---
 layout: base
-isMarkdown: true
 title: Images
 headline: Edit and manage images
 description: How do responsive images work in Huwindty
@@ -8,7 +7,7 @@ tags: ''
 author: ''
 date: 2025-01-04
 thumbnail: boat.jpg
-isMarkdown: true
+ismarkdown: true
 templateEngineOverride: md
 ---
 ## Image location
