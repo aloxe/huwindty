@@ -2,7 +2,7 @@
 layout: base
 title: First page
 headline: Here I am
-ismarkdown: true
+isMarkdown: true
 ---
 ## First Page
 

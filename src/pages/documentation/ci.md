@@ -7,7 +7,7 @@ tags: ''
 author: ''
 date: 2025-01-04
 thumbnail: circus.jpg
-ismarkdown: true
+isMarkdown: true
 ---
 ## Github Continuous Integration
 

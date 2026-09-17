@@ -4,7 +4,7 @@ title: Navigation
 headline: Navigation menu generation and index pages
 description: How huwindty manages the navigation menu without dependency
 thumbnail: /img/vera.jpg
-ismarkdown: true
+isMarkdown: true
 templateEngineOverride: md
 ---
 ## Navigation principles

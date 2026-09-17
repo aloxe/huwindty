@@ -4,7 +4,7 @@ title: Other pages
 headline: Some example pages with texts
 author: aloxe
 date: 2025-03-21
-ismarkdown: true
+isMarkdown: true
 thumbnail: /img/vera.jpg
 toc: What you'll find in this section?
 ---

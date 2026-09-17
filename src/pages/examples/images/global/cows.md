@@ -7,7 +7,7 @@ tags: drooderfiets, bike, cows, fields
 author: aloxe
 date: 2024-12-02
 subtitle: Yet another example page
-ismarkdown: true
+isMarkdown: true
 thumbnail: ../../cows.jpg
 ---
 ## Picture of cows

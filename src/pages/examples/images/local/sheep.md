@@ -7,7 +7,7 @@ tags: ""
 author: aloxe
 date: 2024-12-21
 subtitle: Yet another example page
-ismarkdown: true
+isMarkdown: true
 thumbnail: sheep.jpg
 ---
 ## A picture of sheep

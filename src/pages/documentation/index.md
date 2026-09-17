@@ -7,7 +7,7 @@ tags: eleventy, starter, images, navigation, markdown, css, styles, tailwind, sv
 author: aloxe
 date: 2024-12-29
 thumbnail: /img/vera.jpg
-ismarkdown: true
+isMarkdown: true
 toc: Table of content
 ---
 

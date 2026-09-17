@@ -7,7 +7,7 @@ tags: ''
 author: alix
 date: 2025-10-15
 thumbnail: /img/animals/heron.jpg
-ismarkdown: true
+isMarkdown: true
 ---
 ## Markdown
 

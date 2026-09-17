@@ -7,7 +7,7 @@ tags: ""
 author: ""
 date: 2024-12-05
 subtitle: Yet another example page
-ismarkdown: true
+isMarkdown: true
 thumbnail: wasps.jpg
 ---
 ## A picture with wasps

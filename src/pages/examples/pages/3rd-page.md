@@ -2,7 +2,7 @@
 layout: base
 title: Third page
 headline: All for one
-ismarkdown: true
+isMarkdown: true
 ---
 ## Third Page
 

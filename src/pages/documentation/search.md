@@ -4,7 +4,7 @@ title: Search
 headline: Makes your pages findable
 description: How to install and use Pagefind to search pages throughout your site
 thumbnail: /img/vera.jpg
-ismarkdown: true
+isMarkdown: true
 templateEngineOverride: md
 ---
 ## Pagefind

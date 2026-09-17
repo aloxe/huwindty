@@ -7,7 +7,7 @@ tags: ''
 author: ''
 date: 2025-08-27
 thumbnail: /img/grasshopper.jpg
-ismarkdown: true
+isMarkdown: true
 ---
 ## Sveltia CMS
 

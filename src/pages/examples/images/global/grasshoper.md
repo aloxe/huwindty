@@ -7,7 +7,7 @@ tags: ""
 author: ""
 date: 2024-12-17
 subtitle: drooderfiets and grasshopper
-ismarkdown: true
+isMarkdown: true
 thumbnail: /img/grasshopper.jpg
 ---
 ## Picture with a grasshopper
