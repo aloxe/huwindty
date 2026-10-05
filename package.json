@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@11ty/eleventy-img": "^7.0.0",
-    "@11ty/eleventy-plugin-rss": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^3.1.0",
     "@fullhuman/postcss-purgecss": "^8.0.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@toycode/markdown-it-class": "^1.2.4",
